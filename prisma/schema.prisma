@@ -1,0 +1,153 @@
+generator client {
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  moduleFormat    = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+model Role {
+  id    Int    @id @default(autoincrement()) @map("role_id")
+  name  String
+  users User[]
+
+  @@map("Roles")
+}
+
+model User {
+  id            Int            @id @default(autoincrement()) @map("user_id")
+  email         String         @unique
+  password      String
+  roleId        Int            @map("fk_role_id")
+  firstName     String         @map("first_name")
+  lastName      String         @map("last_name")
+  interventions Intervention[]
+  role          Role           @relation(fields: [roleId], references: [id])
+  classes       Class[]
+
+  @@map("Users")
+}
+
+model Subject {
+  id            Int            @id @default(autoincrement()) @map("subject_id")
+  name          String
+  interventions Intervention[]
+
+  @@map("Subjects")
+}
+
+model Institution {
+  id                  Int            @id @default(autoincrement()) @map("institution_id")
+  name                String
+  address             String
+  color               String         @default("#3B82F6")
+  requiresDeclaration Boolean        @default(false) @map("requires_declaration")
+  classes             Class[]
+  contracts           Contract[]
+
+  @@map("Institutions")
+}
+
+model Class {
+  id            Int            @id @default(autoincrement()) @map("class_id")
+  institutionId Int            @map("fk_institution_id")
+  classLevel    String         @map("class_level")
+  studentCount  Int            @map("student_count")
+  name          String
+  teacherId     Int            @map("fk_teacher_id")
+  teacher       User           @relation(fields: [teacherId], references: [id])
+  institution   Institution    @relation(fields: [institutionId], references: [id])
+  interventions Intervention[]
+
+  @@map("Classes")
+}
+
+model PricingMode {
+  id        Int        @id @default(autoincrement()) @map("pricing_mode_id")
+  name      String
+  contracts Contract[]
+
+  @@map("Pricing_Modes")
+}
+
+model Contract {
+  id                  Int            @id @default(autoincrement()) @map("contract_id")
+  institutionId       Int            @map("fk_institution_id")
+  pricingModeId       Int            @map("fk_pricing_mode_id")
+  contractNumber      String         @map("contract_number")
+  startDate           DateTime       @map("start_date") @db.Date
+  endDate             DateTime       @map("end_date") @db.Date
+  hourlyVolumePlanned Decimal        @map("hourly_volume_planned") @db.Decimal(10, 2)
+  unitPrice           Decimal        @map("unit_price") @db.Decimal(10, 2)
+  institution         Institution    @relation(fields: [institutionId], references: [id])
+  pricingMode         PricingMode    @relation(fields: [pricingModeId], references: [id])
+  interventions       Intervention[]
+
+  @@map("Contracts")
+}
+
+model Status {
+  id            Int            @id @default(autoincrement()) @map("status_id")
+  name          String
+  interventions Intervention[]
+
+  @@map("Status")
+}
+
+model InterventionType {
+  id            Int            @id @default(autoincrement()) @map("intervention_type_id")
+  name          String
+  interventions Intervention[]
+
+  @@map("Intervention_Types")
+}
+
+model Timescale {
+  id            Int            @id @default(autoincrement()) @map("timescale_id")
+  name          String
+  interventions Intervention[]
+
+  @@map("Timescale")
+}
+
+model Invoice {
+  id            Int            @id @default(autoincrement()) @map("invoice_id")
+  invoiceNumber String         @map("invoice_number")
+  invoiceDate   DateTime       @map("invoice_date") @db.Date
+  paymentDate   DateTime?      @map("payment_date") @db.Date
+  status        String
+  interventions Intervention[]
+
+  @@map("Invoices")
+}
+
+model Intervention {
+  id                   Int              @id @default(autoincrement()) @map("intervention_id")
+  subjectId            Int?             @map("fk_subject_id")
+  classId              Int?             @map("fk_class_id")
+  title                String           @map("title")
+  contractId           Int?             @map("fk_contract_id")
+  statusId             Int              @default(1) @map("fk_status_id")
+  userId               Int?             @map("fk_user_id")
+  invoiceId            Int?             @map("fk_invoice_id")
+  interventionTypeId   Int?             @map("fk_intervention_type_id")
+  timescaleId          Int?             @map("fk_timescale_id")
+  date                 DateTime         @db.Date
+  start                DateTime         @db.Time(6)
+  end                  DateTime         @db.Time(6)
+  declarationReference String?          @map("declaration_reference")
+  declarationDate      DateTime?        @map("declaration_date") @db.Date
+  class                Class?           @relation(fields: [classId], references: [id])
+  contract             Contract?        @relation(fields: [contractId], references: [id])
+  interventionType     InterventionType? @relation(fields: [interventionTypeId], references: [id])
+  invoice              Invoice?         @relation(fields: [invoiceId], references: [id])
+  statusRelation       Status           @relation(fields: [statusId], references: [id])
+  subject              Subject?         @relation(fields: [subjectId], references: [id])
+  timescale            Timescale?       @relation(fields: [timescaleId], references: [id])
+  user                 User?            @relation(fields: [userId], references: [id])
+
+  @@map("Interventions")
+}
