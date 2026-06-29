@@ -6,9 +6,11 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ClassesModule } from './classes/classes.module';
 import { InstitutionsModule } from './institutions/institutions.module';
 import { UsersModule } from './users/users.module';
+import { ContractsModule } from './contracts/contracts.module';
+import { PricingModeModule } from './pricing-mode/pricing-mode.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, ClassesModule, InstitutionsModule, UsersModule],
+  imports: [PrismaModule, AuthModule, ClassesModule, InstitutionsModule, UsersModule, ContractsModule, PricingModeModule],
   providers: [{ provide: APP_GUARD, useClass: JwtAuthGuard }],
 })
 export class AppModule {}
