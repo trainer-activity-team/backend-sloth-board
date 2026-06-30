@@ -109,7 +109,7 @@ export class ClassesService {
         throw new NotFoundException(`Class #${id} not found`);
       }
       if (isForeignKeyConstraintError(error)) {
-        throw new ConflictException('Cannot delete class with related interventions');
+        throw new ConflictException('Cannot delete class with related sessions');
       }
       throw new InternalServerErrorException('Failed to delete class', {
         cause: error,

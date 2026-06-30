@@ -192,13 +192,13 @@ export type StatusWhereInput = {
   NOT?: Prisma.StatusWhereInput | Prisma.StatusWhereInput[]
   id?: Prisma.IntFilter<"Status"> | number
   name?: Prisma.StringFilter<"Status"> | string
-  interventions?: Prisma.InterventionListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }
 
 export type StatusOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  interventions?: Prisma.InterventionOrderByRelationAggregateInput
+  sessions?: Prisma.SessionOrderByRelationAggregateInput
 }
 
 export type StatusWhereUniqueInput = Prisma.AtLeast<{
@@ -207,7 +207,7 @@ export type StatusWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.StatusWhereInput[]
   NOT?: Prisma.StatusWhereInput | Prisma.StatusWhereInput[]
   name?: Prisma.StringFilter<"Status"> | string
-  interventions?: Prisma.InterventionListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }, "id">
 
 export type StatusOrderByWithAggregationInput = {
@@ -230,24 +230,24 @@ export type StatusScalarWhereWithAggregatesInput = {
 
 export type StatusCreateInput = {
   name: string
-  interventions?: Prisma.InterventionCreateNestedManyWithoutStatusRelationInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutStatusRelationInput
 }
 
 export type StatusUncheckedCreateInput = {
   id?: number
   name: string
-  interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutStatusRelationInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutStatusRelationInput
 }
 
 export type StatusUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  interventions?: Prisma.InterventionUpdateManyWithoutStatusRelationNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutStatusRelationNestedInput
 }
 
 export type StatusUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  interventions?: Prisma.InterventionUncheckedUpdateManyWithoutStatusRelationNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutStatusRelationNestedInput
 }
 
 export type StatusCreateManyInput = {
@@ -292,50 +292,50 @@ export type StatusScalarRelationFilter = {
   isNot?: Prisma.StatusWhereInput
 }
 
-export type StatusCreateNestedOneWithoutInterventionsInput = {
-  create?: Prisma.XOR<Prisma.StatusCreateWithoutInterventionsInput, Prisma.StatusUncheckedCreateWithoutInterventionsInput>
-  connectOrCreate?: Prisma.StatusCreateOrConnectWithoutInterventionsInput
+export type StatusCreateNestedOneWithoutSessionsInput = {
+  create?: Prisma.XOR<Prisma.StatusCreateWithoutSessionsInput, Prisma.StatusUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.StatusCreateOrConnectWithoutSessionsInput
   connect?: Prisma.StatusWhereUniqueInput
 }
 
-export type StatusUpdateOneRequiredWithoutInterventionsNestedInput = {
-  create?: Prisma.XOR<Prisma.StatusCreateWithoutInterventionsInput, Prisma.StatusUncheckedCreateWithoutInterventionsInput>
-  connectOrCreate?: Prisma.StatusCreateOrConnectWithoutInterventionsInput
-  upsert?: Prisma.StatusUpsertWithoutInterventionsInput
+export type StatusUpdateOneRequiredWithoutSessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.StatusCreateWithoutSessionsInput, Prisma.StatusUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.StatusCreateOrConnectWithoutSessionsInput
+  upsert?: Prisma.StatusUpsertWithoutSessionsInput
   connect?: Prisma.StatusWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.StatusUpdateToOneWithWhereWithoutInterventionsInput, Prisma.StatusUpdateWithoutInterventionsInput>, Prisma.StatusUncheckedUpdateWithoutInterventionsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StatusUpdateToOneWithWhereWithoutSessionsInput, Prisma.StatusUpdateWithoutSessionsInput>, Prisma.StatusUncheckedUpdateWithoutSessionsInput>
 }
 
-export type StatusCreateWithoutInterventionsInput = {
+export type StatusCreateWithoutSessionsInput = {
   name: string
 }
 
-export type StatusUncheckedCreateWithoutInterventionsInput = {
+export type StatusUncheckedCreateWithoutSessionsInput = {
   id?: number
   name: string
 }
 
-export type StatusCreateOrConnectWithoutInterventionsInput = {
+export type StatusCreateOrConnectWithoutSessionsInput = {
   where: Prisma.StatusWhereUniqueInput
-  create: Prisma.XOR<Prisma.StatusCreateWithoutInterventionsInput, Prisma.StatusUncheckedCreateWithoutInterventionsInput>
+  create: Prisma.XOR<Prisma.StatusCreateWithoutSessionsInput, Prisma.StatusUncheckedCreateWithoutSessionsInput>
 }
 
-export type StatusUpsertWithoutInterventionsInput = {
-  update: Prisma.XOR<Prisma.StatusUpdateWithoutInterventionsInput, Prisma.StatusUncheckedUpdateWithoutInterventionsInput>
-  create: Prisma.XOR<Prisma.StatusCreateWithoutInterventionsInput, Prisma.StatusUncheckedCreateWithoutInterventionsInput>
+export type StatusUpsertWithoutSessionsInput = {
+  update: Prisma.XOR<Prisma.StatusUpdateWithoutSessionsInput, Prisma.StatusUncheckedUpdateWithoutSessionsInput>
+  create: Prisma.XOR<Prisma.StatusCreateWithoutSessionsInput, Prisma.StatusUncheckedCreateWithoutSessionsInput>
   where?: Prisma.StatusWhereInput
 }
 
-export type StatusUpdateToOneWithWhereWithoutInterventionsInput = {
+export type StatusUpdateToOneWithWhereWithoutSessionsInput = {
   where?: Prisma.StatusWhereInput
-  data: Prisma.XOR<Prisma.StatusUpdateWithoutInterventionsInput, Prisma.StatusUncheckedUpdateWithoutInterventionsInput>
+  data: Prisma.XOR<Prisma.StatusUpdateWithoutSessionsInput, Prisma.StatusUncheckedUpdateWithoutSessionsInput>
 }
 
-export type StatusUpdateWithoutInterventionsInput = {
+export type StatusUpdateWithoutSessionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type StatusUncheckedUpdateWithoutInterventionsInput = {
+export type StatusUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -346,11 +346,11 @@ export type StatusUncheckedUpdateWithoutInterventionsInput = {
  */
 
 export type StatusCountOutputType = {
-  interventions: number
+  sessions: number
 }
 
 export type StatusCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  interventions?: boolean | StatusCountOutputTypeCountInterventionsArgs
+  sessions?: boolean | StatusCountOutputTypeCountSessionsArgs
 }
 
 /**
@@ -366,15 +366,15 @@ export type StatusCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
 /**
  * StatusCountOutputType without action
  */
-export type StatusCountOutputTypeCountInterventionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.InterventionWhereInput
+export type StatusCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SessionWhereInput
 }
 
 
 export type StatusSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  interventions?: boolean | Prisma.Status$interventionsArgs<ExtArgs>
+  sessions?: boolean | Prisma.Status$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.StatusCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["status"]>
 
@@ -395,7 +395,7 @@ export type StatusSelectScalar = {
 
 export type StatusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name", ExtArgs["result"]["status"]>
 export type StatusInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  interventions?: boolean | Prisma.Status$interventionsArgs<ExtArgs>
+  sessions?: boolean | Prisma.Status$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.StatusCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StatusIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -404,7 +404,7 @@ export type StatusIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $StatusPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Status"
   objects: {
-    interventions: Prisma.$InterventionPayload<ExtArgs>[]
+    sessions: Prisma.$SessionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -803,7 +803,7 @@ readonly fields: StatusFieldRefs;
  */
 export interface Prisma__StatusClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  interventions<T extends Prisma.Status$interventionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Status$interventionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InterventionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessions<T extends Prisma.Status$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Status$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1228,27 +1228,27 @@ export type StatusDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Status.interventions
+ * Status.sessions
  */
-export type Status$interventionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Status$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Intervention
+   * Select specific fields to fetch from the Session
    */
-  select?: Prisma.InterventionSelect<ExtArgs> | null
+  select?: Prisma.SessionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Intervention
+   * Omit specific fields from the Session
    */
-  omit?: Prisma.InterventionOmit<ExtArgs> | null
+  omit?: Prisma.SessionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.InterventionInclude<ExtArgs> | null
-  where?: Prisma.InterventionWhereInput
-  orderBy?: Prisma.InterventionOrderByWithRelationInput | Prisma.InterventionOrderByWithRelationInput[]
-  cursor?: Prisma.InterventionWhereUniqueInput
+  include?: Prisma.SessionInclude<ExtArgs> | null
+  where?: Prisma.SessionWhereInput
+  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
+  cursor?: Prisma.SessionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.InterventionScalarFieldEnum | Prisma.InterventionScalarFieldEnum[]
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
 }
 
 /**

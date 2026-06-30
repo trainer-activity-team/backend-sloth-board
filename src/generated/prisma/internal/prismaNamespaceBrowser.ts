@@ -53,16 +53,15 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Role: 'Role',
   User: 'User',
-  Subject: 'Subject',
   Institution: 'Institution',
   Class: 'Class',
   PricingMode: 'PricingMode',
   Contract: 'Contract',
   Status: 'Status',
-  InterventionType: 'InterventionType',
+  SessionType: 'SessionType',
   Timescale: 'Timescale',
   Invoice: 'Invoice',
-  Intervention: 'Intervention'
+  Session: 'Session'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -99,14 +98,6 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
-export const SubjectScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-} as const
-
-export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeof SubjectScalarFieldEnum]
 
 
 export const InstitutionScalarFieldEnum = {
@@ -162,12 +153,12 @@ export const StatusScalarFieldEnum = {
 export type StatusScalarFieldEnum = (typeof StatusScalarFieldEnum)[keyof typeof StatusScalarFieldEnum]
 
 
-export const InterventionTypeScalarFieldEnum = {
+export const SessionTypeScalarFieldEnum = {
   id: 'id',
   name: 'name'
 } as const
 
-export type InterventionTypeScalarFieldEnum = (typeof InterventionTypeScalarFieldEnum)[keyof typeof InterventionTypeScalarFieldEnum]
+export type SessionTypeScalarFieldEnum = (typeof SessionTypeScalarFieldEnum)[keyof typeof SessionTypeScalarFieldEnum]
 
 
 export const TimescaleScalarFieldEnum = {
@@ -189,16 +180,16 @@ export const InvoiceScalarFieldEnum = {
 export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
 
 
-export const InterventionScalarFieldEnum = {
+export const SessionScalarFieldEnum = {
   id: 'id',
-  subjectId: 'subjectId',
+  subject: 'subject',
   classId: 'classId',
   title: 'title',
   contractId: 'contractId',
   statusId: 'statusId',
   userId: 'userId',
   invoiceId: 'invoiceId',
-  interventionTypeId: 'interventionTypeId',
+  sessionTypeId: 'sessionTypeId',
   timescaleId: 'timescaleId',
   date: 'date',
   start: 'start',
@@ -207,7 +198,7 @@ export const InterventionScalarFieldEnum = {
   declarationDate: 'declarationDate'
 } as const
 
-export type InterventionScalarFieldEnum = (typeof InterventionScalarFieldEnum)[keyof typeof InterventionScalarFieldEnum]
+export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
 export const SortOrder = {

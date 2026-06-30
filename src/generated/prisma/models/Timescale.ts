@@ -192,13 +192,13 @@ export type TimescaleWhereInput = {
   NOT?: Prisma.TimescaleWhereInput | Prisma.TimescaleWhereInput[]
   id?: Prisma.IntFilter<"Timescale"> | number
   name?: Prisma.StringFilter<"Timescale"> | string
-  interventions?: Prisma.InterventionListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }
 
 export type TimescaleOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  interventions?: Prisma.InterventionOrderByRelationAggregateInput
+  sessions?: Prisma.SessionOrderByRelationAggregateInput
 }
 
 export type TimescaleWhereUniqueInput = Prisma.AtLeast<{
@@ -207,7 +207,7 @@ export type TimescaleWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.TimescaleWhereInput[]
   NOT?: Prisma.TimescaleWhereInput | Prisma.TimescaleWhereInput[]
   name?: Prisma.StringFilter<"Timescale"> | string
-  interventions?: Prisma.InterventionListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }, "id">
 
 export type TimescaleOrderByWithAggregationInput = {
@@ -230,24 +230,24 @@ export type TimescaleScalarWhereWithAggregatesInput = {
 
 export type TimescaleCreateInput = {
   name: string
-  interventions?: Prisma.InterventionCreateNestedManyWithoutTimescaleInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutTimescaleInput
 }
 
 export type TimescaleUncheckedCreateInput = {
   id?: number
   name: string
-  interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutTimescaleInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutTimescaleInput
 }
 
 export type TimescaleUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  interventions?: Prisma.InterventionUpdateManyWithoutTimescaleNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutTimescaleNestedInput
 }
 
 export type TimescaleUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  interventions?: Prisma.InterventionUncheckedUpdateManyWithoutTimescaleNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutTimescaleNestedInput
 }
 
 export type TimescaleCreateManyInput = {
@@ -292,52 +292,52 @@ export type TimescaleNullableScalarRelationFilter = {
   isNot?: Prisma.TimescaleWhereInput | null
 }
 
-export type TimescaleCreateNestedOneWithoutInterventionsInput = {
-  create?: Prisma.XOR<Prisma.TimescaleCreateWithoutInterventionsInput, Prisma.TimescaleUncheckedCreateWithoutInterventionsInput>
-  connectOrCreate?: Prisma.TimescaleCreateOrConnectWithoutInterventionsInput
+export type TimescaleCreateNestedOneWithoutSessionsInput = {
+  create?: Prisma.XOR<Prisma.TimescaleCreateWithoutSessionsInput, Prisma.TimescaleUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.TimescaleCreateOrConnectWithoutSessionsInput
   connect?: Prisma.TimescaleWhereUniqueInput
 }
 
-export type TimescaleUpdateOneWithoutInterventionsNestedInput = {
-  create?: Prisma.XOR<Prisma.TimescaleCreateWithoutInterventionsInput, Prisma.TimescaleUncheckedCreateWithoutInterventionsInput>
-  connectOrCreate?: Prisma.TimescaleCreateOrConnectWithoutInterventionsInput
-  upsert?: Prisma.TimescaleUpsertWithoutInterventionsInput
+export type TimescaleUpdateOneWithoutSessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.TimescaleCreateWithoutSessionsInput, Prisma.TimescaleUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.TimescaleCreateOrConnectWithoutSessionsInput
+  upsert?: Prisma.TimescaleUpsertWithoutSessionsInput
   disconnect?: Prisma.TimescaleWhereInput | boolean
   delete?: Prisma.TimescaleWhereInput | boolean
   connect?: Prisma.TimescaleWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TimescaleUpdateToOneWithWhereWithoutInterventionsInput, Prisma.TimescaleUpdateWithoutInterventionsInput>, Prisma.TimescaleUncheckedUpdateWithoutInterventionsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TimescaleUpdateToOneWithWhereWithoutSessionsInput, Prisma.TimescaleUpdateWithoutSessionsInput>, Prisma.TimescaleUncheckedUpdateWithoutSessionsInput>
 }
 
-export type TimescaleCreateWithoutInterventionsInput = {
+export type TimescaleCreateWithoutSessionsInput = {
   name: string
 }
 
-export type TimescaleUncheckedCreateWithoutInterventionsInput = {
+export type TimescaleUncheckedCreateWithoutSessionsInput = {
   id?: number
   name: string
 }
 
-export type TimescaleCreateOrConnectWithoutInterventionsInput = {
+export type TimescaleCreateOrConnectWithoutSessionsInput = {
   where: Prisma.TimescaleWhereUniqueInput
-  create: Prisma.XOR<Prisma.TimescaleCreateWithoutInterventionsInput, Prisma.TimescaleUncheckedCreateWithoutInterventionsInput>
+  create: Prisma.XOR<Prisma.TimescaleCreateWithoutSessionsInput, Prisma.TimescaleUncheckedCreateWithoutSessionsInput>
 }
 
-export type TimescaleUpsertWithoutInterventionsInput = {
-  update: Prisma.XOR<Prisma.TimescaleUpdateWithoutInterventionsInput, Prisma.TimescaleUncheckedUpdateWithoutInterventionsInput>
-  create: Prisma.XOR<Prisma.TimescaleCreateWithoutInterventionsInput, Prisma.TimescaleUncheckedCreateWithoutInterventionsInput>
+export type TimescaleUpsertWithoutSessionsInput = {
+  update: Prisma.XOR<Prisma.TimescaleUpdateWithoutSessionsInput, Prisma.TimescaleUncheckedUpdateWithoutSessionsInput>
+  create: Prisma.XOR<Prisma.TimescaleCreateWithoutSessionsInput, Prisma.TimescaleUncheckedCreateWithoutSessionsInput>
   where?: Prisma.TimescaleWhereInput
 }
 
-export type TimescaleUpdateToOneWithWhereWithoutInterventionsInput = {
+export type TimescaleUpdateToOneWithWhereWithoutSessionsInput = {
   where?: Prisma.TimescaleWhereInput
-  data: Prisma.XOR<Prisma.TimescaleUpdateWithoutInterventionsInput, Prisma.TimescaleUncheckedUpdateWithoutInterventionsInput>
+  data: Prisma.XOR<Prisma.TimescaleUpdateWithoutSessionsInput, Prisma.TimescaleUncheckedUpdateWithoutSessionsInput>
 }
 
-export type TimescaleUpdateWithoutInterventionsInput = {
+export type TimescaleUpdateWithoutSessionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type TimescaleUncheckedUpdateWithoutInterventionsInput = {
+export type TimescaleUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -348,11 +348,11 @@ export type TimescaleUncheckedUpdateWithoutInterventionsInput = {
  */
 
 export type TimescaleCountOutputType = {
-  interventions: number
+  sessions: number
 }
 
 export type TimescaleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  interventions?: boolean | TimescaleCountOutputTypeCountInterventionsArgs
+  sessions?: boolean | TimescaleCountOutputTypeCountSessionsArgs
 }
 
 /**
@@ -368,15 +368,15 @@ export type TimescaleCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ex
 /**
  * TimescaleCountOutputType without action
  */
-export type TimescaleCountOutputTypeCountInterventionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.InterventionWhereInput
+export type TimescaleCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SessionWhereInput
 }
 
 
 export type TimescaleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  interventions?: boolean | Prisma.Timescale$interventionsArgs<ExtArgs>
+  sessions?: boolean | Prisma.Timescale$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.TimescaleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["timescale"]>
 
@@ -397,7 +397,7 @@ export type TimescaleSelectScalar = {
 
 export type TimescaleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name", ExtArgs["result"]["timescale"]>
 export type TimescaleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  interventions?: boolean | Prisma.Timescale$interventionsArgs<ExtArgs>
+  sessions?: boolean | Prisma.Timescale$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.TimescaleCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TimescaleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -406,7 +406,7 @@ export type TimescaleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type $TimescalePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Timescale"
   objects: {
-    interventions: Prisma.$InterventionPayload<ExtArgs>[]
+    sessions: Prisma.$SessionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -805,7 +805,7 @@ readonly fields: TimescaleFieldRefs;
  */
 export interface Prisma__TimescaleClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  interventions<T extends Prisma.Timescale$interventionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Timescale$interventionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InterventionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessions<T extends Prisma.Timescale$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Timescale$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1230,27 +1230,27 @@ export type TimescaleDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * Timescale.interventions
+ * Timescale.sessions
  */
-export type Timescale$interventionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Timescale$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Intervention
+   * Select specific fields to fetch from the Session
    */
-  select?: Prisma.InterventionSelect<ExtArgs> | null
+  select?: Prisma.SessionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Intervention
+   * Omit specific fields from the Session
    */
-  omit?: Prisma.InterventionOmit<ExtArgs> | null
+  omit?: Prisma.SessionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.InterventionInclude<ExtArgs> | null
-  where?: Prisma.InterventionWhereInput
-  orderBy?: Prisma.InterventionOrderByWithRelationInput | Prisma.InterventionOrderByWithRelationInput[]
-  cursor?: Prisma.InterventionWhereUniqueInput
+  include?: Prisma.SessionInclude<ExtArgs> | null
+  where?: Prisma.SessionWhereInput
+  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
+  cursor?: Prisma.SessionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.InterventionScalarFieldEnum | Prisma.InterventionScalarFieldEnum[]
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
 }
 
 /**

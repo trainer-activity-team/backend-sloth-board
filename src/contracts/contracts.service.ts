@@ -109,7 +109,7 @@ export class ContractsService {
         throw new NotFoundException(`Contract #${id} not found`);
       }
       if (isForeignKeyConstraintError(error)) {
-        throw new ConflictException('Cannot delete contract with related interventions');
+        throw new ConflictException('Cannot delete contract with related sessions');
       }
       throw new InternalServerErrorException('Failed to delete contract', {
         cause: error,

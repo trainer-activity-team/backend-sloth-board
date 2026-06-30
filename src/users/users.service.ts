@@ -122,7 +122,7 @@ export class UsersService {
       }
       if (isForeignKeyConstraintError(error)) {
         throw new ConflictException(
-          'Cannot delete user with related classes or interventions',
+          'Cannot delete user with related classes or sessions',
         );
       }
       throw new InternalServerErrorException('Failed to delete user', {

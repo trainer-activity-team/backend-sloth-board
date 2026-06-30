@@ -216,7 +216,7 @@ export type InvoiceWhereInput = {
   invoiceDate?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   paymentDate?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   status?: Prisma.StringFilter<"Invoice"> | string
-  interventions?: Prisma.InterventionListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }
 
 export type InvoiceOrderByWithRelationInput = {
@@ -225,7 +225,7 @@ export type InvoiceOrderByWithRelationInput = {
   invoiceDate?: Prisma.SortOrder
   paymentDate?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
-  interventions?: Prisma.InterventionOrderByRelationAggregateInput
+  sessions?: Prisma.SessionOrderByRelationAggregateInput
 }
 
 export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
@@ -237,7 +237,7 @@ export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
   invoiceDate?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   paymentDate?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   status?: Prisma.StringFilter<"Invoice"> | string
-  interventions?: Prisma.InterventionListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }, "id">
 
 export type InvoiceOrderByWithAggregationInput = {
@@ -269,7 +269,7 @@ export type InvoiceCreateInput = {
   invoiceDate: Date | string
   paymentDate?: Date | string | null
   status: string
-  interventions?: Prisma.InterventionCreateNestedManyWithoutInvoiceInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutInvoiceInput
 }
 
 export type InvoiceUncheckedCreateInput = {
@@ -278,7 +278,7 @@ export type InvoiceUncheckedCreateInput = {
   invoiceDate: Date | string
   paymentDate?: Date | string | null
   status: string
-  interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutInvoiceInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type InvoiceUpdateInput = {
@@ -286,7 +286,7 @@ export type InvoiceUpdateInput = {
   invoiceDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paymentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  interventions?: Prisma.InterventionUpdateManyWithoutInvoiceNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutInvoiceNestedInput
 }
 
 export type InvoiceUncheckedUpdateInput = {
@@ -295,7 +295,7 @@ export type InvoiceUncheckedUpdateInput = {
   invoiceDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paymentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  interventions?: Prisma.InterventionUncheckedUpdateManyWithoutInvoiceNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type InvoiceCreateManyInput = {
@@ -362,30 +362,30 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
-export type InvoiceCreateNestedOneWithoutInterventionsInput = {
-  create?: Prisma.XOR<Prisma.InvoiceCreateWithoutInterventionsInput, Prisma.InvoiceUncheckedCreateWithoutInterventionsInput>
-  connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutInterventionsInput
+export type InvoiceCreateNestedOneWithoutSessionsInput = {
+  create?: Prisma.XOR<Prisma.InvoiceCreateWithoutSessionsInput, Prisma.InvoiceUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutSessionsInput
   connect?: Prisma.InvoiceWhereUniqueInput
 }
 
-export type InvoiceUpdateOneWithoutInterventionsNestedInput = {
-  create?: Prisma.XOR<Prisma.InvoiceCreateWithoutInterventionsInput, Prisma.InvoiceUncheckedCreateWithoutInterventionsInput>
-  connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutInterventionsInput
-  upsert?: Prisma.InvoiceUpsertWithoutInterventionsInput
+export type InvoiceUpdateOneWithoutSessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.InvoiceCreateWithoutSessionsInput, Prisma.InvoiceUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutSessionsInput
+  upsert?: Prisma.InvoiceUpsertWithoutSessionsInput
   disconnect?: Prisma.InvoiceWhereInput | boolean
   delete?: Prisma.InvoiceWhereInput | boolean
   connect?: Prisma.InvoiceWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.InvoiceUpdateToOneWithWhereWithoutInterventionsInput, Prisma.InvoiceUpdateWithoutInterventionsInput>, Prisma.InvoiceUncheckedUpdateWithoutInterventionsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InvoiceUpdateToOneWithWhereWithoutSessionsInput, Prisma.InvoiceUpdateWithoutSessionsInput>, Prisma.InvoiceUncheckedUpdateWithoutSessionsInput>
 }
 
-export type InvoiceCreateWithoutInterventionsInput = {
+export type InvoiceCreateWithoutSessionsInput = {
   invoiceNumber: string
   invoiceDate: Date | string
   paymentDate?: Date | string | null
   status: string
 }
 
-export type InvoiceUncheckedCreateWithoutInterventionsInput = {
+export type InvoiceUncheckedCreateWithoutSessionsInput = {
   id?: number
   invoiceNumber: string
   invoiceDate: Date | string
@@ -393,30 +393,30 @@ export type InvoiceUncheckedCreateWithoutInterventionsInput = {
   status: string
 }
 
-export type InvoiceCreateOrConnectWithoutInterventionsInput = {
+export type InvoiceCreateOrConnectWithoutSessionsInput = {
   where: Prisma.InvoiceWhereUniqueInput
-  create: Prisma.XOR<Prisma.InvoiceCreateWithoutInterventionsInput, Prisma.InvoiceUncheckedCreateWithoutInterventionsInput>
+  create: Prisma.XOR<Prisma.InvoiceCreateWithoutSessionsInput, Prisma.InvoiceUncheckedCreateWithoutSessionsInput>
 }
 
-export type InvoiceUpsertWithoutInterventionsInput = {
-  update: Prisma.XOR<Prisma.InvoiceUpdateWithoutInterventionsInput, Prisma.InvoiceUncheckedUpdateWithoutInterventionsInput>
-  create: Prisma.XOR<Prisma.InvoiceCreateWithoutInterventionsInput, Prisma.InvoiceUncheckedCreateWithoutInterventionsInput>
+export type InvoiceUpsertWithoutSessionsInput = {
+  update: Prisma.XOR<Prisma.InvoiceUpdateWithoutSessionsInput, Prisma.InvoiceUncheckedUpdateWithoutSessionsInput>
+  create: Prisma.XOR<Prisma.InvoiceCreateWithoutSessionsInput, Prisma.InvoiceUncheckedCreateWithoutSessionsInput>
   where?: Prisma.InvoiceWhereInput
 }
 
-export type InvoiceUpdateToOneWithWhereWithoutInterventionsInput = {
+export type InvoiceUpdateToOneWithWhereWithoutSessionsInput = {
   where?: Prisma.InvoiceWhereInput
-  data: Prisma.XOR<Prisma.InvoiceUpdateWithoutInterventionsInput, Prisma.InvoiceUncheckedUpdateWithoutInterventionsInput>
+  data: Prisma.XOR<Prisma.InvoiceUpdateWithoutSessionsInput, Prisma.InvoiceUncheckedUpdateWithoutSessionsInput>
 }
 
-export type InvoiceUpdateWithoutInterventionsInput = {
+export type InvoiceUpdateWithoutSessionsInput = {
   invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
   invoiceDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   paymentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type InvoiceUncheckedUpdateWithoutInterventionsInput = {
+export type InvoiceUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
   invoiceDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -430,11 +430,11 @@ export type InvoiceUncheckedUpdateWithoutInterventionsInput = {
  */
 
 export type InvoiceCountOutputType = {
-  interventions: number
+  sessions: number
 }
 
 export type InvoiceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  interventions?: boolean | InvoiceCountOutputTypeCountInterventionsArgs
+  sessions?: boolean | InvoiceCountOutputTypeCountSessionsArgs
 }
 
 /**
@@ -450,8 +450,8 @@ export type InvoiceCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * InvoiceCountOutputType without action
  */
-export type InvoiceCountOutputTypeCountInterventionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.InterventionWhereInput
+export type InvoiceCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SessionWhereInput
 }
 
 
@@ -461,7 +461,7 @@ export type InvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   invoiceDate?: boolean
   paymentDate?: boolean
   status?: boolean
-  interventions?: boolean | Prisma.Invoice$interventionsArgs<ExtArgs>
+  sessions?: boolean | Prisma.Invoice$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.InvoiceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["invoice"]>
 
@@ -491,7 +491,7 @@ export type InvoiceSelectScalar = {
 
 export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "invoiceNumber" | "invoiceDate" | "paymentDate" | "status", ExtArgs["result"]["invoice"]>
 export type InvoiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  interventions?: boolean | Prisma.Invoice$interventionsArgs<ExtArgs>
+  sessions?: boolean | Prisma.Invoice$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.InvoiceCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type InvoiceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -500,7 +500,7 @@ export type InvoiceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Invoice"
   objects: {
-    interventions: Prisma.$InterventionPayload<ExtArgs>[]
+    sessions: Prisma.$SessionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -902,7 +902,7 @@ readonly fields: InvoiceFieldRefs;
  */
 export interface Prisma__InvoiceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  interventions<T extends Prisma.Invoice$interventionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$interventionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InterventionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessions<T extends Prisma.Invoice$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1330,27 +1330,27 @@ export type InvoiceDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Invoice.interventions
+ * Invoice.sessions
  */
-export type Invoice$interventionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Invoice$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Intervention
+   * Select specific fields to fetch from the Session
    */
-  select?: Prisma.InterventionSelect<ExtArgs> | null
+  select?: Prisma.SessionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Intervention
+   * Omit specific fields from the Session
    */
-  omit?: Prisma.InterventionOmit<ExtArgs> | null
+  omit?: Prisma.SessionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.InterventionInclude<ExtArgs> | null
-  where?: Prisma.InterventionWhereInput
-  orderBy?: Prisma.InterventionOrderByWithRelationInput | Prisma.InterventionOrderByWithRelationInput[]
-  cursor?: Prisma.InterventionWhereUniqueInput
+  include?: Prisma.SessionInclude<ExtArgs> | null
+  where?: Prisma.SessionWhereInput
+  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
+  cursor?: Prisma.SessionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.InterventionScalarFieldEnum | Prisma.InterventionScalarFieldEnum[]
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
 }
 
 /**

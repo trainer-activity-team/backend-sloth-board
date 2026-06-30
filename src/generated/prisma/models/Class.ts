@@ -238,7 +238,7 @@ export type ClassWhereInput = {
   teacherId?: Prisma.IntFilter<"Class"> | number
   teacher?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   institution?: Prisma.XOR<Prisma.InstitutionScalarRelationFilter, Prisma.InstitutionWhereInput>
-  interventions?: Prisma.InterventionListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }
 
 export type ClassOrderByWithRelationInput = {
@@ -250,7 +250,7 @@ export type ClassOrderByWithRelationInput = {
   teacherId?: Prisma.SortOrder
   teacher?: Prisma.UserOrderByWithRelationInput
   institution?: Prisma.InstitutionOrderByWithRelationInput
-  interventions?: Prisma.InterventionOrderByRelationAggregateInput
+  sessions?: Prisma.SessionOrderByRelationAggregateInput
 }
 
 export type ClassWhereUniqueInput = Prisma.AtLeast<{
@@ -265,7 +265,7 @@ export type ClassWhereUniqueInput = Prisma.AtLeast<{
   teacherId?: Prisma.IntFilter<"Class"> | number
   teacher?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   institution?: Prisma.XOR<Prisma.InstitutionScalarRelationFilter, Prisma.InstitutionWhereInput>
-  interventions?: Prisma.InterventionListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }, "id">
 
 export type ClassOrderByWithAggregationInput = {
@@ -300,7 +300,7 @@ export type ClassCreateInput = {
   name: string
   teacher: Prisma.UserCreateNestedOneWithoutClassesInput
   institution: Prisma.InstitutionCreateNestedOneWithoutClassesInput
-  interventions?: Prisma.InterventionCreateNestedManyWithoutClassInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutClassInput
 }
 
 export type ClassUncheckedCreateInput = {
@@ -310,7 +310,7 @@ export type ClassUncheckedCreateInput = {
   studentCount: number
   name: string
   teacherId: number
-  interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutClassInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutClassInput
 }
 
 export type ClassUpdateInput = {
@@ -319,7 +319,7 @@ export type ClassUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   teacher?: Prisma.UserUpdateOneRequiredWithoutClassesNestedInput
   institution?: Prisma.InstitutionUpdateOneRequiredWithoutClassesNestedInput
-  interventions?: Prisma.InterventionUpdateManyWithoutClassNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutClassNestedInput
 }
 
 export type ClassUncheckedUpdateInput = {
@@ -329,7 +329,7 @@ export type ClassUncheckedUpdateInput = {
   studentCount?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   teacherId?: Prisma.IntFieldUpdateOperationsInput | number
-  interventions?: Prisma.InterventionUncheckedUpdateManyWithoutClassNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutClassNestedInput
 }
 
 export type ClassCreateManyInput = {
@@ -496,20 +496,20 @@ export type ClassUncheckedUpdateManyWithoutInstitutionNestedInput = {
   deleteMany?: Prisma.ClassScalarWhereInput | Prisma.ClassScalarWhereInput[]
 }
 
-export type ClassCreateNestedOneWithoutInterventionsInput = {
-  create?: Prisma.XOR<Prisma.ClassCreateWithoutInterventionsInput, Prisma.ClassUncheckedCreateWithoutInterventionsInput>
-  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutInterventionsInput
+export type ClassCreateNestedOneWithoutSessionsInput = {
+  create?: Prisma.XOR<Prisma.ClassCreateWithoutSessionsInput, Prisma.ClassUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutSessionsInput
   connect?: Prisma.ClassWhereUniqueInput
 }
 
-export type ClassUpdateOneWithoutInterventionsNestedInput = {
-  create?: Prisma.XOR<Prisma.ClassCreateWithoutInterventionsInput, Prisma.ClassUncheckedCreateWithoutInterventionsInput>
-  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutInterventionsInput
-  upsert?: Prisma.ClassUpsertWithoutInterventionsInput
+export type ClassUpdateOneWithoutSessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.ClassCreateWithoutSessionsInput, Prisma.ClassUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.ClassCreateOrConnectWithoutSessionsInput
+  upsert?: Prisma.ClassUpsertWithoutSessionsInput
   disconnect?: Prisma.ClassWhereInput | boolean
   delete?: Prisma.ClassWhereInput | boolean
   connect?: Prisma.ClassWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ClassUpdateToOneWithWhereWithoutInterventionsInput, Prisma.ClassUpdateWithoutInterventionsInput>, Prisma.ClassUncheckedUpdateWithoutInterventionsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClassUpdateToOneWithWhereWithoutSessionsInput, Prisma.ClassUpdateWithoutSessionsInput>, Prisma.ClassUncheckedUpdateWithoutSessionsInput>
 }
 
 export type ClassCreateWithoutTeacherInput = {
@@ -517,7 +517,7 @@ export type ClassCreateWithoutTeacherInput = {
   studentCount: number
   name: string
   institution: Prisma.InstitutionCreateNestedOneWithoutClassesInput
-  interventions?: Prisma.InterventionCreateNestedManyWithoutClassInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutClassInput
 }
 
 export type ClassUncheckedCreateWithoutTeacherInput = {
@@ -526,7 +526,7 @@ export type ClassUncheckedCreateWithoutTeacherInput = {
   classLevel: string
   studentCount: number
   name: string
-  interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutClassInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutClassInput
 }
 
 export type ClassCreateOrConnectWithoutTeacherInput = {
@@ -572,7 +572,7 @@ export type ClassCreateWithoutInstitutionInput = {
   studentCount: number
   name: string
   teacher: Prisma.UserCreateNestedOneWithoutClassesInput
-  interventions?: Prisma.InterventionCreateNestedManyWithoutClassInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutClassInput
 }
 
 export type ClassUncheckedCreateWithoutInstitutionInput = {
@@ -581,7 +581,7 @@ export type ClassUncheckedCreateWithoutInstitutionInput = {
   studentCount: number
   name: string
   teacherId: number
-  interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutClassInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutClassInput
 }
 
 export type ClassCreateOrConnectWithoutInstitutionInput = {
@@ -610,7 +610,7 @@ export type ClassUpdateManyWithWhereWithoutInstitutionInput = {
   data: Prisma.XOR<Prisma.ClassUpdateManyMutationInput, Prisma.ClassUncheckedUpdateManyWithoutInstitutionInput>
 }
 
-export type ClassCreateWithoutInterventionsInput = {
+export type ClassCreateWithoutSessionsInput = {
   classLevel: string
   studentCount: number
   name: string
@@ -618,7 +618,7 @@ export type ClassCreateWithoutInterventionsInput = {
   institution: Prisma.InstitutionCreateNestedOneWithoutClassesInput
 }
 
-export type ClassUncheckedCreateWithoutInterventionsInput = {
+export type ClassUncheckedCreateWithoutSessionsInput = {
   id?: number
   institutionId: number
   classLevel: string
@@ -627,23 +627,23 @@ export type ClassUncheckedCreateWithoutInterventionsInput = {
   teacherId: number
 }
 
-export type ClassCreateOrConnectWithoutInterventionsInput = {
+export type ClassCreateOrConnectWithoutSessionsInput = {
   where: Prisma.ClassWhereUniqueInput
-  create: Prisma.XOR<Prisma.ClassCreateWithoutInterventionsInput, Prisma.ClassUncheckedCreateWithoutInterventionsInput>
+  create: Prisma.XOR<Prisma.ClassCreateWithoutSessionsInput, Prisma.ClassUncheckedCreateWithoutSessionsInput>
 }
 
-export type ClassUpsertWithoutInterventionsInput = {
-  update: Prisma.XOR<Prisma.ClassUpdateWithoutInterventionsInput, Prisma.ClassUncheckedUpdateWithoutInterventionsInput>
-  create: Prisma.XOR<Prisma.ClassCreateWithoutInterventionsInput, Prisma.ClassUncheckedCreateWithoutInterventionsInput>
+export type ClassUpsertWithoutSessionsInput = {
+  update: Prisma.XOR<Prisma.ClassUpdateWithoutSessionsInput, Prisma.ClassUncheckedUpdateWithoutSessionsInput>
+  create: Prisma.XOR<Prisma.ClassCreateWithoutSessionsInput, Prisma.ClassUncheckedCreateWithoutSessionsInput>
   where?: Prisma.ClassWhereInput
 }
 
-export type ClassUpdateToOneWithWhereWithoutInterventionsInput = {
+export type ClassUpdateToOneWithWhereWithoutSessionsInput = {
   where?: Prisma.ClassWhereInput
-  data: Prisma.XOR<Prisma.ClassUpdateWithoutInterventionsInput, Prisma.ClassUncheckedUpdateWithoutInterventionsInput>
+  data: Prisma.XOR<Prisma.ClassUpdateWithoutSessionsInput, Prisma.ClassUncheckedUpdateWithoutSessionsInput>
 }
 
-export type ClassUpdateWithoutInterventionsInput = {
+export type ClassUpdateWithoutSessionsInput = {
   classLevel?: Prisma.StringFieldUpdateOperationsInput | string
   studentCount?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -651,7 +651,7 @@ export type ClassUpdateWithoutInterventionsInput = {
   institution?: Prisma.InstitutionUpdateOneRequiredWithoutClassesNestedInput
 }
 
-export type ClassUncheckedUpdateWithoutInterventionsInput = {
+export type ClassUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   institutionId?: Prisma.IntFieldUpdateOperationsInput | number
   classLevel?: Prisma.StringFieldUpdateOperationsInput | string
@@ -673,7 +673,7 @@ export type ClassUpdateWithoutTeacherInput = {
   studentCount?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   institution?: Prisma.InstitutionUpdateOneRequiredWithoutClassesNestedInput
-  interventions?: Prisma.InterventionUpdateManyWithoutClassNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutClassNestedInput
 }
 
 export type ClassUncheckedUpdateWithoutTeacherInput = {
@@ -682,7 +682,7 @@ export type ClassUncheckedUpdateWithoutTeacherInput = {
   classLevel?: Prisma.StringFieldUpdateOperationsInput | string
   studentCount?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  interventions?: Prisma.InterventionUncheckedUpdateManyWithoutClassNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutClassNestedInput
 }
 
 export type ClassUncheckedUpdateManyWithoutTeacherInput = {
@@ -706,7 +706,7 @@ export type ClassUpdateWithoutInstitutionInput = {
   studentCount?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   teacher?: Prisma.UserUpdateOneRequiredWithoutClassesNestedInput
-  interventions?: Prisma.InterventionUpdateManyWithoutClassNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutClassNestedInput
 }
 
 export type ClassUncheckedUpdateWithoutInstitutionInput = {
@@ -715,7 +715,7 @@ export type ClassUncheckedUpdateWithoutInstitutionInput = {
   studentCount?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   teacherId?: Prisma.IntFieldUpdateOperationsInput | number
-  interventions?: Prisma.InterventionUncheckedUpdateManyWithoutClassNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutClassNestedInput
 }
 
 export type ClassUncheckedUpdateManyWithoutInstitutionInput = {
@@ -732,11 +732,11 @@ export type ClassUncheckedUpdateManyWithoutInstitutionInput = {
  */
 
 export type ClassCountOutputType = {
-  interventions: number
+  sessions: number
 }
 
 export type ClassCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  interventions?: boolean | ClassCountOutputTypeCountInterventionsArgs
+  sessions?: boolean | ClassCountOutputTypeCountSessionsArgs
 }
 
 /**
@@ -752,8 +752,8 @@ export type ClassCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
 /**
  * ClassCountOutputType without action
  */
-export type ClassCountOutputTypeCountInterventionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.InterventionWhereInput
+export type ClassCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SessionWhereInput
 }
 
 
@@ -766,7 +766,7 @@ export type ClassSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   teacherId?: boolean
   teacher?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   institution?: boolean | Prisma.InstitutionDefaultArgs<ExtArgs>
-  interventions?: boolean | Prisma.Class$interventionsArgs<ExtArgs>
+  sessions?: boolean | Prisma.Class$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.ClassCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["class"]>
 
@@ -805,7 +805,7 @@ export type ClassOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type ClassInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   teacher?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   institution?: boolean | Prisma.InstitutionDefaultArgs<ExtArgs>
-  interventions?: boolean | Prisma.Class$interventionsArgs<ExtArgs>
+  sessions?: boolean | Prisma.Class$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.ClassCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ClassIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -822,7 +822,7 @@ export type $ClassPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     teacher: Prisma.$UserPayload<ExtArgs>
     institution: Prisma.$InstitutionPayload<ExtArgs>
-    interventions: Prisma.$InterventionPayload<ExtArgs>[]
+    sessions: Prisma.$SessionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1227,7 +1227,7 @@ export interface Prisma__ClassClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   teacher<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   institution<T extends Prisma.InstitutionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstitutionDefaultArgs<ExtArgs>>): Prisma.Prisma__InstitutionClient<runtime.Types.Result.GetResult<Prisma.$InstitutionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  interventions<T extends Prisma.Class$interventionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$interventionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InterventionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessions<T extends Prisma.Class$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Class$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1664,27 +1664,27 @@ export type ClassDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Class.interventions
+ * Class.sessions
  */
-export type Class$interventionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Class$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Intervention
+   * Select specific fields to fetch from the Session
    */
-  select?: Prisma.InterventionSelect<ExtArgs> | null
+  select?: Prisma.SessionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Intervention
+   * Omit specific fields from the Session
    */
-  omit?: Prisma.InterventionOmit<ExtArgs> | null
+  omit?: Prisma.SessionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.InterventionInclude<ExtArgs> | null
-  where?: Prisma.InterventionWhereInput
-  orderBy?: Prisma.InterventionOrderByWithRelationInput | Prisma.InterventionOrderByWithRelationInput[]
-  cursor?: Prisma.InterventionWhereUniqueInput
+  include?: Prisma.SessionInclude<ExtArgs> | null
+  where?: Prisma.SessionWhereInput
+  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
+  cursor?: Prisma.SessionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.InterventionScalarFieldEnum | Prisma.InterventionScalarFieldEnum[]
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
 }
 
 /**

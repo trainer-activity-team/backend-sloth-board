@@ -50,11 +50,6 @@ export type Role = Prisma.RoleModel
  */
 export type User = Prisma.UserModel
 /**
- * Model Subject
- * 
- */
-export type Subject = Prisma.SubjectModel
-/**
  * Model Institution
  * 
  */
@@ -80,10 +75,10 @@ export type Contract = Prisma.ContractModel
  */
 export type Status = Prisma.StatusModel
 /**
- * Model InterventionType
+ * Model SessionType
  * 
  */
-export type InterventionType = Prisma.InterventionTypeModel
+export type SessionType = Prisma.SessionTypeModel
 /**
  * Model Timescale
  * 
@@ -95,7 +90,7 @@ export type Timescale = Prisma.TimescaleModel
  */
 export type Invoice = Prisma.InvoiceModel
 /**
- * Model Intervention
+ * Model Session
  * 
  */
-export type Intervention = Prisma.InterventionModel
+export type Session = Prisma.SessionModel

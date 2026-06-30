@@ -258,7 +258,7 @@ export type ContractWhereInput = {
   unitPrice?: Prisma.DecimalFilter<"Contract"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   institution?: Prisma.XOR<Prisma.InstitutionScalarRelationFilter, Prisma.InstitutionWhereInput>
   pricingMode?: Prisma.XOR<Prisma.PricingModeScalarRelationFilter, Prisma.PricingModeWhereInput>
-  interventions?: Prisma.InterventionListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }
 
 export type ContractOrderByWithRelationInput = {
@@ -272,7 +272,7 @@ export type ContractOrderByWithRelationInput = {
   unitPrice?: Prisma.SortOrder
   institution?: Prisma.InstitutionOrderByWithRelationInput
   pricingMode?: Prisma.PricingModeOrderByWithRelationInput
-  interventions?: Prisma.InterventionOrderByRelationAggregateInput
+  sessions?: Prisma.SessionOrderByRelationAggregateInput
 }
 
 export type ContractWhereUniqueInput = Prisma.AtLeast<{
@@ -289,7 +289,7 @@ export type ContractWhereUniqueInput = Prisma.AtLeast<{
   unitPrice?: Prisma.DecimalFilter<"Contract"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   institution?: Prisma.XOR<Prisma.InstitutionScalarRelationFilter, Prisma.InstitutionWhereInput>
   pricingMode?: Prisma.XOR<Prisma.PricingModeScalarRelationFilter, Prisma.PricingModeWhereInput>
-  interventions?: Prisma.InterventionListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }, "id">
 
 export type ContractOrderByWithAggregationInput = {
@@ -330,7 +330,7 @@ export type ContractCreateInput = {
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   institution: Prisma.InstitutionCreateNestedOneWithoutContractsInput
   pricingMode: Prisma.PricingModeCreateNestedOneWithoutContractsInput
-  interventions?: Prisma.InterventionCreateNestedManyWithoutContractInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutContractInput
 }
 
 export type ContractUncheckedCreateInput = {
@@ -342,7 +342,7 @@ export type ContractUncheckedCreateInput = {
   endDate: Date | string
   hourlyVolumePlanned: runtime.Decimal | runtime.DecimalJsLike | number | string
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutContractInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutContractInput
 }
 
 export type ContractUpdateInput = {
@@ -353,7 +353,7 @@ export type ContractUpdateInput = {
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   institution?: Prisma.InstitutionUpdateOneRequiredWithoutContractsNestedInput
   pricingMode?: Prisma.PricingModeUpdateOneRequiredWithoutContractsNestedInput
-  interventions?: Prisma.InterventionUpdateManyWithoutContractNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutContractNestedInput
 }
 
 export type ContractUncheckedUpdateInput = {
@@ -365,7 +365,7 @@ export type ContractUncheckedUpdateInput = {
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourlyVolumePlanned?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  interventions?: Prisma.InterventionUncheckedUpdateManyWithoutContractNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutContractNestedInput
 }
 
 export type ContractCreateManyInput = {
@@ -558,20 +558,20 @@ export type DecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
-export type ContractCreateNestedOneWithoutInterventionsInput = {
-  create?: Prisma.XOR<Prisma.ContractCreateWithoutInterventionsInput, Prisma.ContractUncheckedCreateWithoutInterventionsInput>
-  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutInterventionsInput
+export type ContractCreateNestedOneWithoutSessionsInput = {
+  create?: Prisma.XOR<Prisma.ContractCreateWithoutSessionsInput, Prisma.ContractUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutSessionsInput
   connect?: Prisma.ContractWhereUniqueInput
 }
 
-export type ContractUpdateOneWithoutInterventionsNestedInput = {
-  create?: Prisma.XOR<Prisma.ContractCreateWithoutInterventionsInput, Prisma.ContractUncheckedCreateWithoutInterventionsInput>
-  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutInterventionsInput
-  upsert?: Prisma.ContractUpsertWithoutInterventionsInput
+export type ContractUpdateOneWithoutSessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.ContractCreateWithoutSessionsInput, Prisma.ContractUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutSessionsInput
+  upsert?: Prisma.ContractUpsertWithoutSessionsInput
   disconnect?: Prisma.ContractWhereInput | boolean
   delete?: Prisma.ContractWhereInput | boolean
   connect?: Prisma.ContractWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ContractUpdateToOneWithWhereWithoutInterventionsInput, Prisma.ContractUpdateWithoutInterventionsInput>, Prisma.ContractUncheckedUpdateWithoutInterventionsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ContractUpdateToOneWithWhereWithoutSessionsInput, Prisma.ContractUpdateWithoutSessionsInput>, Prisma.ContractUncheckedUpdateWithoutSessionsInput>
 }
 
 export type ContractCreateWithoutInstitutionInput = {
@@ -581,7 +581,7 @@ export type ContractCreateWithoutInstitutionInput = {
   hourlyVolumePlanned: runtime.Decimal | runtime.DecimalJsLike | number | string
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   pricingMode: Prisma.PricingModeCreateNestedOneWithoutContractsInput
-  interventions?: Prisma.InterventionCreateNestedManyWithoutContractInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutContractInput
 }
 
 export type ContractUncheckedCreateWithoutInstitutionInput = {
@@ -592,7 +592,7 @@ export type ContractUncheckedCreateWithoutInstitutionInput = {
   endDate: Date | string
   hourlyVolumePlanned: runtime.Decimal | runtime.DecimalJsLike | number | string
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutContractInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutContractInput
 }
 
 export type ContractCreateOrConnectWithoutInstitutionInput = {
@@ -642,7 +642,7 @@ export type ContractCreateWithoutPricingModeInput = {
   hourlyVolumePlanned: runtime.Decimal | runtime.DecimalJsLike | number | string
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
   institution: Prisma.InstitutionCreateNestedOneWithoutContractsInput
-  interventions?: Prisma.InterventionCreateNestedManyWithoutContractInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutContractInput
 }
 
 export type ContractUncheckedCreateWithoutPricingModeInput = {
@@ -653,7 +653,7 @@ export type ContractUncheckedCreateWithoutPricingModeInput = {
   endDate: Date | string
   hourlyVolumePlanned: runtime.Decimal | runtime.DecimalJsLike | number | string
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
-  interventions?: Prisma.InterventionUncheckedCreateNestedManyWithoutContractInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutContractInput
 }
 
 export type ContractCreateOrConnectWithoutPricingModeInput = {
@@ -682,7 +682,7 @@ export type ContractUpdateManyWithWhereWithoutPricingModeInput = {
   data: Prisma.XOR<Prisma.ContractUpdateManyMutationInput, Prisma.ContractUncheckedUpdateManyWithoutPricingModeInput>
 }
 
-export type ContractCreateWithoutInterventionsInput = {
+export type ContractCreateWithoutSessionsInput = {
   contractNumber: string
   startDate: Date | string
   endDate: Date | string
@@ -692,7 +692,7 @@ export type ContractCreateWithoutInterventionsInput = {
   pricingMode: Prisma.PricingModeCreateNestedOneWithoutContractsInput
 }
 
-export type ContractUncheckedCreateWithoutInterventionsInput = {
+export type ContractUncheckedCreateWithoutSessionsInput = {
   id?: number
   institutionId: number
   pricingModeId: number
@@ -703,23 +703,23 @@ export type ContractUncheckedCreateWithoutInterventionsInput = {
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
-export type ContractCreateOrConnectWithoutInterventionsInput = {
+export type ContractCreateOrConnectWithoutSessionsInput = {
   where: Prisma.ContractWhereUniqueInput
-  create: Prisma.XOR<Prisma.ContractCreateWithoutInterventionsInput, Prisma.ContractUncheckedCreateWithoutInterventionsInput>
+  create: Prisma.XOR<Prisma.ContractCreateWithoutSessionsInput, Prisma.ContractUncheckedCreateWithoutSessionsInput>
 }
 
-export type ContractUpsertWithoutInterventionsInput = {
-  update: Prisma.XOR<Prisma.ContractUpdateWithoutInterventionsInput, Prisma.ContractUncheckedUpdateWithoutInterventionsInput>
-  create: Prisma.XOR<Prisma.ContractCreateWithoutInterventionsInput, Prisma.ContractUncheckedCreateWithoutInterventionsInput>
+export type ContractUpsertWithoutSessionsInput = {
+  update: Prisma.XOR<Prisma.ContractUpdateWithoutSessionsInput, Prisma.ContractUncheckedUpdateWithoutSessionsInput>
+  create: Prisma.XOR<Prisma.ContractCreateWithoutSessionsInput, Prisma.ContractUncheckedCreateWithoutSessionsInput>
   where?: Prisma.ContractWhereInput
 }
 
-export type ContractUpdateToOneWithWhereWithoutInterventionsInput = {
+export type ContractUpdateToOneWithWhereWithoutSessionsInput = {
   where?: Prisma.ContractWhereInput
-  data: Prisma.XOR<Prisma.ContractUpdateWithoutInterventionsInput, Prisma.ContractUncheckedUpdateWithoutInterventionsInput>
+  data: Prisma.XOR<Prisma.ContractUpdateWithoutSessionsInput, Prisma.ContractUncheckedUpdateWithoutSessionsInput>
 }
 
-export type ContractUpdateWithoutInterventionsInput = {
+export type ContractUpdateWithoutSessionsInput = {
   contractNumber?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -729,7 +729,7 @@ export type ContractUpdateWithoutInterventionsInput = {
   pricingMode?: Prisma.PricingModeUpdateOneRequiredWithoutContractsNestedInput
 }
 
-export type ContractUncheckedUpdateWithoutInterventionsInput = {
+export type ContractUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   institutionId?: Prisma.IntFieldUpdateOperationsInput | number
   pricingModeId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -757,7 +757,7 @@ export type ContractUpdateWithoutInstitutionInput = {
   hourlyVolumePlanned?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   pricingMode?: Prisma.PricingModeUpdateOneRequiredWithoutContractsNestedInput
-  interventions?: Prisma.InterventionUpdateManyWithoutContractNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutContractNestedInput
 }
 
 export type ContractUncheckedUpdateWithoutInstitutionInput = {
@@ -768,7 +768,7 @@ export type ContractUncheckedUpdateWithoutInstitutionInput = {
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourlyVolumePlanned?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  interventions?: Prisma.InterventionUncheckedUpdateManyWithoutContractNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutContractNestedInput
 }
 
 export type ContractUncheckedUpdateManyWithoutInstitutionInput = {
@@ -798,7 +798,7 @@ export type ContractUpdateWithoutPricingModeInput = {
   hourlyVolumePlanned?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   institution?: Prisma.InstitutionUpdateOneRequiredWithoutContractsNestedInput
-  interventions?: Prisma.InterventionUpdateManyWithoutContractNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutContractNestedInput
 }
 
 export type ContractUncheckedUpdateWithoutPricingModeInput = {
@@ -809,7 +809,7 @@ export type ContractUncheckedUpdateWithoutPricingModeInput = {
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourlyVolumePlanned?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   unitPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  interventions?: Prisma.InterventionUncheckedUpdateManyWithoutContractNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutContractNestedInput
 }
 
 export type ContractUncheckedUpdateManyWithoutPricingModeInput = {
@@ -828,11 +828,11 @@ export type ContractUncheckedUpdateManyWithoutPricingModeInput = {
  */
 
 export type ContractCountOutputType = {
-  interventions: number
+  sessions: number
 }
 
 export type ContractCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  interventions?: boolean | ContractCountOutputTypeCountInterventionsArgs
+  sessions?: boolean | ContractCountOutputTypeCountSessionsArgs
 }
 
 /**
@@ -848,8 +848,8 @@ export type ContractCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * ContractCountOutputType without action
  */
-export type ContractCountOutputTypeCountInterventionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.InterventionWhereInput
+export type ContractCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SessionWhereInput
 }
 
 
@@ -864,7 +864,7 @@ export type ContractSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   unitPrice?: boolean
   institution?: boolean | Prisma.InstitutionDefaultArgs<ExtArgs>
   pricingMode?: boolean | Prisma.PricingModeDefaultArgs<ExtArgs>
-  interventions?: boolean | Prisma.Contract$interventionsArgs<ExtArgs>
+  sessions?: boolean | Prisma.Contract$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.ContractCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["contract"]>
 
@@ -909,7 +909,7 @@ export type ContractOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type ContractInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   institution?: boolean | Prisma.InstitutionDefaultArgs<ExtArgs>
   pricingMode?: boolean | Prisma.PricingModeDefaultArgs<ExtArgs>
-  interventions?: boolean | Prisma.Contract$interventionsArgs<ExtArgs>
+  sessions?: boolean | Prisma.Contract$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.ContractCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ContractIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -926,7 +926,7 @@ export type $ContractPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     institution: Prisma.$InstitutionPayload<ExtArgs>
     pricingMode: Prisma.$PricingModePayload<ExtArgs>
-    interventions: Prisma.$InterventionPayload<ExtArgs>[]
+    sessions: Prisma.$SessionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1333,7 +1333,7 @@ export interface Prisma__ContractClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   institution<T extends Prisma.InstitutionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InstitutionDefaultArgs<ExtArgs>>): Prisma.Prisma__InstitutionClient<runtime.Types.Result.GetResult<Prisma.$InstitutionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   pricingMode<T extends Prisma.PricingModeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PricingModeDefaultArgs<ExtArgs>>): Prisma.Prisma__PricingModeClient<runtime.Types.Result.GetResult<Prisma.$PricingModePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  interventions<T extends Prisma.Contract$interventionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contract$interventionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InterventionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessions<T extends Prisma.Contract$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contract$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1772,27 +1772,27 @@ export type ContractDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Contract.interventions
+ * Contract.sessions
  */
-export type Contract$interventionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Contract$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Intervention
+   * Select specific fields to fetch from the Session
    */
-  select?: Prisma.InterventionSelect<ExtArgs> | null
+  select?: Prisma.SessionSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Intervention
+   * Omit specific fields from the Session
    */
-  omit?: Prisma.InterventionOmit<ExtArgs> | null
+  omit?: Prisma.SessionOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.InterventionInclude<ExtArgs> | null
-  where?: Prisma.InterventionWhereInput
-  orderBy?: Prisma.InterventionOrderByWithRelationInput | Prisma.InterventionOrderByWithRelationInput[]
-  cursor?: Prisma.InterventionWhereUniqueInput
+  include?: Prisma.SessionInclude<ExtArgs> | null
+  where?: Prisma.SessionWhereInput
+  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
+  cursor?: Prisma.SessionWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.InterventionScalarFieldEnum | Prisma.InterventionScalarFieldEnum[]
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
 }
 
 /**
