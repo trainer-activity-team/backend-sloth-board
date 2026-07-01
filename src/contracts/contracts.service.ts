@@ -27,6 +27,35 @@ type ContractWithRelations = Prisma.ContractGetPayload<{ include: typeof contrac
 
 export type { ContractWithRelations };
 
+function toPrismaDate(date: string): Date {
+  const dateOnlyPattern = /^\d{4}-\d{2}-\d{2}$/;
+  return new Date(dateOnlyPattern.test(date) ? `${date}T00:00:00.000Z` : date);
+}
+
+function normalizeContractCreateData(
+  createContractDto: CreateContractDto,
+): Prisma.ContractUncheckedCreateInput {
+  return {
+    ...createContractDto,
+    startDate: toPrismaDate(createContractDto.startDate),
+    endDate: toPrismaDate(createContractDto.endDate),
+  };
+}
+
+function normalizeContractUpdateData(
+  updateContractDto: UpdateContractDto,
+): Prisma.ContractUncheckedUpdateInput {
+  return {
+    ...updateContractDto,
+    ...(updateContractDto.startDate && {
+      startDate: toPrismaDate(updateContractDto.startDate),
+    }),
+    ...(updateContractDto.endDate && {
+      endDate: toPrismaDate(updateContractDto.endDate),
+    }),
+  };
+}
+
 @Injectable()
 export class ContractsService {
   constructor(private readonly prisma: PrismaService) {}
@@ -34,7 +63,7 @@ export class ContractsService {
   async create(createContractDto: CreateContractDto): Promise<Contract> {
     try {
       return await this.prisma.contract.create({
-        data: createContractDto,
+        data: normalizeContractCreateData(createContractDto),
       });
     } catch (error) {
       if (isForeignKeyConstraintError(error)) {
@@ -84,7 +113,7 @@ export class ContractsService {
     try {
       return await this.prisma.contract.update({
         where: { id },
-        data: updateContractDto,
+        data: normalizeContractUpdateData(updateContractDto),
       });
     } catch (error) {
       if (isPrismaNotFoundError(error)) {
