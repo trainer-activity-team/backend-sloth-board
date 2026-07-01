@@ -11,9 +11,10 @@ import { PricingModeModule } from './pricing-mode/pricing-mode.module';
 import { SessionsModule } from './sessions/sessions.module';
 import { SessionsTypesModule } from './sessions_types/sessions_types.module';
 import { TimescaleModule } from './timescale/timescale.module';
+import { AgendaModule } from './agenda/agenda.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, ClassesModule, InstitutionsModule, UsersModule, ContractsModule, PricingModeModule, SessionsModule, SessionsTypesModule, TimescaleModule],
+  imports: [PrismaModule, AuthModule, ClassesModule, InstitutionsModule, UsersModule, ContractsModule, PricingModeModule, SessionsModule, SessionsTypesModule, TimescaleModule, AgendaModule],
   providers: [{ provide: APP_GUARD, useClass: JwtAuthGuard }],
 })
 export class AppModule {}
