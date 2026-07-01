@@ -6,7 +6,7 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
-import { AgendaService, AgendaSession } from './agenda.service';
+import { AgendaService, FormattedAgendaSession } from './agenda.service';
 
 @ApiTags('agenda')
 @ApiBearerAuth('JWT')
@@ -17,7 +17,7 @@ export class AgendaController {
   @Get('sessions')
   @ApiOperation({ summary: 'List all agenda sessions' })
   @ApiOkResponse({ description: 'List of sessions with relations' })
-  findSessions(): Promise<AgendaSession[]> {
+  findSessions(): Promise<FormattedAgendaSession[]> {
     return this.agendaService.findSessions();
   }
 
@@ -29,7 +29,7 @@ export class AgendaController {
     description: 'Session date in YYYY-MM-DD format',
   })
   @ApiOkResponse({ description: 'List of sessions for the requested date' })
-  findSessionsByDate(@Query('date') date: string): Promise<AgendaSession[]> {
+  findSessionsByDate(@Query('date') date: string): Promise<FormattedAgendaSession[]> {
     return this.agendaService.findSessionsByDate(date);
   }
 }

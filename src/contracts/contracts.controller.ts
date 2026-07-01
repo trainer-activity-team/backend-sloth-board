@@ -18,8 +18,11 @@ import {
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
-import { Contract } from '../generated/prisma/client';
-import { ContractsService, ContractWithRelations } from './contracts.service';
+import {
+  ContractsService,
+  FormattedContract,
+  FormattedContractWithRelations,
+} from './contracts.service';
 import { CreateContractDto } from './dto/create-contract.dto';
 import { UpdateContractDto } from './dto/update-contract.dto';
 
@@ -33,14 +36,14 @@ export class ContractsController {
   @HttpCode(201)
   @ApiOperation({ summary: 'Create a contract' })
   @ApiCreatedResponse({ description: 'Created contract' })
-  create(@Body() createContractDto: CreateContractDto): Promise<Contract> {
+  create(@Body() createContractDto: CreateContractDto): Promise<FormattedContract> {
     return this.contractsService.create(createContractDto);
   }
 
   @Get()
   @ApiOperation({ summary: 'List all contracts' })
   @ApiOkResponse({ description: 'List of contracts with relations' })
-  findAll(): Promise<ContractWithRelations[]> {
+  findAll(): Promise<FormattedContractWithRelations[]> {
     return this.contractsService.findAll();
   }
 
@@ -48,7 +51,7 @@ export class ContractsController {
   @ApiOperation({ summary: 'Get a contract by ID' })
   @ApiParam({ name: 'id', type: Number })
   @ApiOkResponse({ description: 'Contract with relations' })
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<ContractWithRelations> {
+  findOne(@Param('id', ParseIntPipe) id: number): Promise<FormattedContractWithRelations> {
     return this.contractsService.findOne(id);
   }
 
@@ -59,7 +62,7 @@ export class ContractsController {
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateContractDto: UpdateContractDto,
-  ): Promise<Contract> {
+  ): Promise<FormattedContract> {
     return this.contractsService.update(id, updateContractDto);
   }
 

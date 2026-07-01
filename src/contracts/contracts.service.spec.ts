@@ -43,7 +43,11 @@ describe('ContractsService', () => {
   });
 
   it('normalizes date-only strings when creating a contract', async () => {
-    const createdContract = { id: 1 };
+    const createdContract = {
+      id: 1,
+      startDate: new Date('2026-09-01T00:00:00.000Z'),
+      endDate: new Date('2027-06-30T00:00:00.000Z'),
+    };
     prisma.contract.create.mockResolvedValue(createdContract);
 
     await expect(
@@ -56,7 +60,11 @@ describe('ContractsService', () => {
         hourlyVolumePlanned: 120.5,
         unitPrice: 45,
       }),
-    ).resolves.toBe(createdContract);
+    ).resolves.toEqual({
+      ...createdContract,
+      startDate: '2026-09-01',
+      endDate: '2027-06-30',
+    });
 
     expect(prisma.contract.create).toHaveBeenCalledWith({
       data: expect.objectContaining({
@@ -67,8 +75,16 @@ describe('ContractsService', () => {
   });
 
   it('normalizes date-only strings when updating a contract', async () => {
-    prisma.contract.findUnique.mockResolvedValue({ id: 1 });
-    const updatedContract = { id: 1 };
+    prisma.contract.findUnique.mockResolvedValue({
+      id: 1,
+      startDate: new Date('2026-09-01T00:00:00.000Z'),
+      endDate: new Date('2027-06-30T00:00:00.000Z'),
+    });
+    const updatedContract = {
+      id: 1,
+      startDate: new Date('2026-09-01T00:00:00.000Z'),
+      endDate: new Date('2027-06-30T00:00:00.000Z'),
+    };
     prisma.contract.update.mockResolvedValue(updatedContract);
 
     await expect(
@@ -76,7 +92,11 @@ describe('ContractsService', () => {
         startDate: '2026-09-01',
         endDate: '2027-06-30',
       }),
-    ).resolves.toBe(updatedContract);
+    ).resolves.toEqual({
+      ...updatedContract,
+      startDate: '2026-09-01',
+      endDate: '2027-06-30',
+    });
 
     expect(prisma.contract.update).toHaveBeenCalledWith({
       where: { id: 1 },
@@ -85,5 +105,24 @@ describe('ContractsService', () => {
         endDate: new Date('2027-06-30T00:00:00.000Z'),
       }),
     });
+  });
+
+  it('formats date-only fields when listing contracts', async () => {
+    const contracts = [
+      {
+        id: 1,
+        startDate: new Date('2026-09-01T00:00:00.000Z'),
+        endDate: new Date('2027-06-30T00:00:00.000Z'),
+      },
+    ];
+    prisma.contract.findMany.mockResolvedValue(contracts);
+
+    await expect(service.findAll()).resolves.toEqual([
+      {
+        ...contracts[0],
+        startDate: '2026-09-01',
+        endDate: '2027-06-30',
+      },
+    ]);
   });
 });

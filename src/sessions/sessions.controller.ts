@@ -18,8 +18,11 @@ import {
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
-import { Session } from '../generated/prisma/client';
-import { SessionsService, SessionWithRelations } from './sessions.service';
+import {
+  FormattedSession,
+  FormattedSessionWithRelations,
+  SessionsService,
+} from './sessions.service';
 import { CreateSessionDto } from './dto/create-session.dto';
 import { UpdateSessionDto } from './dto/update-session.dto';
 
@@ -33,14 +36,14 @@ export class SessionsController {
   @HttpCode(201)
   @ApiOperation({ summary: 'Create a session' })
   @ApiCreatedResponse({ description: 'Created session' })
-  create(@Body() createSessionDto: CreateSessionDto): Promise<Session> {
+  create(@Body() createSessionDto: CreateSessionDto): Promise<FormattedSession> {
     return this.sessionsService.create(createSessionDto);
   }
 
   @Get()
   @ApiOperation({ summary: 'List all sessions' })
   @ApiOkResponse({ description: 'List of sessions with relations' })
-  findAll(): Promise<SessionWithRelations[]> {
+  findAll(): Promise<FormattedSessionWithRelations[]> {
     return this.sessionsService.findAll();
   }
 
@@ -48,7 +51,7 @@ export class SessionsController {
   @ApiOperation({ summary: 'Get a session by ID' })
   @ApiParam({ name: 'id', type: Number })
   @ApiOkResponse({ description: 'Session with relations' })
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<SessionWithRelations> {
+  findOne(@Param('id', ParseIntPipe) id: number): Promise<FormattedSessionWithRelations> {
     return this.sessionsService.findOne(id);
   }
 
@@ -59,7 +62,7 @@ export class SessionsController {
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateSessionDto: UpdateSessionDto,
-  ): Promise<Session> {
+  ): Promise<FormattedSession> {
     return this.sessionsService.update(id, updateSessionDto);
   }
 

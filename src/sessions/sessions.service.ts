@@ -6,6 +6,12 @@ import {
 } from '@nestjs/common';
 import { Prisma, Session } from '../generated/prisma/client';
 import {
+  formatDateOnly,
+  formatTimeOnly,
+  toPrismaDate,
+  toPrismaTime,
+} from '../common/date-format';
+import {
   isForeignKeyConstraintError,
   isPrismaNotFoundError,
 } from '../common/prisma-errors';
@@ -35,18 +41,74 @@ const sessionInclude = {
 } satisfies Prisma.SessionInclude;
 
 type SessionWithRelations = Prisma.SessionGetPayload<{ include: typeof sessionInclude }>;
+type FormattedSession<T extends Session = Session> = Omit<
+  T,
+  'date' | 'start' | 'end' | 'declarationDate'
+> & {
+  date: string;
+  start: string;
+  end: string;
+  declarationDate: string | null;
+};
 
-export type { SessionWithRelations };
+export type FormattedSessionWithRelations = FormattedSession<SessionWithRelations>;
+export type { FormattedSession };
+
+function normalizeSessionCreateData(
+  createSessionDto: CreateSessionDto,
+): Prisma.SessionUncheckedCreateInput {
+  return {
+    ...createSessionDto,
+    date: toPrismaDate(createSessionDto.date),
+    start: toPrismaTime(createSessionDto.start),
+    end: toPrismaTime(createSessionDto.end),
+    ...(createSessionDto.declarationDate && {
+      declarationDate: toPrismaDate(createSessionDto.declarationDate),
+    }),
+  };
+}
+
+function normalizeSessionUpdateData(
+  updateSessionDto: UpdateSessionDto,
+): Prisma.SessionUncheckedUpdateInput {
+  return {
+    ...updateSessionDto,
+    ...(updateSessionDto.date && {
+      date: toPrismaDate(updateSessionDto.date),
+    }),
+    ...(updateSessionDto.start && {
+      start: toPrismaTime(updateSessionDto.start),
+    }),
+    ...(updateSessionDto.end && {
+      end: toPrismaTime(updateSessionDto.end),
+    }),
+    ...(updateSessionDto.declarationDate && {
+      declarationDate: toPrismaDate(updateSessionDto.declarationDate),
+    }),
+  };
+}
+
+function formatSession<T extends Session>(session: T): FormattedSession<T> {
+  return {
+    ...session,
+    date: formatDateOnly(session.date),
+    start: formatTimeOnly(session.start),
+    end: formatTimeOnly(session.end),
+    declarationDate: formatDateOnly(session.declarationDate),
+  };
+}
 
 @Injectable()
 export class SessionsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createSessionDto: CreateSessionDto): Promise<Session> {
+  async create(createSessionDto: CreateSessionDto): Promise<FormattedSession> {
     try {
-      return await this.prisma.session.create({
-        data: createSessionDto,
+      const session = await this.prisma.session.create({
+        data: normalizeSessionCreateData(createSessionDto),
       });
+
+      return formatSession(session);
     } catch (error) {
       if (isForeignKeyConstraintError(error)) {
         throw new BadRequestException('Invalid session relation id');
@@ -57,9 +119,10 @@ export class SessionsService {
     }
   }
 
-  async findAll(): Promise<SessionWithRelations[]> {
+  async findAll(): Promise<FormattedSessionWithRelations[]> {
     try {
-      return await this.prisma.session.findMany({ include: sessionInclude });
+      const sessions = await this.prisma.session.findMany({ include: sessionInclude });
+      return sessions.map(formatSession);
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch sessions', {
         cause: error,
@@ -67,7 +130,7 @@ export class SessionsService {
     }
   }
 
-  async findOne(id: number): Promise<SessionWithRelations> {
+  async findOne(id: number): Promise<FormattedSessionWithRelations> {
     try {
       const session = await this.prisma.session.findUnique({
         where: { id },
@@ -78,7 +141,7 @@ export class SessionsService {
         throw new NotFoundException(`Session #${id} not found`);
       }
 
-      return session;
+      return formatSession(session);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
@@ -89,14 +152,16 @@ export class SessionsService {
     }
   }
 
-  async update(id: number, updateSessionDto: UpdateSessionDto): Promise<Session> {
+  async update(id: number, updateSessionDto: UpdateSessionDto): Promise<FormattedSession> {
     await this.findOne(id);
 
     try {
-      return await this.prisma.session.update({
+      const session = await this.prisma.session.update({
         where: { id },
-        data: updateSessionDto,
+        data: normalizeSessionUpdateData(updateSessionDto),
       });
+
+      return formatSession(session);
     } catch (error) {
       if (isPrismaNotFoundError(error)) {
         throw new NotFoundException(`Session #${id} not found`);

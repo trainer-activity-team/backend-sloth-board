@@ -1,9 +1,10 @@
-import {
-  BadRequestException,
-  Injectable,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Prisma } from '../generated/prisma/client';
+import {
+  formatDateOnly,
+  formatTimeOnly,
+  toPrismaDate,
+} from '../common/date-format';
 import { PrismaService } from '../prisma/prisma.service';
 
 const agendaSessionInclude = {
@@ -30,18 +31,39 @@ const agendaSessionInclude = {
 type AgendaSession = Prisma.SessionGetPayload<{
   include: typeof agendaSessionInclude;
 }>;
+type FormattedAgendaSession = Omit<
+  AgendaSession,
+  'date' | 'start' | 'end' | 'declarationDate'
+> & {
+  date: string;
+  start: string;
+  end: string;
+  declarationDate: string | null;
+};
 
-export type { AgendaSession };
+export type { FormattedAgendaSession };
+
+function formatAgendaSession(session: AgendaSession): FormattedAgendaSession {
+  return {
+    ...session,
+    date: formatDateOnly(session.date),
+    start: formatTimeOnly(session.start),
+    end: formatTimeOnly(session.end),
+    declarationDate: formatDateOnly(session.declarationDate),
+  };
+}
 
 @Injectable()
 export class AgendaService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findSessions(): Promise<AgendaSession[]> {
+  async findSessions(): Promise<FormattedAgendaSession[]> {
     try {
-      return await this.prisma.session.findMany({
+      const sessions = await this.prisma.session.findMany({
         include: agendaSessionInclude,
       });
+
+      return sessions.map(formatAgendaSession);
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch agenda sessions', {
         cause: error,
@@ -49,11 +71,11 @@ export class AgendaService {
     }
   }
 
-  async findSessionsByDate(date: string): Promise<AgendaSession[]> {
+  async findSessionsByDate(date: string): Promise<FormattedAgendaSession[]> {
     const { startOfDay, startOfNextDay } = this.parseSessionDate(date);
 
     try {
-      return await this.prisma.session.findMany({
+      const sessions = await this.prisma.session.findMany({
         where: {
           date: {
             gte: startOfDay,
@@ -62,6 +84,8 @@ export class AgendaService {
         },
         include: agendaSessionInclude,
       });
+
+      return sessions.map(formatAgendaSession);
     } catch (error) {
       throw new InternalServerErrorException(
         'Failed to fetch agenda sessions by date',
@@ -74,19 +98,7 @@ export class AgendaService {
     startOfDay: Date;
     startOfNextDay: Date;
   } {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-      throw new BadRequestException('Date must use YYYY-MM-DD format');
-    }
-
-    const startOfDay = new Date(`${date}T00:00:00.000Z`);
-
-    if (
-      Number.isNaN(startOfDay.getTime()) ||
-      startOfDay.toISOString().slice(0, 10) !== date
-    ) {
-      throw new BadRequestException('Date must be a valid calendar date');
-    }
-
+    const startOfDay = toPrismaDate(date);
     const startOfNextDay = new Date(startOfDay);
     startOfNextDay.setUTCDate(startOfDay.getUTCDate() + 1);
 

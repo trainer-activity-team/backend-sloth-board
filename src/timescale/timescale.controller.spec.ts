@@ -8,7 +8,15 @@ describe('TimescaleController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [TimescaleController],
-      providers: [TimescaleService],
+      providers: [
+        {
+          provide: TimescaleService,
+          useValue: {
+            findAll: jest.fn(),
+            findOne: jest.fn(),
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<TimescaleController>(TimescaleController);

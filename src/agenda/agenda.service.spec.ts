@@ -14,7 +14,25 @@ describe('AgendaService', () => {
     };
   };
 
-  const sessions = [{ id: 1, title: 'Math lesson' }];
+  const sessions = [
+    {
+      id: 1,
+      title: 'Math lesson',
+      date: new Date('2026-07-01T00:00:00.000Z'),
+      start: new Date('1970-01-01T09:00:00.000Z'),
+      end: new Date('1970-01-01T10:00:00.000Z'),
+      declarationDate: null,
+    },
+  ];
+  const formattedSessions = [
+    {
+      ...sessions[0],
+      date: '2026-07-01',
+      start: '09:00',
+      end: '10:00',
+      declarationDate: null,
+    },
+  ];
 
   beforeEach(async () => {
     prisma = {
@@ -43,7 +61,7 @@ describe('AgendaService', () => {
   it('should list agenda sessions', async () => {
     prisma.session.findMany.mockResolvedValue(sessions);
 
-    await expect(service.findSessions()).resolves.toEqual(sessions);
+    await expect(service.findSessions()).resolves.toEqual(formattedSessions);
     expect(prisma.session.findMany).toHaveBeenCalledWith({
       include: expect.any(Object),
     });
@@ -53,7 +71,7 @@ describe('AgendaService', () => {
     prisma.session.findMany.mockResolvedValue(sessions);
 
     await expect(service.findSessionsByDate('2026-07-01')).resolves.toEqual(
-      sessions,
+      formattedSessions,
     );
     expect(prisma.session.findMany).toHaveBeenCalledWith({
       where: {

@@ -6,6 +6,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Contract, Prisma } from '../generated/prisma/client';
+import { formatDateOnly, toPrismaDate } from '../common/date-format';
 import {
   isForeignKeyConstraintError,
   isPrismaNotFoundError,
@@ -24,13 +25,13 @@ const contractInclude = {
 } satisfies Prisma.ContractInclude;
 
 type ContractWithRelations = Prisma.ContractGetPayload<{ include: typeof contractInclude }>;
+type FormattedContract<T extends Contract = Contract> = Omit<T, 'startDate' | 'endDate'> & {
+  startDate: string;
+  endDate: string;
+};
 
-export type { ContractWithRelations };
-
-function toPrismaDate(date: string): Date {
-  const dateOnlyPattern = /^\d{4}-\d{2}-\d{2}$/;
-  return new Date(dateOnlyPattern.test(date) ? `${date}T00:00:00.000Z` : date);
-}
+export type FormattedContractWithRelations = FormattedContract<ContractWithRelations>;
+export type { FormattedContract };
 
 function normalizeContractCreateData(
   createContractDto: CreateContractDto,
@@ -56,15 +57,25 @@ function normalizeContractUpdateData(
   };
 }
 
+function formatContract<T extends Contract>(contract: T): FormattedContract<T> {
+  return {
+    ...contract,
+    startDate: formatDateOnly(contract.startDate),
+    endDate: formatDateOnly(contract.endDate),
+  };
+}
+
 @Injectable()
 export class ContractsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createContractDto: CreateContractDto): Promise<Contract> {
+  async create(createContractDto: CreateContractDto): Promise<FormattedContract<Contract>> {
     try {
-      return await this.prisma.contract.create({
+      const contract = await this.prisma.contract.create({
         data: normalizeContractCreateData(createContractDto),
       });
+
+      return formatContract(contract);
     } catch (error) {
       if (isForeignKeyConstraintError(error)) {
         throw new BadRequestException('Invalid institutionId or pricingModeId');
@@ -75,9 +86,10 @@ export class ContractsService {
     }
   }
 
-  async findAll(): Promise<ContractWithRelations[]> {
+  async findAll(): Promise<FormattedContractWithRelations[]> {
     try {
-      return await this.prisma.contract.findMany({ include: contractInclude });
+      const contracts = await this.prisma.contract.findMany({ include: contractInclude });
+      return contracts.map(formatContract);
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch contracts', {
         cause: error,
@@ -85,7 +97,7 @@ export class ContractsService {
     }
   }
 
-  async findOne(id: number): Promise<ContractWithRelations> {
+  async findOne(id: number): Promise<FormattedContractWithRelations> {
     try {
       const contract = await this.prisma.contract.findUnique({
         where: { id },
@@ -96,7 +108,7 @@ export class ContractsService {
         throw new NotFoundException(`Contract #${id} not found`);
       }
 
-      return contract;
+      return formatContract(contract);
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
@@ -107,14 +119,19 @@ export class ContractsService {
     }
   }
 
-  async update(id: number, updateContractDto: UpdateContractDto): Promise<Contract> {
+  async update(
+    id: number,
+    updateContractDto: UpdateContractDto,
+  ): Promise<FormattedContract<Contract>> {
     await this.findOne(id);
 
     try {
-      return await this.prisma.contract.update({
+      const contract = await this.prisma.contract.update({
         where: { id },
         data: normalizeContractUpdateData(updateContractDto),
       });
+
+      return formatContract(contract);
     } catch (error) {
       if (isPrismaNotFoundError(error)) {
         throw new NotFoundException(`Contract #${id} not found`);

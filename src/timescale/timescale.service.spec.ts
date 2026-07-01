@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { PrismaService } from '../prisma/prisma.service';
 import { TimescaleService } from './timescale.service';
 
 describe('TimescaleService', () => {
@@ -6,7 +7,18 @@ describe('TimescaleService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [TimescaleService],
+      providers: [
+        TimescaleService,
+        {
+          provide: PrismaService,
+          useValue: {
+            timescale: {
+              findMany: jest.fn(),
+              findUnique: jest.fn(),
+            },
+          },
+        },
+      ],
     }).compile();
 
     service = module.get<TimescaleService>(TimescaleService);
