@@ -14,16 +14,10 @@ const agendaSessionInclude = {
   contract: {
     select: { id: true, contractNumber: true },
   },
-  sessionType: {
-    select: { id: true, name: true },
-  },
   statusRelation: {
     select: { id: true, name: true },
   },
-  timescale: {
-    select: { id: true, name: true },
-  },
-  user: {
+  teacher: {
     select: { id: true, firstName: true, lastName: true, email: true },
   },
 } satisfies Prisma.SessionInclude;
@@ -65,9 +59,12 @@ export class AgendaService {
 
       return sessions.map(formatAgendaSession);
     } catch (error) {
-      throw new InternalServerErrorException('Failed to fetch agenda sessions', {
-        cause: error,
-      });
+      throw new InternalServerErrorException(
+        'Failed to fetch agenda sessions',
+        {
+          cause: error,
+        },
+      );
     }
   }
 

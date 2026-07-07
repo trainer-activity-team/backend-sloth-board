@@ -5,6 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Prisma, Session } from '../generated/prisma/client';
+import { CreatedResourceDto } from '../common/dto/created-resource.dto';
 import {
   formatDateOnly,
   formatTimeOnly,
@@ -26,21 +27,17 @@ const sessionInclude = {
   contract: {
     select: { id: true, contractNumber: true },
   },
-  sessionType: {
-    select: { id: true, name: true },
-  },
   statusRelation: {
     select: { id: true, name: true },
   },
-  timescale: {
-    select: { id: true, name: true },
-  },
-  user: {
+  teacher: {
     select: { id: true, firstName: true, lastName: true, email: true },
   },
 } satisfies Prisma.SessionInclude;
 
-type SessionWithRelations = Prisma.SessionGetPayload<{ include: typeof sessionInclude }>;
+type SessionWithRelations = Prisma.SessionGetPayload<{
+  include: typeof sessionInclude;
+}>;
 type FormattedSession<T extends Session = Session> = Omit<
   T,
   'date' | 'start' | 'end' | 'declarationDate'
@@ -51,7 +48,8 @@ type FormattedSession<T extends Session = Session> = Omit<
   declarationDate: string | null;
 };
 
-export type FormattedSessionWithRelations = FormattedSession<SessionWithRelations>;
+export type FormattedSessionWithRelations =
+  FormattedSession<SessionWithRelations>;
 export type { FormattedSession };
 
 function normalizeSessionCreateData(
@@ -102,13 +100,14 @@ function formatSession<T extends Session>(session: T): FormattedSession<T> {
 export class SessionsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createSessionDto: CreateSessionDto): Promise<FormattedSession> {
+  async create(
+    createSessionDto: CreateSessionDto,
+  ): Promise<CreatedResourceDto> {
     try {
-      const session = await this.prisma.session.create({
+      return await this.prisma.session.create({
         data: normalizeSessionCreateData(createSessionDto),
+        select: { id: true },
       });
-
-      return formatSession(session);
     } catch (error) {
       if (isForeignKeyConstraintError(error)) {
         throw new BadRequestException('Invalid session relation id');
@@ -121,7 +120,9 @@ export class SessionsService {
 
   async findAll(): Promise<FormattedSessionWithRelations[]> {
     try {
-      const sessions = await this.prisma.session.findMany({ include: sessionInclude });
+      const sessions = await this.prisma.session.findMany({
+        include: sessionInclude,
+      });
       return sessions.map(formatSession);
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch sessions', {
@@ -152,7 +153,10 @@ export class SessionsService {
     }
   }
 
-  async update(id: number, updateSessionDto: UpdateSessionDto): Promise<FormattedSession> {
+  async update(
+    id: number,
+    updateSessionDto: UpdateSessionDto,
+  ): Promise<FormattedSession> {
     await this.findOne(id);
 
     try {

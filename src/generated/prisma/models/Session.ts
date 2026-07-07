@@ -31,10 +31,8 @@ export type SessionAvgAggregateOutputType = {
   classId: number | null
   contractId: number | null
   statusId: number | null
-  userId: number | null
+  teacherId: number | null
   invoiceId: number | null
-  sessionTypeId: number | null
-  timescaleId: number | null
 }
 
 export type SessionSumAggregateOutputType = {
@@ -42,10 +40,8 @@ export type SessionSumAggregateOutputType = {
   classId: number | null
   contractId: number | null
   statusId: number | null
-  userId: number | null
+  teacherId: number | null
   invoiceId: number | null
-  sessionTypeId: number | null
-  timescaleId: number | null
 }
 
 export type SessionMinAggregateOutputType = {
@@ -55,10 +51,8 @@ export type SessionMinAggregateOutputType = {
   title: string | null
   contractId: number | null
   statusId: number | null
-  userId: number | null
+  teacherId: number | null
   invoiceId: number | null
-  sessionTypeId: number | null
-  timescaleId: number | null
   date: Date | null
   start: Date | null
   end: Date | null
@@ -73,10 +67,8 @@ export type SessionMaxAggregateOutputType = {
   title: string | null
   contractId: number | null
   statusId: number | null
-  userId: number | null
+  teacherId: number | null
   invoiceId: number | null
-  sessionTypeId: number | null
-  timescaleId: number | null
   date: Date | null
   start: Date | null
   end: Date | null
@@ -91,10 +83,8 @@ export type SessionCountAggregateOutputType = {
   title: number
   contractId: number
   statusId: number
-  userId: number
+  teacherId: number
   invoiceId: number
-  sessionTypeId: number
-  timescaleId: number
   date: number
   start: number
   end: number
@@ -109,10 +99,8 @@ export type SessionAvgAggregateInputType = {
   classId?: true
   contractId?: true
   statusId?: true
-  userId?: true
+  teacherId?: true
   invoiceId?: true
-  sessionTypeId?: true
-  timescaleId?: true
 }
 
 export type SessionSumAggregateInputType = {
@@ -120,10 +108,8 @@ export type SessionSumAggregateInputType = {
   classId?: true
   contractId?: true
   statusId?: true
-  userId?: true
+  teacherId?: true
   invoiceId?: true
-  sessionTypeId?: true
-  timescaleId?: true
 }
 
 export type SessionMinAggregateInputType = {
@@ -133,10 +119,8 @@ export type SessionMinAggregateInputType = {
   title?: true
   contractId?: true
   statusId?: true
-  userId?: true
+  teacherId?: true
   invoiceId?: true
-  sessionTypeId?: true
-  timescaleId?: true
   date?: true
   start?: true
   end?: true
@@ -151,10 +135,8 @@ export type SessionMaxAggregateInputType = {
   title?: true
   contractId?: true
   statusId?: true
-  userId?: true
+  teacherId?: true
   invoiceId?: true
-  sessionTypeId?: true
-  timescaleId?: true
   date?: true
   start?: true
   end?: true
@@ -169,10 +151,8 @@ export type SessionCountAggregateInputType = {
   title?: true
   contractId?: true
   statusId?: true
-  userId?: true
+  teacherId?: true
   invoiceId?: true
-  sessionTypeId?: true
-  timescaleId?: true
   date?: true
   start?: true
   end?: true
@@ -274,10 +254,8 @@ export type SessionGroupByOutputType = {
   title: string
   contractId: number | null
   statusId: number
-  userId: number | null
+  teacherId: number | null
   invoiceId: number | null
-  sessionTypeId: number | null
-  timescaleId: number | null
   date: Date
   start: Date
   end: Date
@@ -315,10 +293,8 @@ export type SessionWhereInput = {
   title?: Prisma.StringFilter<"Session"> | string
   contractId?: Prisma.IntNullableFilter<"Session"> | number | null
   statusId?: Prisma.IntFilter<"Session"> | number
-  userId?: Prisma.IntNullableFilter<"Session"> | number | null
+  teacherId?: Prisma.IntNullableFilter<"Session"> | number | null
   invoiceId?: Prisma.IntNullableFilter<"Session"> | number | null
-  sessionTypeId?: Prisma.IntNullableFilter<"Session"> | number | null
-  timescaleId?: Prisma.IntNullableFilter<"Session"> | number | null
   date?: Prisma.DateTimeFilter<"Session"> | Date | string
   start?: Prisma.DateTimeFilter<"Session"> | Date | string
   end?: Prisma.DateTimeFilter<"Session"> | Date | string
@@ -327,10 +303,8 @@ export type SessionWhereInput = {
   class?: Prisma.XOR<Prisma.ClassNullableScalarRelationFilter, Prisma.ClassWhereInput> | null
   contract?: Prisma.XOR<Prisma.ContractNullableScalarRelationFilter, Prisma.ContractWhereInput> | null
   invoice?: Prisma.XOR<Prisma.InvoiceNullableScalarRelationFilter, Prisma.InvoiceWhereInput> | null
-  sessionType?: Prisma.XOR<Prisma.SessionTypeNullableScalarRelationFilter, Prisma.SessionTypeWhereInput> | null
   statusRelation?: Prisma.XOR<Prisma.StatusScalarRelationFilter, Prisma.StatusWhereInput>
-  timescale?: Prisma.XOR<Prisma.TimescaleNullableScalarRelationFilter, Prisma.TimescaleWhereInput> | null
-  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  teacher?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type SessionOrderByWithRelationInput = {
@@ -340,10 +314,8 @@ export type SessionOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   contractId?: Prisma.SortOrderInput | Prisma.SortOrder
   statusId?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
+  teacherId?: Prisma.SortOrderInput | Prisma.SortOrder
   invoiceId?: Prisma.SortOrderInput | Prisma.SortOrder
-  sessionTypeId?: Prisma.SortOrderInput | Prisma.SortOrder
-  timescaleId?: Prisma.SortOrderInput | Prisma.SortOrder
   date?: Prisma.SortOrder
   start?: Prisma.SortOrder
   end?: Prisma.SortOrder
@@ -352,10 +324,8 @@ export type SessionOrderByWithRelationInput = {
   class?: Prisma.ClassOrderByWithRelationInput
   contract?: Prisma.ContractOrderByWithRelationInput
   invoice?: Prisma.InvoiceOrderByWithRelationInput
-  sessionType?: Prisma.SessionTypeOrderByWithRelationInput
   statusRelation?: Prisma.StatusOrderByWithRelationInput
-  timescale?: Prisma.TimescaleOrderByWithRelationInput
-  user?: Prisma.UserOrderByWithRelationInput
+  teacher?: Prisma.UserOrderByWithRelationInput
 }
 
 export type SessionWhereUniqueInput = Prisma.AtLeast<{
@@ -368,10 +338,8 @@ export type SessionWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"Session"> | string
   contractId?: Prisma.IntNullableFilter<"Session"> | number | null
   statusId?: Prisma.IntFilter<"Session"> | number
-  userId?: Prisma.IntNullableFilter<"Session"> | number | null
+  teacherId?: Prisma.IntNullableFilter<"Session"> | number | null
   invoiceId?: Prisma.IntNullableFilter<"Session"> | number | null
-  sessionTypeId?: Prisma.IntNullableFilter<"Session"> | number | null
-  timescaleId?: Prisma.IntNullableFilter<"Session"> | number | null
   date?: Prisma.DateTimeFilter<"Session"> | Date | string
   start?: Prisma.DateTimeFilter<"Session"> | Date | string
   end?: Prisma.DateTimeFilter<"Session"> | Date | string
@@ -380,10 +348,8 @@ export type SessionWhereUniqueInput = Prisma.AtLeast<{
   class?: Prisma.XOR<Prisma.ClassNullableScalarRelationFilter, Prisma.ClassWhereInput> | null
   contract?: Prisma.XOR<Prisma.ContractNullableScalarRelationFilter, Prisma.ContractWhereInput> | null
   invoice?: Prisma.XOR<Prisma.InvoiceNullableScalarRelationFilter, Prisma.InvoiceWhereInput> | null
-  sessionType?: Prisma.XOR<Prisma.SessionTypeNullableScalarRelationFilter, Prisma.SessionTypeWhereInput> | null
   statusRelation?: Prisma.XOR<Prisma.StatusScalarRelationFilter, Prisma.StatusWhereInput>
-  timescale?: Prisma.XOR<Prisma.TimescaleNullableScalarRelationFilter, Prisma.TimescaleWhereInput> | null
-  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  teacher?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id">
 
 export type SessionOrderByWithAggregationInput = {
@@ -393,10 +359,8 @@ export type SessionOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   contractId?: Prisma.SortOrderInput | Prisma.SortOrder
   statusId?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
+  teacherId?: Prisma.SortOrderInput | Prisma.SortOrder
   invoiceId?: Prisma.SortOrderInput | Prisma.SortOrder
-  sessionTypeId?: Prisma.SortOrderInput | Prisma.SortOrder
-  timescaleId?: Prisma.SortOrderInput | Prisma.SortOrder
   date?: Prisma.SortOrder
   start?: Prisma.SortOrder
   end?: Prisma.SortOrder
@@ -419,10 +383,8 @@ export type SessionScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"Session"> | string
   contractId?: Prisma.IntNullableWithAggregatesFilter<"Session"> | number | null
   statusId?: Prisma.IntWithAggregatesFilter<"Session"> | number
-  userId?: Prisma.IntNullableWithAggregatesFilter<"Session"> | number | null
+  teacherId?: Prisma.IntNullableWithAggregatesFilter<"Session"> | number | null
   invoiceId?: Prisma.IntNullableWithAggregatesFilter<"Session"> | number | null
-  sessionTypeId?: Prisma.IntNullableWithAggregatesFilter<"Session"> | number | null
-  timescaleId?: Prisma.IntNullableWithAggregatesFilter<"Session"> | number | null
   date?: Prisma.DateTimeWithAggregatesFilter<"Session"> | Date | string
   start?: Prisma.DateTimeWithAggregatesFilter<"Session"> | Date | string
   end?: Prisma.DateTimeWithAggregatesFilter<"Session"> | Date | string
@@ -441,10 +403,8 @@ export type SessionCreateInput = {
   class?: Prisma.ClassCreateNestedOneWithoutSessionsInput
   contract?: Prisma.ContractCreateNestedOneWithoutSessionsInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutSessionsInput
-  sessionType?: Prisma.SessionTypeCreateNestedOneWithoutSessionsInput
   statusRelation?: Prisma.StatusCreateNestedOneWithoutSessionsInput
-  timescale?: Prisma.TimescaleCreateNestedOneWithoutSessionsInput
-  user?: Prisma.UserCreateNestedOneWithoutSessionsInput
+  teacher?: Prisma.UserCreateNestedOneWithoutSessionsInput
 }
 
 export type SessionUncheckedCreateInput = {
@@ -454,10 +414,8 @@ export type SessionUncheckedCreateInput = {
   title: string
   contractId?: number | null
   statusId?: number
-  userId?: number | null
+  teacherId?: number | null
   invoiceId?: number | null
-  sessionTypeId?: number | null
-  timescaleId?: number | null
   date: Date | string
   start: Date | string
   end: Date | string
@@ -476,10 +434,8 @@ export type SessionUpdateInput = {
   class?: Prisma.ClassUpdateOneWithoutSessionsNestedInput
   contract?: Prisma.ContractUpdateOneWithoutSessionsNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutSessionsNestedInput
-  sessionType?: Prisma.SessionTypeUpdateOneWithoutSessionsNestedInput
   statusRelation?: Prisma.StatusUpdateOneRequiredWithoutSessionsNestedInput
-  timescale?: Prisma.TimescaleUpdateOneWithoutSessionsNestedInput
-  user?: Prisma.UserUpdateOneWithoutSessionsNestedInput
+  teacher?: Prisma.UserUpdateOneWithoutSessionsNestedInput
 }
 
 export type SessionUncheckedUpdateInput = {
@@ -489,10 +445,8 @@ export type SessionUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   statusId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  teacherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -507,10 +461,8 @@ export type SessionCreateManyInput = {
   title: string
   contractId?: number | null
   statusId?: number
-  userId?: number | null
+  teacherId?: number | null
   invoiceId?: number | null
-  sessionTypeId?: number | null
-  timescaleId?: number | null
   date: Date | string
   start: Date | string
   end: Date | string
@@ -535,10 +487,8 @@ export type SessionUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   statusId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  teacherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -563,10 +513,8 @@ export type SessionCountOrderByAggregateInput = {
   title?: Prisma.SortOrder
   contractId?: Prisma.SortOrder
   statusId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  teacherId?: Prisma.SortOrder
   invoiceId?: Prisma.SortOrder
-  sessionTypeId?: Prisma.SortOrder
-  timescaleId?: Prisma.SortOrder
   date?: Prisma.SortOrder
   start?: Prisma.SortOrder
   end?: Prisma.SortOrder
@@ -579,10 +527,8 @@ export type SessionAvgOrderByAggregateInput = {
   classId?: Prisma.SortOrder
   contractId?: Prisma.SortOrder
   statusId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  teacherId?: Prisma.SortOrder
   invoiceId?: Prisma.SortOrder
-  sessionTypeId?: Prisma.SortOrder
-  timescaleId?: Prisma.SortOrder
 }
 
 export type SessionMaxOrderByAggregateInput = {
@@ -592,10 +538,8 @@ export type SessionMaxOrderByAggregateInput = {
   title?: Prisma.SortOrder
   contractId?: Prisma.SortOrder
   statusId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  teacherId?: Prisma.SortOrder
   invoiceId?: Prisma.SortOrder
-  sessionTypeId?: Prisma.SortOrder
-  timescaleId?: Prisma.SortOrder
   date?: Prisma.SortOrder
   start?: Prisma.SortOrder
   end?: Prisma.SortOrder
@@ -610,10 +554,8 @@ export type SessionMinOrderByAggregateInput = {
   title?: Prisma.SortOrder
   contractId?: Prisma.SortOrder
   statusId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  teacherId?: Prisma.SortOrder
   invoiceId?: Prisma.SortOrder
-  sessionTypeId?: Prisma.SortOrder
-  timescaleId?: Prisma.SortOrder
   date?: Prisma.SortOrder
   start?: Prisma.SortOrder
   end?: Prisma.SortOrder
@@ -626,51 +568,49 @@ export type SessionSumOrderByAggregateInput = {
   classId?: Prisma.SortOrder
   contractId?: Prisma.SortOrder
   statusId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  teacherId?: Prisma.SortOrder
   invoiceId?: Prisma.SortOrder
-  sessionTypeId?: Prisma.SortOrder
-  timescaleId?: Prisma.SortOrder
 }
 
-export type SessionCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.SessionCreateWithoutUserInput, Prisma.SessionUncheckedCreateWithoutUserInput> | Prisma.SessionCreateWithoutUserInput[] | Prisma.SessionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutUserInput | Prisma.SessionCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.SessionCreateManyUserInputEnvelope
+export type SessionCreateNestedManyWithoutTeacherInput = {
+  create?: Prisma.XOR<Prisma.SessionCreateWithoutTeacherInput, Prisma.SessionUncheckedCreateWithoutTeacherInput> | Prisma.SessionCreateWithoutTeacherInput[] | Prisma.SessionUncheckedCreateWithoutTeacherInput[]
+  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutTeacherInput | Prisma.SessionCreateOrConnectWithoutTeacherInput[]
+  createMany?: Prisma.SessionCreateManyTeacherInputEnvelope
   connect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
 }
 
-export type SessionUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.SessionCreateWithoutUserInput, Prisma.SessionUncheckedCreateWithoutUserInput> | Prisma.SessionCreateWithoutUserInput[] | Prisma.SessionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutUserInput | Prisma.SessionCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.SessionCreateManyUserInputEnvelope
+export type SessionUncheckedCreateNestedManyWithoutTeacherInput = {
+  create?: Prisma.XOR<Prisma.SessionCreateWithoutTeacherInput, Prisma.SessionUncheckedCreateWithoutTeacherInput> | Prisma.SessionCreateWithoutTeacherInput[] | Prisma.SessionUncheckedCreateWithoutTeacherInput[]
+  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutTeacherInput | Prisma.SessionCreateOrConnectWithoutTeacherInput[]
+  createMany?: Prisma.SessionCreateManyTeacherInputEnvelope
   connect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
 }
 
-export type SessionUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.SessionCreateWithoutUserInput, Prisma.SessionUncheckedCreateWithoutUserInput> | Prisma.SessionCreateWithoutUserInput[] | Prisma.SessionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutUserInput | Prisma.SessionCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.SessionUpsertWithWhereUniqueWithoutUserInput | Prisma.SessionUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.SessionCreateManyUserInputEnvelope
+export type SessionUpdateManyWithoutTeacherNestedInput = {
+  create?: Prisma.XOR<Prisma.SessionCreateWithoutTeacherInput, Prisma.SessionUncheckedCreateWithoutTeacherInput> | Prisma.SessionCreateWithoutTeacherInput[] | Prisma.SessionUncheckedCreateWithoutTeacherInput[]
+  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutTeacherInput | Prisma.SessionCreateOrConnectWithoutTeacherInput[]
+  upsert?: Prisma.SessionUpsertWithWhereUniqueWithoutTeacherInput | Prisma.SessionUpsertWithWhereUniqueWithoutTeacherInput[]
+  createMany?: Prisma.SessionCreateManyTeacherInputEnvelope
   set?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
   disconnect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
   delete?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
   connect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  update?: Prisma.SessionUpdateWithWhereUniqueWithoutUserInput | Prisma.SessionUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.SessionUpdateManyWithWhereWithoutUserInput | Prisma.SessionUpdateManyWithWhereWithoutUserInput[]
+  update?: Prisma.SessionUpdateWithWhereUniqueWithoutTeacherInput | Prisma.SessionUpdateWithWhereUniqueWithoutTeacherInput[]
+  updateMany?: Prisma.SessionUpdateManyWithWhereWithoutTeacherInput | Prisma.SessionUpdateManyWithWhereWithoutTeacherInput[]
   deleteMany?: Prisma.SessionScalarWhereInput | Prisma.SessionScalarWhereInput[]
 }
 
-export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.SessionCreateWithoutUserInput, Prisma.SessionUncheckedCreateWithoutUserInput> | Prisma.SessionCreateWithoutUserInput[] | Prisma.SessionUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutUserInput | Prisma.SessionCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.SessionUpsertWithWhereUniqueWithoutUserInput | Prisma.SessionUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.SessionCreateManyUserInputEnvelope
+export type SessionUncheckedUpdateManyWithoutTeacherNestedInput = {
+  create?: Prisma.XOR<Prisma.SessionCreateWithoutTeacherInput, Prisma.SessionUncheckedCreateWithoutTeacherInput> | Prisma.SessionCreateWithoutTeacherInput[] | Prisma.SessionUncheckedCreateWithoutTeacherInput[]
+  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutTeacherInput | Prisma.SessionCreateOrConnectWithoutTeacherInput[]
+  upsert?: Prisma.SessionUpsertWithWhereUniqueWithoutTeacherInput | Prisma.SessionUpsertWithWhereUniqueWithoutTeacherInput[]
+  createMany?: Prisma.SessionCreateManyTeacherInputEnvelope
   set?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
   disconnect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
   delete?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
   connect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  update?: Prisma.SessionUpdateWithWhereUniqueWithoutUserInput | Prisma.SessionUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.SessionUpdateManyWithWhereWithoutUserInput | Prisma.SessionUpdateManyWithWhereWithoutUserInput[]
+  update?: Prisma.SessionUpdateWithWhereUniqueWithoutTeacherInput | Prisma.SessionUpdateWithWhereUniqueWithoutTeacherInput[]
+  updateMany?: Prisma.SessionUpdateManyWithWhereWithoutTeacherInput | Prisma.SessionUpdateManyWithWhereWithoutTeacherInput[]
   deleteMany?: Prisma.SessionScalarWhereInput | Prisma.SessionScalarWhereInput[]
 }
 
@@ -800,90 +740,6 @@ export type SessionUncheckedUpdateManyWithoutStatusRelationNestedInput = {
   deleteMany?: Prisma.SessionScalarWhereInput | Prisma.SessionScalarWhereInput[]
 }
 
-export type SessionCreateNestedManyWithoutSessionTypeInput = {
-  create?: Prisma.XOR<Prisma.SessionCreateWithoutSessionTypeInput, Prisma.SessionUncheckedCreateWithoutSessionTypeInput> | Prisma.SessionCreateWithoutSessionTypeInput[] | Prisma.SessionUncheckedCreateWithoutSessionTypeInput[]
-  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutSessionTypeInput | Prisma.SessionCreateOrConnectWithoutSessionTypeInput[]
-  createMany?: Prisma.SessionCreateManySessionTypeInputEnvelope
-  connect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-}
-
-export type SessionUncheckedCreateNestedManyWithoutSessionTypeInput = {
-  create?: Prisma.XOR<Prisma.SessionCreateWithoutSessionTypeInput, Prisma.SessionUncheckedCreateWithoutSessionTypeInput> | Prisma.SessionCreateWithoutSessionTypeInput[] | Prisma.SessionUncheckedCreateWithoutSessionTypeInput[]
-  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutSessionTypeInput | Prisma.SessionCreateOrConnectWithoutSessionTypeInput[]
-  createMany?: Prisma.SessionCreateManySessionTypeInputEnvelope
-  connect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-}
-
-export type SessionUpdateManyWithoutSessionTypeNestedInput = {
-  create?: Prisma.XOR<Prisma.SessionCreateWithoutSessionTypeInput, Prisma.SessionUncheckedCreateWithoutSessionTypeInput> | Prisma.SessionCreateWithoutSessionTypeInput[] | Prisma.SessionUncheckedCreateWithoutSessionTypeInput[]
-  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutSessionTypeInput | Prisma.SessionCreateOrConnectWithoutSessionTypeInput[]
-  upsert?: Prisma.SessionUpsertWithWhereUniqueWithoutSessionTypeInput | Prisma.SessionUpsertWithWhereUniqueWithoutSessionTypeInput[]
-  createMany?: Prisma.SessionCreateManySessionTypeInputEnvelope
-  set?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  disconnect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  delete?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  connect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  update?: Prisma.SessionUpdateWithWhereUniqueWithoutSessionTypeInput | Prisma.SessionUpdateWithWhereUniqueWithoutSessionTypeInput[]
-  updateMany?: Prisma.SessionUpdateManyWithWhereWithoutSessionTypeInput | Prisma.SessionUpdateManyWithWhereWithoutSessionTypeInput[]
-  deleteMany?: Prisma.SessionScalarWhereInput | Prisma.SessionScalarWhereInput[]
-}
-
-export type SessionUncheckedUpdateManyWithoutSessionTypeNestedInput = {
-  create?: Prisma.XOR<Prisma.SessionCreateWithoutSessionTypeInput, Prisma.SessionUncheckedCreateWithoutSessionTypeInput> | Prisma.SessionCreateWithoutSessionTypeInput[] | Prisma.SessionUncheckedCreateWithoutSessionTypeInput[]
-  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutSessionTypeInput | Prisma.SessionCreateOrConnectWithoutSessionTypeInput[]
-  upsert?: Prisma.SessionUpsertWithWhereUniqueWithoutSessionTypeInput | Prisma.SessionUpsertWithWhereUniqueWithoutSessionTypeInput[]
-  createMany?: Prisma.SessionCreateManySessionTypeInputEnvelope
-  set?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  disconnect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  delete?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  connect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  update?: Prisma.SessionUpdateWithWhereUniqueWithoutSessionTypeInput | Prisma.SessionUpdateWithWhereUniqueWithoutSessionTypeInput[]
-  updateMany?: Prisma.SessionUpdateManyWithWhereWithoutSessionTypeInput | Prisma.SessionUpdateManyWithWhereWithoutSessionTypeInput[]
-  deleteMany?: Prisma.SessionScalarWhereInput | Prisma.SessionScalarWhereInput[]
-}
-
-export type SessionCreateNestedManyWithoutTimescaleInput = {
-  create?: Prisma.XOR<Prisma.SessionCreateWithoutTimescaleInput, Prisma.SessionUncheckedCreateWithoutTimescaleInput> | Prisma.SessionCreateWithoutTimescaleInput[] | Prisma.SessionUncheckedCreateWithoutTimescaleInput[]
-  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutTimescaleInput | Prisma.SessionCreateOrConnectWithoutTimescaleInput[]
-  createMany?: Prisma.SessionCreateManyTimescaleInputEnvelope
-  connect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-}
-
-export type SessionUncheckedCreateNestedManyWithoutTimescaleInput = {
-  create?: Prisma.XOR<Prisma.SessionCreateWithoutTimescaleInput, Prisma.SessionUncheckedCreateWithoutTimescaleInput> | Prisma.SessionCreateWithoutTimescaleInput[] | Prisma.SessionUncheckedCreateWithoutTimescaleInput[]
-  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutTimescaleInput | Prisma.SessionCreateOrConnectWithoutTimescaleInput[]
-  createMany?: Prisma.SessionCreateManyTimescaleInputEnvelope
-  connect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-}
-
-export type SessionUpdateManyWithoutTimescaleNestedInput = {
-  create?: Prisma.XOR<Prisma.SessionCreateWithoutTimescaleInput, Prisma.SessionUncheckedCreateWithoutTimescaleInput> | Prisma.SessionCreateWithoutTimescaleInput[] | Prisma.SessionUncheckedCreateWithoutTimescaleInput[]
-  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutTimescaleInput | Prisma.SessionCreateOrConnectWithoutTimescaleInput[]
-  upsert?: Prisma.SessionUpsertWithWhereUniqueWithoutTimescaleInput | Prisma.SessionUpsertWithWhereUniqueWithoutTimescaleInput[]
-  createMany?: Prisma.SessionCreateManyTimescaleInputEnvelope
-  set?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  disconnect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  delete?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  connect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  update?: Prisma.SessionUpdateWithWhereUniqueWithoutTimescaleInput | Prisma.SessionUpdateWithWhereUniqueWithoutTimescaleInput[]
-  updateMany?: Prisma.SessionUpdateManyWithWhereWithoutTimescaleInput | Prisma.SessionUpdateManyWithWhereWithoutTimescaleInput[]
-  deleteMany?: Prisma.SessionScalarWhereInput | Prisma.SessionScalarWhereInput[]
-}
-
-export type SessionUncheckedUpdateManyWithoutTimescaleNestedInput = {
-  create?: Prisma.XOR<Prisma.SessionCreateWithoutTimescaleInput, Prisma.SessionUncheckedCreateWithoutTimescaleInput> | Prisma.SessionCreateWithoutTimescaleInput[] | Prisma.SessionUncheckedCreateWithoutTimescaleInput[]
-  connectOrCreate?: Prisma.SessionCreateOrConnectWithoutTimescaleInput | Prisma.SessionCreateOrConnectWithoutTimescaleInput[]
-  upsert?: Prisma.SessionUpsertWithWhereUniqueWithoutTimescaleInput | Prisma.SessionUpsertWithWhereUniqueWithoutTimescaleInput[]
-  createMany?: Prisma.SessionCreateManyTimescaleInputEnvelope
-  set?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  disconnect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  delete?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  connect?: Prisma.SessionWhereUniqueInput | Prisma.SessionWhereUniqueInput[]
-  update?: Prisma.SessionUpdateWithWhereUniqueWithoutTimescaleInput | Prisma.SessionUpdateWithWhereUniqueWithoutTimescaleInput[]
-  updateMany?: Prisma.SessionUpdateManyWithWhereWithoutTimescaleInput | Prisma.SessionUpdateManyWithWhereWithoutTimescaleInput[]
-  deleteMany?: Prisma.SessionScalarWhereInput | Prisma.SessionScalarWhereInput[]
-}
-
 export type SessionCreateNestedManyWithoutInvoiceInput = {
   create?: Prisma.XOR<Prisma.SessionCreateWithoutInvoiceInput, Prisma.SessionUncheckedCreateWithoutInvoiceInput> | Prisma.SessionCreateWithoutInvoiceInput[] | Prisma.SessionUncheckedCreateWithoutInvoiceInput[]
   connectOrCreate?: Prisma.SessionCreateOrConnectWithoutInvoiceInput | Prisma.SessionCreateOrConnectWithoutInvoiceInput[]
@@ -938,7 +794,7 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type SessionCreateWithoutUserInput = {
+export type SessionCreateWithoutTeacherInput = {
   subject?: string | null
   title: string
   date: Date | string
@@ -949,12 +805,10 @@ export type SessionCreateWithoutUserInput = {
   class?: Prisma.ClassCreateNestedOneWithoutSessionsInput
   contract?: Prisma.ContractCreateNestedOneWithoutSessionsInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutSessionsInput
-  sessionType?: Prisma.SessionTypeCreateNestedOneWithoutSessionsInput
   statusRelation?: Prisma.StatusCreateNestedOneWithoutSessionsInput
-  timescale?: Prisma.TimescaleCreateNestedOneWithoutSessionsInput
 }
 
-export type SessionUncheckedCreateWithoutUserInput = {
+export type SessionUncheckedCreateWithoutTeacherInput = {
   id?: number
   subject?: string | null
   classId?: number | null
@@ -962,8 +816,6 @@ export type SessionUncheckedCreateWithoutUserInput = {
   contractId?: number | null
   statusId?: number
   invoiceId?: number | null
-  sessionTypeId?: number | null
-  timescaleId?: number | null
   date: Date | string
   start: Date | string
   end: Date | string
@@ -971,30 +823,30 @@ export type SessionUncheckedCreateWithoutUserInput = {
   declarationDate?: Date | string | null
 }
 
-export type SessionCreateOrConnectWithoutUserInput = {
+export type SessionCreateOrConnectWithoutTeacherInput = {
   where: Prisma.SessionWhereUniqueInput
-  create: Prisma.XOR<Prisma.SessionCreateWithoutUserInput, Prisma.SessionUncheckedCreateWithoutUserInput>
+  create: Prisma.XOR<Prisma.SessionCreateWithoutTeacherInput, Prisma.SessionUncheckedCreateWithoutTeacherInput>
 }
 
-export type SessionCreateManyUserInputEnvelope = {
-  data: Prisma.SessionCreateManyUserInput | Prisma.SessionCreateManyUserInput[]
+export type SessionCreateManyTeacherInputEnvelope = {
+  data: Prisma.SessionCreateManyTeacherInput | Prisma.SessionCreateManyTeacherInput[]
   skipDuplicates?: boolean
 }
 
-export type SessionUpsertWithWhereUniqueWithoutUserInput = {
+export type SessionUpsertWithWhereUniqueWithoutTeacherInput = {
   where: Prisma.SessionWhereUniqueInput
-  update: Prisma.XOR<Prisma.SessionUpdateWithoutUserInput, Prisma.SessionUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.SessionCreateWithoutUserInput, Prisma.SessionUncheckedCreateWithoutUserInput>
+  update: Prisma.XOR<Prisma.SessionUpdateWithoutTeacherInput, Prisma.SessionUncheckedUpdateWithoutTeacherInput>
+  create: Prisma.XOR<Prisma.SessionCreateWithoutTeacherInput, Prisma.SessionUncheckedCreateWithoutTeacherInput>
 }
 
-export type SessionUpdateWithWhereUniqueWithoutUserInput = {
+export type SessionUpdateWithWhereUniqueWithoutTeacherInput = {
   where: Prisma.SessionWhereUniqueInput
-  data: Prisma.XOR<Prisma.SessionUpdateWithoutUserInput, Prisma.SessionUncheckedUpdateWithoutUserInput>
+  data: Prisma.XOR<Prisma.SessionUpdateWithoutTeacherInput, Prisma.SessionUncheckedUpdateWithoutTeacherInput>
 }
 
-export type SessionUpdateManyWithWhereWithoutUserInput = {
+export type SessionUpdateManyWithWhereWithoutTeacherInput = {
   where: Prisma.SessionScalarWhereInput
-  data: Prisma.XOR<Prisma.SessionUpdateManyMutationInput, Prisma.SessionUncheckedUpdateManyWithoutUserInput>
+  data: Prisma.XOR<Prisma.SessionUpdateManyMutationInput, Prisma.SessionUncheckedUpdateManyWithoutTeacherInput>
 }
 
 export type SessionScalarWhereInput = {
@@ -1007,10 +859,8 @@ export type SessionScalarWhereInput = {
   title?: Prisma.StringFilter<"Session"> | string
   contractId?: Prisma.IntNullableFilter<"Session"> | number | null
   statusId?: Prisma.IntFilter<"Session"> | number
-  userId?: Prisma.IntNullableFilter<"Session"> | number | null
+  teacherId?: Prisma.IntNullableFilter<"Session"> | number | null
   invoiceId?: Prisma.IntNullableFilter<"Session"> | number | null
-  sessionTypeId?: Prisma.IntNullableFilter<"Session"> | number | null
-  timescaleId?: Prisma.IntNullableFilter<"Session"> | number | null
   date?: Prisma.DateTimeFilter<"Session"> | Date | string
   start?: Prisma.DateTimeFilter<"Session"> | Date | string
   end?: Prisma.DateTimeFilter<"Session"> | Date | string
@@ -1028,10 +878,8 @@ export type SessionCreateWithoutClassInput = {
   declarationDate?: Date | string | null
   contract?: Prisma.ContractCreateNestedOneWithoutSessionsInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutSessionsInput
-  sessionType?: Prisma.SessionTypeCreateNestedOneWithoutSessionsInput
   statusRelation?: Prisma.StatusCreateNestedOneWithoutSessionsInput
-  timescale?: Prisma.TimescaleCreateNestedOneWithoutSessionsInput
-  user?: Prisma.UserCreateNestedOneWithoutSessionsInput
+  teacher?: Prisma.UserCreateNestedOneWithoutSessionsInput
 }
 
 export type SessionUncheckedCreateWithoutClassInput = {
@@ -1040,10 +888,8 @@ export type SessionUncheckedCreateWithoutClassInput = {
   title: string
   contractId?: number | null
   statusId?: number
-  userId?: number | null
+  teacherId?: number | null
   invoiceId?: number | null
-  sessionTypeId?: number | null
-  timescaleId?: number | null
   date: Date | string
   start: Date | string
   end: Date | string
@@ -1087,10 +933,8 @@ export type SessionCreateWithoutContractInput = {
   declarationDate?: Date | string | null
   class?: Prisma.ClassCreateNestedOneWithoutSessionsInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutSessionsInput
-  sessionType?: Prisma.SessionTypeCreateNestedOneWithoutSessionsInput
   statusRelation?: Prisma.StatusCreateNestedOneWithoutSessionsInput
-  timescale?: Prisma.TimescaleCreateNestedOneWithoutSessionsInput
-  user?: Prisma.UserCreateNestedOneWithoutSessionsInput
+  teacher?: Prisma.UserCreateNestedOneWithoutSessionsInput
 }
 
 export type SessionUncheckedCreateWithoutContractInput = {
@@ -1099,10 +943,8 @@ export type SessionUncheckedCreateWithoutContractInput = {
   classId?: number | null
   title: string
   statusId?: number
-  userId?: number | null
+  teacherId?: number | null
   invoiceId?: number | null
-  sessionTypeId?: number | null
-  timescaleId?: number | null
   date: Date | string
   start: Date | string
   end: Date | string
@@ -1147,9 +989,7 @@ export type SessionCreateWithoutStatusRelationInput = {
   class?: Prisma.ClassCreateNestedOneWithoutSessionsInput
   contract?: Prisma.ContractCreateNestedOneWithoutSessionsInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutSessionsInput
-  sessionType?: Prisma.SessionTypeCreateNestedOneWithoutSessionsInput
-  timescale?: Prisma.TimescaleCreateNestedOneWithoutSessionsInput
-  user?: Prisma.UserCreateNestedOneWithoutSessionsInput
+  teacher?: Prisma.UserCreateNestedOneWithoutSessionsInput
 }
 
 export type SessionUncheckedCreateWithoutStatusRelationInput = {
@@ -1158,10 +998,8 @@ export type SessionUncheckedCreateWithoutStatusRelationInput = {
   classId?: number | null
   title: string
   contractId?: number | null
-  userId?: number | null
+  teacherId?: number | null
   invoiceId?: number | null
-  sessionTypeId?: number | null
-  timescaleId?: number | null
   date: Date | string
   start: Date | string
   end: Date | string
@@ -1195,124 +1033,6 @@ export type SessionUpdateManyWithWhereWithoutStatusRelationInput = {
   data: Prisma.XOR<Prisma.SessionUpdateManyMutationInput, Prisma.SessionUncheckedUpdateManyWithoutStatusRelationInput>
 }
 
-export type SessionCreateWithoutSessionTypeInput = {
-  subject?: string | null
-  title: string
-  date: Date | string
-  start: Date | string
-  end: Date | string
-  declarationReference?: string | null
-  declarationDate?: Date | string | null
-  class?: Prisma.ClassCreateNestedOneWithoutSessionsInput
-  contract?: Prisma.ContractCreateNestedOneWithoutSessionsInput
-  invoice?: Prisma.InvoiceCreateNestedOneWithoutSessionsInput
-  statusRelation?: Prisma.StatusCreateNestedOneWithoutSessionsInput
-  timescale?: Prisma.TimescaleCreateNestedOneWithoutSessionsInput
-  user?: Prisma.UserCreateNestedOneWithoutSessionsInput
-}
-
-export type SessionUncheckedCreateWithoutSessionTypeInput = {
-  id?: number
-  subject?: string | null
-  classId?: number | null
-  title: string
-  contractId?: number | null
-  statusId?: number
-  userId?: number | null
-  invoiceId?: number | null
-  timescaleId?: number | null
-  date: Date | string
-  start: Date | string
-  end: Date | string
-  declarationReference?: string | null
-  declarationDate?: Date | string | null
-}
-
-export type SessionCreateOrConnectWithoutSessionTypeInput = {
-  where: Prisma.SessionWhereUniqueInput
-  create: Prisma.XOR<Prisma.SessionCreateWithoutSessionTypeInput, Prisma.SessionUncheckedCreateWithoutSessionTypeInput>
-}
-
-export type SessionCreateManySessionTypeInputEnvelope = {
-  data: Prisma.SessionCreateManySessionTypeInput | Prisma.SessionCreateManySessionTypeInput[]
-  skipDuplicates?: boolean
-}
-
-export type SessionUpsertWithWhereUniqueWithoutSessionTypeInput = {
-  where: Prisma.SessionWhereUniqueInput
-  update: Prisma.XOR<Prisma.SessionUpdateWithoutSessionTypeInput, Prisma.SessionUncheckedUpdateWithoutSessionTypeInput>
-  create: Prisma.XOR<Prisma.SessionCreateWithoutSessionTypeInput, Prisma.SessionUncheckedCreateWithoutSessionTypeInput>
-}
-
-export type SessionUpdateWithWhereUniqueWithoutSessionTypeInput = {
-  where: Prisma.SessionWhereUniqueInput
-  data: Prisma.XOR<Prisma.SessionUpdateWithoutSessionTypeInput, Prisma.SessionUncheckedUpdateWithoutSessionTypeInput>
-}
-
-export type SessionUpdateManyWithWhereWithoutSessionTypeInput = {
-  where: Prisma.SessionScalarWhereInput
-  data: Prisma.XOR<Prisma.SessionUpdateManyMutationInput, Prisma.SessionUncheckedUpdateManyWithoutSessionTypeInput>
-}
-
-export type SessionCreateWithoutTimescaleInput = {
-  subject?: string | null
-  title: string
-  date: Date | string
-  start: Date | string
-  end: Date | string
-  declarationReference?: string | null
-  declarationDate?: Date | string | null
-  class?: Prisma.ClassCreateNestedOneWithoutSessionsInput
-  contract?: Prisma.ContractCreateNestedOneWithoutSessionsInput
-  invoice?: Prisma.InvoiceCreateNestedOneWithoutSessionsInput
-  sessionType?: Prisma.SessionTypeCreateNestedOneWithoutSessionsInput
-  statusRelation?: Prisma.StatusCreateNestedOneWithoutSessionsInput
-  user?: Prisma.UserCreateNestedOneWithoutSessionsInput
-}
-
-export type SessionUncheckedCreateWithoutTimescaleInput = {
-  id?: number
-  subject?: string | null
-  classId?: number | null
-  title: string
-  contractId?: number | null
-  statusId?: number
-  userId?: number | null
-  invoiceId?: number | null
-  sessionTypeId?: number | null
-  date: Date | string
-  start: Date | string
-  end: Date | string
-  declarationReference?: string | null
-  declarationDate?: Date | string | null
-}
-
-export type SessionCreateOrConnectWithoutTimescaleInput = {
-  where: Prisma.SessionWhereUniqueInput
-  create: Prisma.XOR<Prisma.SessionCreateWithoutTimescaleInput, Prisma.SessionUncheckedCreateWithoutTimescaleInput>
-}
-
-export type SessionCreateManyTimescaleInputEnvelope = {
-  data: Prisma.SessionCreateManyTimescaleInput | Prisma.SessionCreateManyTimescaleInput[]
-  skipDuplicates?: boolean
-}
-
-export type SessionUpsertWithWhereUniqueWithoutTimescaleInput = {
-  where: Prisma.SessionWhereUniqueInput
-  update: Prisma.XOR<Prisma.SessionUpdateWithoutTimescaleInput, Prisma.SessionUncheckedUpdateWithoutTimescaleInput>
-  create: Prisma.XOR<Prisma.SessionCreateWithoutTimescaleInput, Prisma.SessionUncheckedCreateWithoutTimescaleInput>
-}
-
-export type SessionUpdateWithWhereUniqueWithoutTimescaleInput = {
-  where: Prisma.SessionWhereUniqueInput
-  data: Prisma.XOR<Prisma.SessionUpdateWithoutTimescaleInput, Prisma.SessionUncheckedUpdateWithoutTimescaleInput>
-}
-
-export type SessionUpdateManyWithWhereWithoutTimescaleInput = {
-  where: Prisma.SessionScalarWhereInput
-  data: Prisma.XOR<Prisma.SessionUpdateManyMutationInput, Prisma.SessionUncheckedUpdateManyWithoutTimescaleInput>
-}
-
 export type SessionCreateWithoutInvoiceInput = {
   subject?: string | null
   title: string
@@ -1323,10 +1043,8 @@ export type SessionCreateWithoutInvoiceInput = {
   declarationDate?: Date | string | null
   class?: Prisma.ClassCreateNestedOneWithoutSessionsInput
   contract?: Prisma.ContractCreateNestedOneWithoutSessionsInput
-  sessionType?: Prisma.SessionTypeCreateNestedOneWithoutSessionsInput
   statusRelation?: Prisma.StatusCreateNestedOneWithoutSessionsInput
-  timescale?: Prisma.TimescaleCreateNestedOneWithoutSessionsInput
-  user?: Prisma.UserCreateNestedOneWithoutSessionsInput
+  teacher?: Prisma.UserCreateNestedOneWithoutSessionsInput
 }
 
 export type SessionUncheckedCreateWithoutInvoiceInput = {
@@ -1336,9 +1054,7 @@ export type SessionUncheckedCreateWithoutInvoiceInput = {
   title: string
   contractId?: number | null
   statusId?: number
-  userId?: number | null
-  sessionTypeId?: number | null
-  timescaleId?: number | null
+  teacherId?: number | null
   date: Date | string
   start: Date | string
   end: Date | string
@@ -1372,7 +1088,7 @@ export type SessionUpdateManyWithWhereWithoutInvoiceInput = {
   data: Prisma.XOR<Prisma.SessionUpdateManyMutationInput, Prisma.SessionUncheckedUpdateManyWithoutInvoiceInput>
 }
 
-export type SessionCreateManyUserInput = {
+export type SessionCreateManyTeacherInput = {
   id?: number
   subject?: string | null
   classId?: number | null
@@ -1380,8 +1096,6 @@ export type SessionCreateManyUserInput = {
   contractId?: number | null
   statusId?: number
   invoiceId?: number | null
-  sessionTypeId?: number | null
-  timescaleId?: number | null
   date: Date | string
   start: Date | string
   end: Date | string
@@ -1389,7 +1103,7 @@ export type SessionCreateManyUserInput = {
   declarationDate?: Date | string | null
 }
 
-export type SessionUpdateWithoutUserInput = {
+export type SessionUpdateWithoutTeacherInput = {
   subject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1400,12 +1114,10 @@ export type SessionUpdateWithoutUserInput = {
   class?: Prisma.ClassUpdateOneWithoutSessionsNestedInput
   contract?: Prisma.ContractUpdateOneWithoutSessionsNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutSessionsNestedInput
-  sessionType?: Prisma.SessionTypeUpdateOneWithoutSessionsNestedInput
   statusRelation?: Prisma.StatusUpdateOneRequiredWithoutSessionsNestedInput
-  timescale?: Prisma.TimescaleUpdateOneWithoutSessionsNestedInput
 }
 
-export type SessionUncheckedUpdateWithoutUserInput = {
+export type SessionUncheckedUpdateWithoutTeacherInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   subject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   classId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1413,8 +1125,6 @@ export type SessionUncheckedUpdateWithoutUserInput = {
   contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   statusId?: Prisma.IntFieldUpdateOperationsInput | number
   invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1422,7 +1132,7 @@ export type SessionUncheckedUpdateWithoutUserInput = {
   declarationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type SessionUncheckedUpdateManyWithoutUserInput = {
+export type SessionUncheckedUpdateManyWithoutTeacherInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   subject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   classId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1430,8 +1140,6 @@ export type SessionUncheckedUpdateManyWithoutUserInput = {
   contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   statusId?: Prisma.IntFieldUpdateOperationsInput | number
   invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1445,10 +1153,8 @@ export type SessionCreateManyClassInput = {
   title: string
   contractId?: number | null
   statusId?: number
-  userId?: number | null
+  teacherId?: number | null
   invoiceId?: number | null
-  sessionTypeId?: number | null
-  timescaleId?: number | null
   date: Date | string
   start: Date | string
   end: Date | string
@@ -1466,10 +1172,8 @@ export type SessionUpdateWithoutClassInput = {
   declarationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   contract?: Prisma.ContractUpdateOneWithoutSessionsNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutSessionsNestedInput
-  sessionType?: Prisma.SessionTypeUpdateOneWithoutSessionsNestedInput
   statusRelation?: Prisma.StatusUpdateOneRequiredWithoutSessionsNestedInput
-  timescale?: Prisma.TimescaleUpdateOneWithoutSessionsNestedInput
-  user?: Prisma.UserUpdateOneWithoutSessionsNestedInput
+  teacher?: Prisma.UserUpdateOneWithoutSessionsNestedInput
 }
 
 export type SessionUncheckedUpdateWithoutClassInput = {
@@ -1478,10 +1182,8 @@ export type SessionUncheckedUpdateWithoutClassInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   statusId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  teacherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1495,10 +1197,8 @@ export type SessionUncheckedUpdateManyWithoutClassInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   statusId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  teacherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1512,10 +1212,8 @@ export type SessionCreateManyContractInput = {
   classId?: number | null
   title: string
   statusId?: number
-  userId?: number | null
+  teacherId?: number | null
   invoiceId?: number | null
-  sessionTypeId?: number | null
-  timescaleId?: number | null
   date: Date | string
   start: Date | string
   end: Date | string
@@ -1533,10 +1231,8 @@ export type SessionUpdateWithoutContractInput = {
   declarationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   class?: Prisma.ClassUpdateOneWithoutSessionsNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutSessionsNestedInput
-  sessionType?: Prisma.SessionTypeUpdateOneWithoutSessionsNestedInput
   statusRelation?: Prisma.StatusUpdateOneRequiredWithoutSessionsNestedInput
-  timescale?: Prisma.TimescaleUpdateOneWithoutSessionsNestedInput
-  user?: Prisma.UserUpdateOneWithoutSessionsNestedInput
+  teacher?: Prisma.UserUpdateOneWithoutSessionsNestedInput
 }
 
 export type SessionUncheckedUpdateWithoutContractInput = {
@@ -1545,10 +1241,8 @@ export type SessionUncheckedUpdateWithoutContractInput = {
   classId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   statusId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  teacherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1562,10 +1256,8 @@ export type SessionUncheckedUpdateManyWithoutContractInput = {
   classId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   statusId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  teacherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1579,10 +1271,8 @@ export type SessionCreateManyStatusRelationInput = {
   classId?: number | null
   title: string
   contractId?: number | null
-  userId?: number | null
+  teacherId?: number | null
   invoiceId?: number | null
-  sessionTypeId?: number | null
-  timescaleId?: number | null
   date: Date | string
   start: Date | string
   end: Date | string
@@ -1601,9 +1291,7 @@ export type SessionUpdateWithoutStatusRelationInput = {
   class?: Prisma.ClassUpdateOneWithoutSessionsNestedInput
   contract?: Prisma.ContractUpdateOneWithoutSessionsNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutSessionsNestedInput
-  sessionType?: Prisma.SessionTypeUpdateOneWithoutSessionsNestedInput
-  timescale?: Prisma.TimescaleUpdateOneWithoutSessionsNestedInput
-  user?: Prisma.UserUpdateOneWithoutSessionsNestedInput
+  teacher?: Prisma.UserUpdateOneWithoutSessionsNestedInput
 }
 
 export type SessionUncheckedUpdateWithoutStatusRelationInput = {
@@ -1612,10 +1300,8 @@ export type SessionUncheckedUpdateWithoutStatusRelationInput = {
   classId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  teacherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1629,144 +1315,8 @@ export type SessionUncheckedUpdateManyWithoutStatusRelationInput = {
   classId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  teacherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  declarationReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  declarationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
-
-export type SessionCreateManySessionTypeInput = {
-  id?: number
-  subject?: string | null
-  classId?: number | null
-  title: string
-  contractId?: number | null
-  statusId?: number
-  userId?: number | null
-  invoiceId?: number | null
-  timescaleId?: number | null
-  date: Date | string
-  start: Date | string
-  end: Date | string
-  declarationReference?: string | null
-  declarationDate?: Date | string | null
-}
-
-export type SessionUpdateWithoutSessionTypeInput = {
-  subject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  declarationReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  declarationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  class?: Prisma.ClassUpdateOneWithoutSessionsNestedInput
-  contract?: Prisma.ContractUpdateOneWithoutSessionsNestedInput
-  invoice?: Prisma.InvoiceUpdateOneWithoutSessionsNestedInput
-  statusRelation?: Prisma.StatusUpdateOneRequiredWithoutSessionsNestedInput
-  timescale?: Prisma.TimescaleUpdateOneWithoutSessionsNestedInput
-  user?: Prisma.UserUpdateOneWithoutSessionsNestedInput
-}
-
-export type SessionUncheckedUpdateWithoutSessionTypeInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  classId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  statusId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  declarationReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  declarationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
-
-export type SessionUncheckedUpdateManyWithoutSessionTypeInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  classId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  statusId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  declarationReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  declarationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
-
-export type SessionCreateManyTimescaleInput = {
-  id?: number
-  subject?: string | null
-  classId?: number | null
-  title: string
-  contractId?: number | null
-  statusId?: number
-  userId?: number | null
-  invoiceId?: number | null
-  sessionTypeId?: number | null
-  date: Date | string
-  start: Date | string
-  end: Date | string
-  declarationReference?: string | null
-  declarationDate?: Date | string | null
-}
-
-export type SessionUpdateWithoutTimescaleInput = {
-  subject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  declarationReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  declarationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  class?: Prisma.ClassUpdateOneWithoutSessionsNestedInput
-  contract?: Prisma.ContractUpdateOneWithoutSessionsNestedInput
-  invoice?: Prisma.InvoiceUpdateOneWithoutSessionsNestedInput
-  sessionType?: Prisma.SessionTypeUpdateOneWithoutSessionsNestedInput
-  statusRelation?: Prisma.StatusUpdateOneRequiredWithoutSessionsNestedInput
-  user?: Prisma.UserUpdateOneWithoutSessionsNestedInput
-}
-
-export type SessionUncheckedUpdateWithoutTimescaleInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  classId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  statusId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  declarationReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  declarationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-}
-
-export type SessionUncheckedUpdateManyWithoutTimescaleInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  classId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  statusId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  invoiceId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1781,9 +1331,7 @@ export type SessionCreateManyInvoiceInput = {
   title: string
   contractId?: number | null
   statusId?: number
-  userId?: number | null
-  sessionTypeId?: number | null
-  timescaleId?: number | null
+  teacherId?: number | null
   date: Date | string
   start: Date | string
   end: Date | string
@@ -1801,10 +1349,8 @@ export type SessionUpdateWithoutInvoiceInput = {
   declarationDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   class?: Prisma.ClassUpdateOneWithoutSessionsNestedInput
   contract?: Prisma.ContractUpdateOneWithoutSessionsNestedInput
-  sessionType?: Prisma.SessionTypeUpdateOneWithoutSessionsNestedInput
   statusRelation?: Prisma.StatusUpdateOneRequiredWithoutSessionsNestedInput
-  timescale?: Prisma.TimescaleUpdateOneWithoutSessionsNestedInput
-  user?: Prisma.UserUpdateOneWithoutSessionsNestedInput
+  teacher?: Prisma.UserUpdateOneWithoutSessionsNestedInput
 }
 
 export type SessionUncheckedUpdateWithoutInvoiceInput = {
@@ -1814,9 +1360,7 @@ export type SessionUncheckedUpdateWithoutInvoiceInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   statusId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  teacherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1831,9 +1375,7 @@ export type SessionUncheckedUpdateManyWithoutInvoiceInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   contractId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   statusId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  sessionTypeId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  timescaleId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  teacherId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   start?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1850,10 +1392,8 @@ export type SessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   title?: boolean
   contractId?: boolean
   statusId?: boolean
-  userId?: boolean
+  teacherId?: boolean
   invoiceId?: boolean
-  sessionTypeId?: boolean
-  timescaleId?: boolean
   date?: boolean
   start?: boolean
   end?: boolean
@@ -1862,10 +1402,8 @@ export type SessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   class?: boolean | Prisma.Session$classArgs<ExtArgs>
   contract?: boolean | Prisma.Session$contractArgs<ExtArgs>
   invoice?: boolean | Prisma.Session$invoiceArgs<ExtArgs>
-  sessionType?: boolean | Prisma.Session$sessionTypeArgs<ExtArgs>
   statusRelation?: boolean | Prisma.StatusDefaultArgs<ExtArgs>
-  timescale?: boolean | Prisma.Session$timescaleArgs<ExtArgs>
-  user?: boolean | Prisma.Session$userArgs<ExtArgs>
+  teacher?: boolean | Prisma.Session$teacherArgs<ExtArgs>
 }, ExtArgs["result"]["session"]>
 
 export type SessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1875,10 +1413,8 @@ export type SessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   title?: boolean
   contractId?: boolean
   statusId?: boolean
-  userId?: boolean
+  teacherId?: boolean
   invoiceId?: boolean
-  sessionTypeId?: boolean
-  timescaleId?: boolean
   date?: boolean
   start?: boolean
   end?: boolean
@@ -1887,10 +1423,8 @@ export type SessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   class?: boolean | Prisma.Session$classArgs<ExtArgs>
   contract?: boolean | Prisma.Session$contractArgs<ExtArgs>
   invoice?: boolean | Prisma.Session$invoiceArgs<ExtArgs>
-  sessionType?: boolean | Prisma.Session$sessionTypeArgs<ExtArgs>
   statusRelation?: boolean | Prisma.StatusDefaultArgs<ExtArgs>
-  timescale?: boolean | Prisma.Session$timescaleArgs<ExtArgs>
-  user?: boolean | Prisma.Session$userArgs<ExtArgs>
+  teacher?: boolean | Prisma.Session$teacherArgs<ExtArgs>
 }, ExtArgs["result"]["session"]>
 
 export type SessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1900,10 +1434,8 @@ export type SessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   title?: boolean
   contractId?: boolean
   statusId?: boolean
-  userId?: boolean
+  teacherId?: boolean
   invoiceId?: boolean
-  sessionTypeId?: boolean
-  timescaleId?: boolean
   date?: boolean
   start?: boolean
   end?: boolean
@@ -1912,10 +1444,8 @@ export type SessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   class?: boolean | Prisma.Session$classArgs<ExtArgs>
   contract?: boolean | Prisma.Session$contractArgs<ExtArgs>
   invoice?: boolean | Prisma.Session$invoiceArgs<ExtArgs>
-  sessionType?: boolean | Prisma.Session$sessionTypeArgs<ExtArgs>
   statusRelation?: boolean | Prisma.StatusDefaultArgs<ExtArgs>
-  timescale?: boolean | Prisma.Session$timescaleArgs<ExtArgs>
-  user?: boolean | Prisma.Session$userArgs<ExtArgs>
+  teacher?: boolean | Prisma.Session$teacherArgs<ExtArgs>
 }, ExtArgs["result"]["session"]>
 
 export type SessionSelectScalar = {
@@ -1925,10 +1455,8 @@ export type SessionSelectScalar = {
   title?: boolean
   contractId?: boolean
   statusId?: boolean
-  userId?: boolean
+  teacherId?: boolean
   invoiceId?: boolean
-  sessionTypeId?: boolean
-  timescaleId?: boolean
   date?: boolean
   start?: boolean
   end?: boolean
@@ -1936,33 +1464,27 @@ export type SessionSelectScalar = {
   declarationDate?: boolean
 }
 
-export type SessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "subject" | "classId" | "title" | "contractId" | "statusId" | "userId" | "invoiceId" | "sessionTypeId" | "timescaleId" | "date" | "start" | "end" | "declarationReference" | "declarationDate", ExtArgs["result"]["session"]>
+export type SessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "subject" | "classId" | "title" | "contractId" | "statusId" | "teacherId" | "invoiceId" | "date" | "start" | "end" | "declarationReference" | "declarationDate", ExtArgs["result"]["session"]>
 export type SessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   class?: boolean | Prisma.Session$classArgs<ExtArgs>
   contract?: boolean | Prisma.Session$contractArgs<ExtArgs>
   invoice?: boolean | Prisma.Session$invoiceArgs<ExtArgs>
-  sessionType?: boolean | Prisma.Session$sessionTypeArgs<ExtArgs>
   statusRelation?: boolean | Prisma.StatusDefaultArgs<ExtArgs>
-  timescale?: boolean | Prisma.Session$timescaleArgs<ExtArgs>
-  user?: boolean | Prisma.Session$userArgs<ExtArgs>
+  teacher?: boolean | Prisma.Session$teacherArgs<ExtArgs>
 }
 export type SessionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   class?: boolean | Prisma.Session$classArgs<ExtArgs>
   contract?: boolean | Prisma.Session$contractArgs<ExtArgs>
   invoice?: boolean | Prisma.Session$invoiceArgs<ExtArgs>
-  sessionType?: boolean | Prisma.Session$sessionTypeArgs<ExtArgs>
   statusRelation?: boolean | Prisma.StatusDefaultArgs<ExtArgs>
-  timescale?: boolean | Prisma.Session$timescaleArgs<ExtArgs>
-  user?: boolean | Prisma.Session$userArgs<ExtArgs>
+  teacher?: boolean | Prisma.Session$teacherArgs<ExtArgs>
 }
 export type SessionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   class?: boolean | Prisma.Session$classArgs<ExtArgs>
   contract?: boolean | Prisma.Session$contractArgs<ExtArgs>
   invoice?: boolean | Prisma.Session$invoiceArgs<ExtArgs>
-  sessionType?: boolean | Prisma.Session$sessionTypeArgs<ExtArgs>
   statusRelation?: boolean | Prisma.StatusDefaultArgs<ExtArgs>
-  timescale?: boolean | Prisma.Session$timescaleArgs<ExtArgs>
-  user?: boolean | Prisma.Session$userArgs<ExtArgs>
+  teacher?: boolean | Prisma.Session$teacherArgs<ExtArgs>
 }
 
 export type $SessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1971,10 +1493,8 @@ export type $SessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     class: Prisma.$ClassPayload<ExtArgs> | null
     contract: Prisma.$ContractPayload<ExtArgs> | null
     invoice: Prisma.$InvoicePayload<ExtArgs> | null
-    sessionType: Prisma.$SessionTypePayload<ExtArgs> | null
     statusRelation: Prisma.$StatusPayload<ExtArgs>
-    timescale: Prisma.$TimescalePayload<ExtArgs> | null
-    user: Prisma.$UserPayload<ExtArgs> | null
+    teacher: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1983,10 +1503,8 @@ export type $SessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     title: string
     contractId: number | null
     statusId: number
-    userId: number | null
+    teacherId: number | null
     invoiceId: number | null
-    sessionTypeId: number | null
-    timescaleId: number | null
     date: Date
     start: Date
     end: Date
@@ -2389,10 +1907,8 @@ export interface Prisma__SessionClient<T, Null = never, ExtArgs extends runtime.
   class<T extends Prisma.Session$classArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Session$classArgs<ExtArgs>>): Prisma.Prisma__ClassClient<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   contract<T extends Prisma.Session$contractArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Session$contractArgs<ExtArgs>>): Prisma.Prisma__ContractClient<runtime.Types.Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   invoice<T extends Prisma.Session$invoiceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Session$invoiceArgs<ExtArgs>>): Prisma.Prisma__InvoiceClient<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  sessionType<T extends Prisma.Session$sessionTypeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Session$sessionTypeArgs<ExtArgs>>): Prisma.Prisma__SessionTypeClient<runtime.Types.Result.GetResult<Prisma.$SessionTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   statusRelation<T extends Prisma.StatusDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StatusDefaultArgs<ExtArgs>>): Prisma.Prisma__StatusClient<runtime.Types.Result.GetResult<Prisma.$StatusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  timescale<T extends Prisma.Session$timescaleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Session$timescaleArgs<ExtArgs>>): Prisma.Prisma__TimescaleClient<runtime.Types.Result.GetResult<Prisma.$TimescalePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  user<T extends Prisma.Session$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Session$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  teacher<T extends Prisma.Session$teacherArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Session$teacherArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2428,10 +1944,8 @@ export interface SessionFieldRefs {
   readonly title: Prisma.FieldRef<"Session", 'String'>
   readonly contractId: Prisma.FieldRef<"Session", 'Int'>
   readonly statusId: Prisma.FieldRef<"Session", 'Int'>
-  readonly userId: Prisma.FieldRef<"Session", 'Int'>
+  readonly teacherId: Prisma.FieldRef<"Session", 'Int'>
   readonly invoiceId: Prisma.FieldRef<"Session", 'Int'>
-  readonly sessionTypeId: Prisma.FieldRef<"Session", 'Int'>
-  readonly timescaleId: Prisma.FieldRef<"Session", 'Int'>
   readonly date: Prisma.FieldRef<"Session", 'DateTime'>
   readonly start: Prisma.FieldRef<"Session", 'DateTime'>
   readonly end: Prisma.FieldRef<"Session", 'DateTime'>
@@ -2895,47 +2409,9 @@ export type Session$invoiceArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Session.sessionType
+ * Session.teacher
  */
-export type Session$sessionTypeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SessionType
-   */
-  select?: Prisma.SessionTypeSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SessionType
-   */
-  omit?: Prisma.SessionTypeOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SessionTypeInclude<ExtArgs> | null
-  where?: Prisma.SessionTypeWhereInput
-}
-
-/**
- * Session.timescale
- */
-export type Session$timescaleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Timescale
-   */
-  select?: Prisma.TimescaleSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Timescale
-   */
-  omit?: Prisma.TimescaleOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TimescaleInclude<ExtArgs> | null
-  where?: Prisma.TimescaleWhereInput
-}
-
-/**
- * Session.user
- */
-export type Session$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Session$teacherArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the User
    */

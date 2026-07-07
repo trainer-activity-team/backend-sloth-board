@@ -13,7 +13,7 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
       useFactory: (config: ConfigService) => ({
         secret: config.getOrThrow<string>('JWT_SECRET'),
         signOptions: {
-          expiresIn: config.get('JWT_EXPIRES_IN', '7d') as JwtSignOptions['expiresIn'],
+          expiresIn: config.get('JWT_EXPIRES_IN', '7d'),
         },
       }),
     }),

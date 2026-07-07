@@ -18,6 +18,7 @@ import {
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
+import { CreatedResourceDto } from '../common/dto/created-resource.dto';
 import {
   FormattedSession,
   FormattedSessionWithRelations,
@@ -35,8 +36,10 @@ export class SessionsController {
   @Post()
   @HttpCode(201)
   @ApiOperation({ summary: 'Create a session' })
-  @ApiCreatedResponse({ description: 'Created session' })
-  create(@Body() createSessionDto: CreateSessionDto): Promise<FormattedSession> {
+  @ApiCreatedResponse({ type: CreatedResourceDto })
+  create(
+    @Body() createSessionDto: CreateSessionDto,
+  ): Promise<CreatedResourceDto> {
     return this.sessionsService.create(createSessionDto);
   }
 
@@ -51,7 +54,9 @@ export class SessionsController {
   @ApiOperation({ summary: 'Get a session by ID' })
   @ApiParam({ name: 'id', type: Number })
   @ApiOkResponse({ description: 'Session with relations' })
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<FormattedSessionWithRelations> {
+  findOne(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<FormattedSessionWithRelations> {
     return this.sessionsService.findOne(id);
   }
 

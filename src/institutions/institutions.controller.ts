@@ -18,6 +18,7 @@ import {
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
+import { CreatedResourceDto } from '../common/dto/created-resource.dto';
 import { Institution } from '../generated/prisma/client';
 import { InstitutionsService } from './institutions.service';
 import { CreateInstitutionDto } from './dto/create-institution.dto';
@@ -32,8 +33,10 @@ export class InstitutionsController {
   @Post()
   @HttpCode(201)
   @ApiOperation({ summary: 'Create an institution' })
-  @ApiCreatedResponse({ description: 'Created institution' })
-  create(@Body() createInstitutionDto: CreateInstitutionDto): Promise<Institution> {
+  @ApiCreatedResponse({ type: CreatedResourceDto })
+  create(
+    @Body() createInstitutionDto: CreateInstitutionDto,
+  ): Promise<CreatedResourceDto> {
     return this.institutionsService.create(createInstitutionDto);
   }
 

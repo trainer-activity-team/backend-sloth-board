@@ -15,7 +15,4 @@ export class CreateClassDto {
   @IsString()
   @IsNotEmpty()
   name: string;
-
-  @IsInt()
-  teacherId: number;
 }

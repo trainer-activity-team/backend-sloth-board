@@ -85,16 +85,16 @@ describe('AgendaService', () => {
   });
 
   it('should reject dates outside YYYY-MM-DD format', async () => {
-    await expect(service.findSessionsByDate('01-07-2026')).rejects.toBeInstanceOf(
-      BadRequestException,
-    );
+    await expect(
+      service.findSessionsByDate('01-07-2026'),
+    ).rejects.toBeInstanceOf(BadRequestException);
     expect(prisma.session.findMany).not.toHaveBeenCalled();
   });
 
   it('should reject invalid calendar dates', async () => {
-    await expect(service.findSessionsByDate('2026-02-31')).rejects.toBeInstanceOf(
-      BadRequestException,
-    );
+    await expect(
+      service.findSessionsByDate('2026-02-31'),
+    ).rejects.toBeInstanceOf(BadRequestException);
     expect(prisma.session.findMany).not.toHaveBeenCalled();
   });
 

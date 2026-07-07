@@ -68,7 +68,10 @@ export class UsersService {
     }
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto): Promise<UserWithRole> {
+  async update(
+    id: number,
+    updateUserDto: UpdateUserDto,
+  ): Promise<UserWithRole> {
     await this.findOne(id);
 
     const data: Prisma.UserUpdateInput = {};
@@ -122,7 +125,7 @@ export class UsersService {
       }
       if (isForeignKeyConstraintError(error)) {
         throw new ConflictException(
-          'Cannot delete user with related classes or sessions',
+          'Cannot delete user with related contracts or sessions',
         );
       }
       throw new InternalServerErrorException('Failed to delete user', {

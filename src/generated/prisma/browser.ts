@@ -53,16 +53,6 @@ export type Contract = Prisma.ContractModel
  */
 export type Status = Prisma.StatusModel
 /**
- * Model SessionType
- * 
- */
-export type SessionType = Prisma.SessionTypeModel
-/**
- * Model Timescale
- * 
- */
-export type Timescale = Prisma.TimescaleModel
-/**
  * Model Invoice
  * 
  */

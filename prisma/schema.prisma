@@ -24,8 +24,8 @@ model User {
   firstName String    @map("first_name")
   lastName  String    @map("last_name")
   sessions  Session[]
+  contracts Contract[]
   role      Role      @relation(fields: [roleId], references: [id])
-  classes   Class[]
 
   @@map("Users")
 }
@@ -48,8 +48,6 @@ model Class {
   classLevel    String      @map("class_level")
   studentCount  Int         @map("student_count")
   name          String
-  teacherId     Int         @map("fk_teacher_id")
-  teacher       User        @relation(fields: [teacherId], references: [id])
   institution   Institution @relation(fields: [institutionId], references: [id])
   sessions      Session[]
 
@@ -73,8 +71,10 @@ model Contract {
   endDate             DateTime    @map("end_date") @db.Date
   hourlyVolumePlanned Decimal     @map("hourly_volume_planned") @db.Decimal(10, 2)
   unitPrice           Decimal     @map("unit_price") @db.Decimal(10, 2)
+  teacherId           Int         @map("fk_teacher_id")
   institution         Institution @relation(fields: [institutionId], references: [id])
   pricingMode         PricingMode @relation(fields: [pricingModeId], references: [id])
+  teacher             User        @relation(fields: [teacherId], references: [id])
   sessions            Session[]
 
   @@map("Contracts")
@@ -86,22 +86,6 @@ model Status {
   sessions Session[]
 
   @@map("Status")
-}
-
-model SessionType {
-  id       Int       @id @default(autoincrement()) @map("session_type_id")
-  name     String
-  sessions Session[]
-
-  @@map("Session_Types")
-}
-
-model Timescale {
-  id       Int       @id @default(autoincrement()) @map("timescale_id")
-  name     String
-  sessions Session[]
-
-  @@map("Timescale")
 }
 
 model Invoice {
@@ -122,10 +106,8 @@ model Session {
   title                String       @map("title")
   contractId           Int?         @map("fk_contract_id")
   statusId             Int          @default(1) @map("fk_status_id")
-  userId               Int?         @map("fk_user_id")
+  teacherId            Int?         @map("fk_teacher_id")
   invoiceId            Int?         @map("fk_invoice_id")
-  sessionTypeId        Int?         @map("fk_session_type_id")
-  timescaleId          Int?         @map("fk_timescale_id")
   date                 DateTime     @db.Date
   start                DateTime     @db.Time(6)
   end                  DateTime     @db.Time(6)
@@ -134,10 +116,8 @@ model Session {
   class                Class?       @relation(fields: [classId], references: [id])
   contract             Contract?    @relation(fields: [contractId], references: [id])
   invoice              Invoice?     @relation(fields: [invoiceId], references: [id])
-  sessionType          SessionType? @relation(fields: [sessionTypeId], references: [id])
   statusRelation       Status       @relation(fields: [statusId], references: [id])
-  timescale            Timescale?   @relation(fields: [timescaleId], references: [id])
-  user                 User?        @relation(fields: [userId], references: [id])
+  teacher              User?        @relation(fields: [teacherId], references: [id])
 
   @@map("Sessions")
 }

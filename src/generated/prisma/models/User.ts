@@ -229,8 +229,8 @@ export type UserWhereInput = {
   firstName?: Prisma.StringFilter<"User"> | string
   lastName?: Prisma.StringFilter<"User"> | string
   sessions?: Prisma.SessionListRelationFilter
+  contracts?: Prisma.ContractListRelationFilter
   role?: Prisma.XOR<Prisma.RoleScalarRelationFilter, Prisma.RoleWhereInput>
-  classes?: Prisma.ClassListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -241,8 +241,8 @@ export type UserOrderByWithRelationInput = {
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   sessions?: Prisma.SessionOrderByRelationAggregateInput
+  contracts?: Prisma.ContractOrderByRelationAggregateInput
   role?: Prisma.RoleOrderByWithRelationInput
-  classes?: Prisma.ClassOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -256,8 +256,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   firstName?: Prisma.StringFilter<"User"> | string
   lastName?: Prisma.StringFilter<"User"> | string
   sessions?: Prisma.SessionListRelationFilter
+  contracts?: Prisma.ContractListRelationFilter
   role?: Prisma.XOR<Prisma.RoleScalarRelationFilter, Prisma.RoleWhereInput>
-  classes?: Prisma.ClassListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -291,9 +291,9 @@ export type UserCreateInput = {
   password: string
   firstName: string
   lastName: string
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutTeacherInput
+  contracts?: Prisma.ContractCreateNestedManyWithoutTeacherInput
   role: Prisma.RoleCreateNestedOneWithoutUsersInput
-  classes?: Prisma.ClassCreateNestedManyWithoutTeacherInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -303,8 +303,8 @@ export type UserUncheckedCreateInput = {
   roleId: number
   firstName: string
   lastName: string
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  classes?: Prisma.ClassUncheckedCreateNestedManyWithoutTeacherInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutTeacherInput
+  contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutTeacherInput
 }
 
 export type UserUpdateInput = {
@@ -312,9 +312,9 @@ export type UserUpdateInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutTeacherNestedInput
+  contracts?: Prisma.ContractUpdateManyWithoutTeacherNestedInput
   role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
-  classes?: Prisma.ClassUpdateManyWithoutTeacherNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -324,8 +324,8 @@ export type UserUncheckedUpdateInput = {
   roleId?: Prisma.IntFieldUpdateOperationsInput | number
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  classes?: Prisma.ClassUncheckedUpdateManyWithoutTeacherNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutTeacherNestedInput
+  contracts?: Prisma.ContractUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -452,18 +452,18 @@ export type UserUncheckedUpdateManyWithoutRoleNestedInput = {
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
-export type UserCreateNestedOneWithoutClassesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutClassesInput, Prisma.UserUncheckedCreateWithoutClassesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutClassesInput
+export type UserCreateNestedOneWithoutContractsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutContractsInput, Prisma.UserUncheckedCreateWithoutContractsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutContractsInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutClassesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutClassesInput, Prisma.UserUncheckedCreateWithoutClassesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutClassesInput
-  upsert?: Prisma.UserUpsertWithoutClassesInput
+export type UserUpdateOneRequiredWithoutContractsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutContractsInput, Prisma.UserUncheckedCreateWithoutContractsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutContractsInput
+  upsert?: Prisma.UserUpsertWithoutContractsInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutClassesInput, Prisma.UserUpdateWithoutClassesInput>, Prisma.UserUncheckedUpdateWithoutClassesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutContractsInput, Prisma.UserUpdateWithoutContractsInput>, Prisma.UserUncheckedUpdateWithoutContractsInput>
 }
 
 export type UserCreateNestedOneWithoutSessionsInput = {
@@ -487,8 +487,8 @@ export type UserCreateWithoutRoleInput = {
   password: string
   firstName: string
   lastName: string
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  classes?: Prisma.ClassCreateNestedManyWithoutTeacherInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutTeacherInput
+  contracts?: Prisma.ContractCreateNestedManyWithoutTeacherInput
 }
 
 export type UserUncheckedCreateWithoutRoleInput = {
@@ -497,8 +497,8 @@ export type UserUncheckedCreateWithoutRoleInput = {
   password: string
   firstName: string
   lastName: string
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  classes?: Prisma.ClassUncheckedCreateNestedManyWithoutTeacherInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutTeacherInput
+  contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutTeacherInput
 }
 
 export type UserCreateOrConnectWithoutRoleInput = {
@@ -539,58 +539,58 @@ export type UserScalarWhereInput = {
   lastName?: Prisma.StringFilter<"User"> | string
 }
 
-export type UserCreateWithoutClassesInput = {
+export type UserCreateWithoutContractsInput = {
   email: string
   password: string
   firstName: string
   lastName: string
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutTeacherInput
   role: Prisma.RoleCreateNestedOneWithoutUsersInput
 }
 
-export type UserUncheckedCreateWithoutClassesInput = {
+export type UserUncheckedCreateWithoutContractsInput = {
   id?: number
   email: string
   password: string
   roleId: number
   firstName: string
   lastName: string
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutTeacherInput
 }
 
-export type UserCreateOrConnectWithoutClassesInput = {
+export type UserCreateOrConnectWithoutContractsInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutClassesInput, Prisma.UserUncheckedCreateWithoutClassesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutContractsInput, Prisma.UserUncheckedCreateWithoutContractsInput>
 }
 
-export type UserUpsertWithoutClassesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutClassesInput, Prisma.UserUncheckedUpdateWithoutClassesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutClassesInput, Prisma.UserUncheckedCreateWithoutClassesInput>
+export type UserUpsertWithoutContractsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutContractsInput, Prisma.UserUncheckedUpdateWithoutContractsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutContractsInput, Prisma.UserUncheckedCreateWithoutContractsInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutClassesInput = {
+export type UserUpdateToOneWithWhereWithoutContractsInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutClassesInput, Prisma.UserUncheckedUpdateWithoutClassesInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutContractsInput, Prisma.UserUncheckedUpdateWithoutContractsInput>
 }
 
-export type UserUpdateWithoutClassesInput = {
+export type UserUpdateWithoutContractsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutTeacherNestedInput
   role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
 }
 
-export type UserUncheckedUpdateWithoutClassesInput = {
+export type UserUncheckedUpdateWithoutContractsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   roleId?: Prisma.IntFieldUpdateOperationsInput | number
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -598,8 +598,8 @@ export type UserCreateWithoutSessionsInput = {
   password: string
   firstName: string
   lastName: string
+  contracts?: Prisma.ContractCreateNestedManyWithoutTeacherInput
   role: Prisma.RoleCreateNestedOneWithoutUsersInput
-  classes?: Prisma.ClassCreateNestedManyWithoutTeacherInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -609,7 +609,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   roleId: number
   firstName: string
   lastName: string
-  classes?: Prisma.ClassUncheckedCreateNestedManyWithoutTeacherInput
+  contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutTeacherInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -633,8 +633,8 @@ export type UserUpdateWithoutSessionsInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  contracts?: Prisma.ContractUpdateManyWithoutTeacherNestedInput
   role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
-  classes?: Prisma.ClassUpdateManyWithoutTeacherNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -644,7 +644,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   roleId?: Prisma.IntFieldUpdateOperationsInput | number
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  classes?: Prisma.ClassUncheckedUpdateManyWithoutTeacherNestedInput
+  contracts?: Prisma.ContractUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
 export type UserCreateManyRoleInput = {
@@ -660,8 +660,8 @@ export type UserUpdateWithoutRoleInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  classes?: Prisma.ClassUpdateManyWithoutTeacherNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutTeacherNestedInput
+  contracts?: Prisma.ContractUpdateManyWithoutTeacherNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRoleInput = {
@@ -670,8 +670,8 @@ export type UserUncheckedUpdateWithoutRoleInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  classes?: Prisma.ClassUncheckedUpdateManyWithoutTeacherNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutTeacherNestedInput
+  contracts?: Prisma.ContractUncheckedUpdateManyWithoutTeacherNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutRoleInput = {
@@ -689,12 +689,12 @@ export type UserUncheckedUpdateManyWithoutRoleInput = {
 
 export type UserCountOutputType = {
   sessions: number
-  classes: number
+  contracts: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
-  classes?: boolean | UserCountOutputTypeCountClassesArgs
+  contracts?: boolean | UserCountOutputTypeCountContractsArgs
 }
 
 /**
@@ -717,8 +717,8 @@ export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.E
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountClassesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ClassWhereInput
+export type UserCountOutputTypeCountContractsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContractWhereInput
 }
 
 
@@ -730,8 +730,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   firstName?: boolean
   lastName?: boolean
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  contracts?: boolean | Prisma.User$contractsArgs<ExtArgs>
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
-  classes?: boolean | Prisma.User$classesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -767,8 +767,8 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "roleId" | "firstName" | "lastName", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  contracts?: boolean | Prisma.User$contractsArgs<ExtArgs>
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
-  classes?: boolean | Prisma.User$classesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -782,8 +782,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     sessions: Prisma.$SessionPayload<ExtArgs>[]
+    contracts: Prisma.$ContractPayload<ExtArgs>[]
     role: Prisma.$RolePayload<ExtArgs>
-    classes: Prisma.$ClassPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1187,8 +1187,8 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  contracts<T extends Prisma.User$contractsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$contractsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   role<T extends Prisma.RoleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoleDefaultArgs<ExtArgs>>): Prisma.Prisma__RoleClient<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  classes<T extends Prisma.User$classesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$classesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1649,27 +1649,27 @@ export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * User.classes
+ * User.contracts
  */
-export type User$classesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$contractsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Class
+   * Select specific fields to fetch from the Contract
    */
-  select?: Prisma.ClassSelect<ExtArgs> | null
+  select?: Prisma.ContractSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Class
+   * Omit specific fields from the Contract
    */
-  omit?: Prisma.ClassOmit<ExtArgs> | null
+  omit?: Prisma.ContractOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ClassInclude<ExtArgs> | null
-  where?: Prisma.ClassWhereInput
-  orderBy?: Prisma.ClassOrderByWithRelationInput | Prisma.ClassOrderByWithRelationInput[]
-  cursor?: Prisma.ClassWhereUniqueInput
+  include?: Prisma.ContractInclude<ExtArgs> | null
+  where?: Prisma.ContractWhereInput
+  orderBy?: Prisma.ContractOrderByWithRelationInput | Prisma.ContractOrderByWithRelationInput[]
+  cursor?: Prisma.ContractWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ClassScalarFieldEnum | Prisma.ClassScalarFieldEnum[]
+  distinct?: Prisma.ContractScalarFieldEnum | Prisma.ContractScalarFieldEnum[]
 }
 
 /**

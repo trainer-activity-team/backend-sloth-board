@@ -1,4 +1,11 @@
-import { IsDateString, IsInt, IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
+import {
+  IsDateString,
+  IsInt,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  Min,
+} from 'class-validator';
 
 export class CreateContractDto {
   @IsInt()

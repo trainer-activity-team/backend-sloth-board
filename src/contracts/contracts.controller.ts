@@ -18,6 +18,8 @@ import {
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { CreatedResourceDto } from '../common/dto/created-resource.dto';
 import {
   ContractsService,
   FormattedContract,
@@ -35,9 +37,12 @@ export class ContractsController {
   @Post()
   @HttpCode(201)
   @ApiOperation({ summary: 'Create a contract' })
-  @ApiCreatedResponse({ description: 'Created contract' })
-  create(@Body() createContractDto: CreateContractDto): Promise<FormattedContract> {
-    return this.contractsService.create(createContractDto);
+  @ApiCreatedResponse({ type: CreatedResourceDto })
+  create(
+    @Body() createContractDto: CreateContractDto,
+    @CurrentUser() user: { sub: number },
+  ): Promise<CreatedResourceDto> {
+    return this.contractsService.create(createContractDto, user.sub);
   }
 
   @Get()
@@ -51,7 +56,9 @@ export class ContractsController {
   @ApiOperation({ summary: 'Get a contract by ID' })
   @ApiParam({ name: 'id', type: Number })
   @ApiOkResponse({ description: 'Contract with relations' })
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<FormattedContractWithRelations> {
+  findOne(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<FormattedContractWithRelations> {
     return this.contractsService.findOne(id);
   }
 

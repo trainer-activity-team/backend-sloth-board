@@ -47,8 +47,6 @@ describe('AgendaController', () => {
     await expect(controller.findSessionsByDate('2026-07-01')).resolves.toEqual(
       sessions,
     );
-    expect(agendaService.findSessionsByDate).toHaveBeenCalledWith(
-      '2026-07-01',
-    );
+    expect(agendaService.findSessionsByDate).toHaveBeenCalledWith('2026-07-01');
   });
 });

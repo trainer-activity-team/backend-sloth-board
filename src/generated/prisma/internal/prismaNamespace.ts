@@ -391,8 +391,6 @@ export const ModelName = {
   PricingMode: 'PricingMode',
   Contract: 'Contract',
   Status: 'Status',
-  SessionType: 'SessionType',
-  Timescale: 'Timescale',
   Invoice: 'Invoice',
   Session: 'Session'
 } as const
@@ -410,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "role" | "user" | "institution" | "class" | "pricingMode" | "contract" | "status" | "sessionType" | "timescale" | "invoice" | "session"
+    modelProps: "role" | "user" | "institution" | "class" | "pricingMode" | "contract" | "status" | "invoice" | "session"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -932,154 +930,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    SessionType: {
-      payload: Prisma.$SessionTypePayload<ExtArgs>
-      fields: Prisma.SessionTypeFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.SessionTypeFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionTypePayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.SessionTypeFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionTypePayload>
-        }
-        findFirst: {
-          args: Prisma.SessionTypeFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionTypePayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.SessionTypeFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionTypePayload>
-        }
-        findMany: {
-          args: Prisma.SessionTypeFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionTypePayload>[]
-        }
-        create: {
-          args: Prisma.SessionTypeCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionTypePayload>
-        }
-        createMany: {
-          args: Prisma.SessionTypeCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.SessionTypeCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionTypePayload>[]
-        }
-        delete: {
-          args: Prisma.SessionTypeDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionTypePayload>
-        }
-        update: {
-          args: Prisma.SessionTypeUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionTypePayload>
-        }
-        deleteMany: {
-          args: Prisma.SessionTypeDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.SessionTypeUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.SessionTypeUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionTypePayload>[]
-        }
-        upsert: {
-          args: Prisma.SessionTypeUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionTypePayload>
-        }
-        aggregate: {
-          args: Prisma.SessionTypeAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSessionType>
-        }
-        groupBy: {
-          args: Prisma.SessionTypeGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SessionTypeGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.SessionTypeCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SessionTypeCountAggregateOutputType> | number
-        }
-      }
-    }
-    Timescale: {
-      payload: Prisma.$TimescalePayload<ExtArgs>
-      fields: Prisma.TimescaleFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.TimescaleFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimescalePayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.TimescaleFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimescalePayload>
-        }
-        findFirst: {
-          args: Prisma.TimescaleFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimescalePayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.TimescaleFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimescalePayload>
-        }
-        findMany: {
-          args: Prisma.TimescaleFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimescalePayload>[]
-        }
-        create: {
-          args: Prisma.TimescaleCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimescalePayload>
-        }
-        createMany: {
-          args: Prisma.TimescaleCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.TimescaleCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimescalePayload>[]
-        }
-        delete: {
-          args: Prisma.TimescaleDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimescalePayload>
-        }
-        update: {
-          args: Prisma.TimescaleUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimescalePayload>
-        }
-        deleteMany: {
-          args: Prisma.TimescaleDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.TimescaleUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.TimescaleUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimescalePayload>[]
-        }
-        upsert: {
-          args: Prisma.TimescaleUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimescalePayload>
-        }
-        aggregate: {
-          args: Prisma.TimescaleAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateTimescale>
-        }
-        groupBy: {
-          args: Prisma.TimescaleGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.TimescaleGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.TimescaleCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.TimescaleCountAggregateOutputType> | number
-        }
-      }
-    }
     Invoice: {
       payload: Prisma.$InvoicePayload<ExtArgs>
       fields: Prisma.InvoiceFieldRefs
@@ -1303,8 +1153,7 @@ export const ClassScalarFieldEnum = {
   institutionId: 'institutionId',
   classLevel: 'classLevel',
   studentCount: 'studentCount',
-  name: 'name',
-  teacherId: 'teacherId'
+  name: 'name'
 } as const
 
 export type ClassScalarFieldEnum = (typeof ClassScalarFieldEnum)[keyof typeof ClassScalarFieldEnum]
@@ -1326,7 +1175,8 @@ export const ContractScalarFieldEnum = {
   startDate: 'startDate',
   endDate: 'endDate',
   hourlyVolumePlanned: 'hourlyVolumePlanned',
-  unitPrice: 'unitPrice'
+  unitPrice: 'unitPrice',
+  teacherId: 'teacherId'
 } as const
 
 export type ContractScalarFieldEnum = (typeof ContractScalarFieldEnum)[keyof typeof ContractScalarFieldEnum]
@@ -1338,22 +1188,6 @@ export const StatusScalarFieldEnum = {
 } as const
 
 export type StatusScalarFieldEnum = (typeof StatusScalarFieldEnum)[keyof typeof StatusScalarFieldEnum]
-
-
-export const SessionTypeScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-} as const
-
-export type SessionTypeScalarFieldEnum = (typeof SessionTypeScalarFieldEnum)[keyof typeof SessionTypeScalarFieldEnum]
-
-
-export const TimescaleScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-} as const
-
-export type TimescaleScalarFieldEnum = (typeof TimescaleScalarFieldEnum)[keyof typeof TimescaleScalarFieldEnum]
 
 
 export const InvoiceScalarFieldEnum = {
@@ -1374,10 +1208,8 @@ export const SessionScalarFieldEnum = {
   title: 'title',
   contractId: 'contractId',
   statusId: 'statusId',
-  userId: 'userId',
+  teacherId: 'teacherId',
   invoiceId: 'invoiceId',
-  sessionTypeId: 'sessionTypeId',
-  timescaleId: 'timescaleId',
   date: 'date',
   start: 'start',
   end: 'end',
@@ -1611,8 +1443,6 @@ export type GlobalOmitConfig = {
   pricingMode?: Prisma.PricingModeOmit
   contract?: Prisma.ContractOmit
   status?: Prisma.StatusOmit
-  sessionType?: Prisma.SessionTypeOmit
-  timescale?: Prisma.TimescaleOmit
   invoice?: Prisma.InvoiceOmit
   session?: Prisma.SessionOmit
 }

@@ -52,7 +52,7 @@ describe('SessionsService', () => {
   });
 
   it('normalizes date and time strings when creating a session', async () => {
-    prisma.session.create.mockResolvedValue(session);
+    prisma.session.create.mockResolvedValue({ id: session.id });
 
     await expect(
       service.create({
@@ -62,13 +62,7 @@ describe('SessionsService', () => {
         end: '10:00',
         declarationDate: '2026-07-02',
       }),
-    ).resolves.toEqual({
-      ...session,
-      date: '2026-07-01',
-      start: '09:00',
-      end: '10:00',
-      declarationDate: '2026-07-02',
-    });
+    ).resolves.toEqual({ id: session.id });
 
     expect(prisma.session.create).toHaveBeenCalledWith({
       data: expect.objectContaining({
@@ -77,6 +71,7 @@ describe('SessionsService', () => {
         end: new Date('1970-01-01T10:00:00.000Z'),
         declarationDate: new Date('2026-07-02T00:00:00.000Z'),
       }),
+      select: { id: true },
     });
   });
 

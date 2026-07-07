@@ -5,6 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Institution } from '../generated/prisma/client';
+import { CreatedResourceDto } from '../common/dto/created-resource.dto';
 import {
   isForeignKeyConstraintError,
   isPrismaNotFoundError,
@@ -17,10 +18,13 @@ import { UpdateInstitutionDto } from './dto/update-institution.dto';
 export class InstitutionsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createInstitutionDto: CreateInstitutionDto): Promise<Institution> {
+  async create(
+    createInstitutionDto: CreateInstitutionDto,
+  ): Promise<CreatedResourceDto> {
     try {
       return await this.prisma.institution.create({
         data: createInstitutionDto,
+        select: { id: true },
       });
     } catch (error) {
       throw new InternalServerErrorException('Failed to create institution', {
@@ -60,7 +64,10 @@ export class InstitutionsService {
     }
   }
 
-  async update(id: number, updateInstitutionDto: UpdateInstitutionDto): Promise<Institution> {
+  async update(
+    id: number,
+    updateInstitutionDto: UpdateInstitutionDto,
+  ): Promise<Institution> {
     await this.findOne(id);
 
     try {

@@ -29,7 +29,9 @@ export class AgendaController {
     description: 'Session date in YYYY-MM-DD format',
   })
   @ApiOkResponse({ description: 'List of sessions for the requested date' })
-  findSessionsByDate(@Query('date') date: string): Promise<FormattedAgendaSession[]> {
+  findSessionsByDate(
+    @Query('date') date: string,
+  ): Promise<FormattedAgendaSession[]> {
     return this.agendaService.findSessionsByDate(date);
   }
 }

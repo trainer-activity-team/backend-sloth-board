@@ -35,17 +35,7 @@ export class CreateSessionDto {
   @IsOptional()
   @IsInt()
   @Min(1)
-  userId?: number;
-
-  @IsOptional()
-  @IsInt()
-  @Min(1)
-  sessionTypeId?: number;
-
-  @IsOptional()
-  @IsInt()
-  @Min(1)
-  timescaleId?: number;
+  teacherId?: number;
 
   @IsDateString()
   date: string;

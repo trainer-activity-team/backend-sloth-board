@@ -58,8 +58,6 @@ export const ModelName = {
   PricingMode: 'PricingMode',
   Contract: 'Contract',
   Status: 'Status',
-  SessionType: 'SessionType',
-  Timescale: 'Timescale',
   Invoice: 'Invoice',
   Session: 'Session'
 } as const
@@ -116,8 +114,7 @@ export const ClassScalarFieldEnum = {
   institutionId: 'institutionId',
   classLevel: 'classLevel',
   studentCount: 'studentCount',
-  name: 'name',
-  teacherId: 'teacherId'
+  name: 'name'
 } as const
 
 export type ClassScalarFieldEnum = (typeof ClassScalarFieldEnum)[keyof typeof ClassScalarFieldEnum]
@@ -139,7 +136,8 @@ export const ContractScalarFieldEnum = {
   startDate: 'startDate',
   endDate: 'endDate',
   hourlyVolumePlanned: 'hourlyVolumePlanned',
-  unitPrice: 'unitPrice'
+  unitPrice: 'unitPrice',
+  teacherId: 'teacherId'
 } as const
 
 export type ContractScalarFieldEnum = (typeof ContractScalarFieldEnum)[keyof typeof ContractScalarFieldEnum]
@@ -151,22 +149,6 @@ export const StatusScalarFieldEnum = {
 } as const
 
 export type StatusScalarFieldEnum = (typeof StatusScalarFieldEnum)[keyof typeof StatusScalarFieldEnum]
-
-
-export const SessionTypeScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-} as const
-
-export type SessionTypeScalarFieldEnum = (typeof SessionTypeScalarFieldEnum)[keyof typeof SessionTypeScalarFieldEnum]
-
-
-export const TimescaleScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
-} as const
-
-export type TimescaleScalarFieldEnum = (typeof TimescaleScalarFieldEnum)[keyof typeof TimescaleScalarFieldEnum]
 
 
 export const InvoiceScalarFieldEnum = {
@@ -187,10 +169,8 @@ export const SessionScalarFieldEnum = {
   title: 'title',
   contractId: 'contractId',
   statusId: 'statusId',
-  userId: 'userId',
+  teacherId: 'teacherId',
   invoiceId: 'invoiceId',
-  sessionTypeId: 'sessionTypeId',
-  timescaleId: 'timescaleId',
   date: 'date',
   start: 'start',
   end: 'end',

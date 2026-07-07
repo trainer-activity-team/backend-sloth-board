@@ -6,6 +6,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Contract, Prisma } from '../generated/prisma/client';
+import { CreatedResourceDto } from '../common/dto/created-resource.dto';
 import { formatDateOnly, toPrismaDate } from '../common/date-format';
 import {
   isForeignKeyConstraintError,
@@ -22,22 +23,33 @@ const contractInclude = {
   pricingMode: {
     select: { id: true, name: true },
   },
+  teacher: {
+    select: { id: true, firstName: true, lastName: true, email: true },
+  },
 } satisfies Prisma.ContractInclude;
 
-type ContractWithRelations = Prisma.ContractGetPayload<{ include: typeof contractInclude }>;
-type FormattedContract<T extends Contract = Contract> = Omit<T, 'startDate' | 'endDate'> & {
+type ContractWithRelations = Prisma.ContractGetPayload<{
+  include: typeof contractInclude;
+}>;
+type FormattedContract<T extends Contract = Contract> = Omit<
+  T,
+  'startDate' | 'endDate'
+> & {
   startDate: string;
   endDate: string;
 };
 
-export type FormattedContractWithRelations = FormattedContract<ContractWithRelations>;
+export type FormattedContractWithRelations =
+  FormattedContract<ContractWithRelations>;
 export type { FormattedContract };
 
 function normalizeContractCreateData(
   createContractDto: CreateContractDto,
+  teacherId: number,
 ): Prisma.ContractUncheckedCreateInput {
   return {
     ...createContractDto,
+    teacherId,
     startDate: toPrismaDate(createContractDto.startDate),
     endDate: toPrismaDate(createContractDto.endDate),
   };
@@ -69,16 +81,20 @@ function formatContract<T extends Contract>(contract: T): FormattedContract<T> {
 export class ContractsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createContractDto: CreateContractDto): Promise<FormattedContract<Contract>> {
+  async create(
+    createContractDto: CreateContractDto,
+    teacherId: number,
+  ): Promise<CreatedResourceDto> {
     try {
-      const contract = await this.prisma.contract.create({
-        data: normalizeContractCreateData(createContractDto),
+      return await this.prisma.contract.create({
+        data: normalizeContractCreateData(createContractDto, teacherId),
+        select: { id: true },
       });
-
-      return formatContract(contract);
     } catch (error) {
       if (isForeignKeyConstraintError(error)) {
-        throw new BadRequestException('Invalid institutionId or pricingModeId');
+        throw new BadRequestException(
+          'Invalid institutionId, pricingModeId or teacherId',
+        );
       }
       throw new InternalServerErrorException('Failed to create contract', {
         cause: error,
@@ -88,7 +104,9 @@ export class ContractsService {
 
   async findAll(): Promise<FormattedContractWithRelations[]> {
     try {
-      const contracts = await this.prisma.contract.findMany({ include: contractInclude });
+      const contracts = await this.prisma.contract.findMany({
+        include: contractInclude,
+      });
       return contracts.map(formatContract);
     } catch (error) {
       throw new InternalServerErrorException('Failed to fetch contracts', {
@@ -137,7 +155,9 @@ export class ContractsService {
         throw new NotFoundException(`Contract #${id} not found`);
       }
       if (isForeignKeyConstraintError(error)) {
-        throw new BadRequestException('Invalid institutionId or pricingModeId');
+        throw new BadRequestException(
+          'Invalid institutionId, pricingModeId or teacherId',
+        );
       }
       throw new InternalServerErrorException('Failed to update contract', {
         cause: error,
@@ -155,7 +175,9 @@ export class ContractsService {
         throw new NotFoundException(`Contract #${id} not found`);
       }
       if (isForeignKeyConstraintError(error)) {
-        throw new ConflictException('Cannot delete contract with related sessions');
+        throw new ConflictException(
+          'Cannot delete contract with related sessions',
+        );
       }
       throw new InternalServerErrorException('Failed to delete contract', {
         cause: error,

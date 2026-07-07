@@ -6,6 +6,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Class, Prisma } from '../generated/prisma/client';
+import { CreatedResourceDto } from '../common/dto/created-resource.dto';
 import {
   isForeignKeyConstraintError,
   isPrismaNotFoundError,
@@ -15,15 +16,14 @@ import { CreateClassDto } from './dto/create-class.dto';
 import { UpdateClassDto } from './dto/update-class.dto';
 
 const classInclude = {
-  teacher: {
-    select: { id: true, firstName: true, lastName: true, email: true },
-  },
   institution: {
     select: { id: true, name: true },
   },
 } satisfies Prisma.ClassInclude;
 
-type ClassWithRelations = Prisma.ClassGetPayload<{ include: typeof classInclude }>;
+type ClassWithRelations = Prisma.ClassGetPayload<{
+  include: typeof classInclude;
+}>;
 
 export type { ClassWithRelations };
 
@@ -31,14 +31,15 @@ export type { ClassWithRelations };
 export class ClassesService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createClassDto: CreateClassDto): Promise<Class> {
+  async create(createClassDto: CreateClassDto): Promise<CreatedResourceDto> {
     try {
       return await this.prisma.class.create({
         data: createClassDto,
+        select: { id: true },
       });
     } catch (error) {
       if (isForeignKeyConstraintError(error)) {
-        throw new BadRequestException('Invalid institutionId or teacherId');
+        throw new BadRequestException('Invalid institutionId');
       }
       throw new InternalServerErrorException('Failed to create class', {
         cause: error,
@@ -91,7 +92,7 @@ export class ClassesService {
         throw new NotFoundException(`Class #${id} not found`);
       }
       if (isForeignKeyConstraintError(error)) {
-        throw new BadRequestException('Invalid institutionId or teacherId');
+        throw new BadRequestException('Invalid institutionId');
       }
       throw new InternalServerErrorException('Failed to update class', {
         cause: error,
@@ -109,7 +110,9 @@ export class ClassesService {
         throw new NotFoundException(`Class #${id} not found`);
       }
       if (isForeignKeyConstraintError(error)) {
-        throw new ConflictException('Cannot delete class with related sessions');
+        throw new ConflictException(
+          'Cannot delete class with related sessions',
+        );
       }
       throw new InternalServerErrorException('Failed to delete class', {
         cause: error,

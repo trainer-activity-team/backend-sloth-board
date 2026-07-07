@@ -48,29 +48,30 @@ describe('ContractsService', () => {
       startDate: new Date('2026-09-01T00:00:00.000Z'),
       endDate: new Date('2027-06-30T00:00:00.000Z'),
     };
-    prisma.contract.create.mockResolvedValue(createdContract);
+    prisma.contract.create.mockResolvedValue({ id: createdContract.id });
 
     await expect(
-      service.create({
-        institutionId: 1,
-        pricingModeId: 1,
-        contractNumber: 'CTR-2026-001',
-        startDate: '2026-09-01',
-        endDate: '2027-06-30',
-        hourlyVolumePlanned: 120.5,
-        unitPrice: 45,
-      }),
-    ).resolves.toEqual({
-      ...createdContract,
-      startDate: '2026-09-01',
-      endDate: '2027-06-30',
-    });
+      service.create(
+        {
+          institutionId: 1,
+          pricingModeId: 1,
+          contractNumber: 'CTR-2026-001',
+          startDate: '2026-09-01',
+          endDate: '2027-06-30',
+          hourlyVolumePlanned: 120.5,
+          unitPrice: 45,
+        },
+        7,
+      ),
+    ).resolves.toEqual({ id: createdContract.id });
 
     expect(prisma.contract.create).toHaveBeenCalledWith({
       data: expect.objectContaining({
+        teacherId: 7,
         startDate: new Date('2026-09-01T00:00:00.000Z'),
         endDate: new Date('2027-06-30T00:00:00.000Z'),
       }),
+      select: { id: true },
     });
   });
 

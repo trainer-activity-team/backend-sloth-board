@@ -18,6 +18,7 @@ import {
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
+import { CreatedResourceDto } from '../common/dto/created-resource.dto';
 import { Class } from '../generated/prisma/client';
 import { ClassesService, ClassWithRelations } from './classes.service';
 import { CreateClassDto } from './dto/create-class.dto';
@@ -32,8 +33,10 @@ export class ClassesController {
   @Post()
   @HttpCode(201)
   @ApiOperation({ summary: 'Create a class' })
-  @ApiCreatedResponse({ description: 'Created class' })
-  create(@Body() createClassDto: CreateClassDto): Promise<Class> {
+  @ApiCreatedResponse({ type: CreatedResourceDto })
+  create(
+    @Body() createClassDto: CreateClassDto,
+  ): Promise<CreatedResourceDto> {
     return this.classesService.create(createClassDto);
   }
 
