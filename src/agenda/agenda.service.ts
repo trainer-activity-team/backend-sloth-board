@@ -7,9 +7,18 @@ import {
 } from '../common/date-format';
 import { PrismaService } from '../prisma/prisma.service';
 
+const DEFAULT_INSTITUTION_COLOR = '#3B82F6';
+
 const agendaSessionInclude = {
   class: {
-    select: { id: true, name: true, classLevel: true },
+    select: {
+      id: true,
+      name: true,
+      classLevel: true,
+      institution: {
+        select: { id: true, color: true },
+      },
+    },
   },
   contract: {
     select: { id: true, contractNumber: true },
@@ -33,9 +42,14 @@ type FormattedAgendaSession = Omit<
   start: string;
   end: string;
   declarationDate: string | null;
+  color: string;
 };
 
 export type { FormattedAgendaSession };
+
+function resolveSessionColor(session: AgendaSession): string {
+  return session.class?.institution?.color ?? DEFAULT_INSTITUTION_COLOR;
+}
 
 function formatAgendaSession(session: AgendaSession): FormattedAgendaSession {
   return {
@@ -44,6 +58,7 @@ function formatAgendaSession(session: AgendaSession): FormattedAgendaSession {
     start: formatTimeOnly(session.start),
     end: formatTimeOnly(session.end),
     declarationDate: formatDateOnly(session.declarationDate),
+    color: resolveSessionColor(session),
   };
 }
 

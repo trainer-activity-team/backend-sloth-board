@@ -52,25 +52,53 @@ export type FormattedSessionWithRelations =
   FormattedSession<SessionWithRelations>;
 export type { FormattedSession };
 
+function todayAsPrismaDate(): Date {
+  return toPrismaDate(new Date().toISOString().slice(0, 10));
+}
+
+function resolveDeclarationDate(
+  declarationReference: string | undefined,
+): Date | undefined {
+  if (declarationReference === undefined) {
+    return undefined;
+  }
+
+  return declarationReference.trim().length > 0
+    ? todayAsPrismaDate()
+    : undefined;
+}
+
 function normalizeSessionCreateData(
   createSessionDto: CreateSessionDto,
+  userId: number,
 ): Prisma.SessionUncheckedCreateInput {
+  const declarationDate = resolveDeclarationDate(
+    createSessionDto.declarationReference,
+  );
+
   return {
     ...createSessionDto,
+    teacherId: userId,
     date: toPrismaDate(createSessionDto.date),
     start: toPrismaTime(createSessionDto.start),
     end: toPrismaTime(createSessionDto.end),
-    ...(createSessionDto.declarationDate && {
-      declarationDate: toPrismaDate(createSessionDto.declarationDate),
-    }),
+    ...(declarationDate && { declarationDate }),
   };
 }
 
 function normalizeSessionUpdateData(
   updateSessionDto: UpdateSessionDto,
 ): Prisma.SessionUncheckedUpdateInput {
+  const { declarationReference, ...rest } = updateSessionDto;
+  const declarationDate =
+    declarationReference === undefined
+      ? undefined
+      : declarationReference.trim().length > 0
+        ? todayAsPrismaDate()
+        : null;
+
   return {
-    ...updateSessionDto,
+    ...rest,
     ...(updateSessionDto.date && {
       date: toPrismaDate(updateSessionDto.date),
     }),
@@ -80,9 +108,8 @@ function normalizeSessionUpdateData(
     ...(updateSessionDto.end && {
       end: toPrismaTime(updateSessionDto.end),
     }),
-    ...(updateSessionDto.declarationDate && {
-      declarationDate: toPrismaDate(updateSessionDto.declarationDate),
-    }),
+    ...(declarationReference !== undefined && { declarationReference }),
+    ...(declarationDate !== undefined && { declarationDate }),
   };
 }
 
@@ -102,10 +129,11 @@ export class SessionsService {
 
   async create(
     createSessionDto: CreateSessionDto,
+    userId: number,
   ): Promise<CreatedResourceDto> {
     try {
       return await this.prisma.session.create({
-        data: normalizeSessionCreateData(createSessionDto),
+        data: normalizeSessionCreateData(createSessionDto, userId),
         select: { id: true },
       });
     } catch (error) {

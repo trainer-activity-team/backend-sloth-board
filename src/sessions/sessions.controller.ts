@@ -18,6 +18,7 @@ import {
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { CreatedResourceDto } from '../common/dto/created-resource.dto';
 import {
   FormattedSession,
@@ -39,8 +40,9 @@ export class SessionsController {
   @ApiCreatedResponse({ type: CreatedResourceDto })
   create(
     @Body() createSessionDto: CreateSessionDto,
+    @CurrentUser() user: { sub: number },
   ): Promise<CreatedResourceDto> {
-    return this.sessionsService.create(createSessionDto);
+    return this.sessionsService.create(createSessionDto, user.sub);
   }
 
   @Get()

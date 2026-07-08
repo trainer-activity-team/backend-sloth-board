@@ -32,11 +32,6 @@ export class CreateSessionDto {
   @Min(1)
   statusId?: number;
 
-  @IsOptional()
-  @IsInt()
-  @Min(1)
-  teacherId?: number;
-
   @IsDateString()
   date: string;
 
@@ -51,8 +46,4 @@ export class CreateSessionDto {
   @IsOptional()
   @IsString()
   declarationReference?: string;
-
-  @IsOptional()
-  @IsDateString()
-  declarationDate?: string;
 }

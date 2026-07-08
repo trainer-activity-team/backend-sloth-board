@@ -14,25 +14,30 @@ describe('AgendaService', () => {
     };
   };
 
-  const sessions = [
-    {
+  const sessionWithClass = {
+    id: 1,
+    title: 'Math lesson',
+    date: new Date('2026-07-01T00:00:00.000Z'),
+    start: new Date('1970-01-01T09:00:00.000Z'),
+    end: new Date('1970-01-01T10:00:00.000Z'),
+    declarationDate: null,
+    class: {
       id: 1,
-      title: 'Math lesson',
-      date: new Date('2026-07-01T00:00:00.000Z'),
-      start: new Date('1970-01-01T09:00:00.000Z'),
-      end: new Date('1970-01-01T10:00:00.000Z'),
-      declarationDate: null,
+      name: 'SIO',
+      classLevel: 'BTS',
+      institution: { id: 1, color: '#117964' },
     },
-  ];
-  const formattedSessions = [
-    {
-      ...sessions[0],
-      date: '2026-07-01',
-      start: '09:00',
-      end: '10:00',
-      declarationDate: null,
-    },
-  ];
+  };
+
+  const sessionWithoutClass = {
+    id: 2,
+    title: 'Open session',
+    date: new Date('2026-07-01T00:00:00.000Z'),
+    start: new Date('1970-01-01T11:00:00.000Z'),
+    end: new Date('1970-01-01T12:00:00.000Z'),
+    declarationDate: null,
+    class: null,
+  };
 
   beforeEach(async () => {
     prisma = {
@@ -58,21 +63,52 @@ describe('AgendaService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should list agenda sessions', async () => {
-    prisma.session.findMany.mockResolvedValue(sessions);
+  it('should list agenda sessions with institution color from class', async () => {
+    prisma.session.findMany.mockResolvedValue([sessionWithClass]);
 
-    await expect(service.findSessions()).resolves.toEqual(formattedSessions);
+    await expect(service.findSessions()).resolves.toEqual([
+      {
+        ...sessionWithClass,
+        date: '2026-07-01',
+        start: '09:00',
+        end: '10:00',
+        declarationDate: null,
+        color: '#117964',
+      },
+    ]);
     expect(prisma.session.findMany).toHaveBeenCalledWith({
       include: expect.any(Object),
     });
   });
 
-  it('should list agenda sessions by date', async () => {
-    prisma.session.findMany.mockResolvedValue(sessions);
+  it('should use default color when session has no class', async () => {
+    prisma.session.findMany.mockResolvedValue([sessionWithoutClass]);
 
-    await expect(service.findSessionsByDate('2026-07-01')).resolves.toEqual(
-      formattedSessions,
-    );
+    await expect(service.findSessions()).resolves.toEqual([
+      {
+        ...sessionWithoutClass,
+        date: '2026-07-01',
+        start: '11:00',
+        end: '12:00',
+        declarationDate: null,
+        color: '#3B82F6',
+      },
+    ]);
+  });
+
+  it('should list agenda sessions by date', async () => {
+    prisma.session.findMany.mockResolvedValue([sessionWithClass]);
+
+    await expect(service.findSessionsByDate('2026-07-01')).resolves.toEqual([
+      {
+        ...sessionWithClass,
+        date: '2026-07-01',
+        start: '09:00',
+        end: '10:00',
+        declarationDate: null,
+        color: '#117964',
+      },
+    ]);
     expect(prisma.session.findMany).toHaveBeenCalledWith({
       where: {
         date: {
