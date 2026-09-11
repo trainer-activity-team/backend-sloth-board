@@ -16,6 +16,10 @@ General standards for all code in this backend.
 - Follow NestJS module / controller / service patterns.
 - Keep controllers thin; business logic belongs in services.
 - Use dependency injection — never instantiate services or repositories manually in feature code.
+- Load env with `ConfigModule.forRoot({ isGlobal: true })` in `AppModule` — not in feature modules.
+- Enable CORS in `main.ts` from `CORS_ORIGIN` (comma-separated frontend origins). The SPA is a different origin; do not assume same-origin or a reverse proxy.
+- Do not add a global `/api` prefix. This process *is* the API; routes stay at `/auth`, `/users`, etc.
+- Do not serve the React build from NestJS. Do not add Docker or nginx for this app.
 - See `api-conventions.mdc` for REST endpoint rules.
 
 ## Prisma

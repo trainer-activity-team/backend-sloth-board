@@ -19,7 +19,7 @@ export function setupSwagger(app: INestApplication): void {
       { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
       'JWT',
     )
-    .addServer('/api', 'Public API via nginx')
+    .addServer('http://localhost:3000', 'Local API')
     .addTag('auth')
     .addTag('users')
     .addTag('institutions')
